@@ -2,14 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <script src="Cesium/Cesium.js"></script>
-  <link href="Cesium/Widgets/widgets.css" rel="stylesheet">
+  <script data-main="js/libs/Cesium/ThirdParty/rConf" src="js/libs/Cesium/ThirdParty/require.js"></script>
+  <link href="js/libs/Cesium/Widgets/widgets.css" rel="stylesheet">
 </head>
 <body>
-  <div id="cesiumContainer" style="width: 700px; height:400px"></div>
-  <script>
-    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjMDgxODJmNS1lNDg5LTRkOTktOWQyZi1lYWQyNDNhZWUwMzQiLCJpZCI6MjMxMjUsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1ODI3NTk4ODN9.Gq-ahGBhm4OfLhnaEOezN1E38KhlqhBLQVfsa3aKBTA';
-    var viewer = new Cesium.Viewer('cesiumContainer');
-  </script>
+  <div id="cesiumContainer" style="width:100%; height:100%; position:fixed; left:0;top:0;overflow:hidden;"></div>
 </body>
 </html>

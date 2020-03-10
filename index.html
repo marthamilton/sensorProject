@@ -4,8 +4,36 @@
   <meta charset="utf-8">
   <script data-main="js/libs/Cesium/ThirdParty/rConf" src="js/libs/Cesium/ThirdParty/require.js"></script>
   <link href="js/libs/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <link href="main.css" rel="stylesheet">
+  <title>Air Quality Project</title>
 </head>
 <body>
   <div id="cesiumContainer" style="width:100%; height:100%; position:fixed; left:0;top:0;overflow:hidden;"></div>
+  <div class="projectTitleDiv">
+    <h2 class="projectTitle">Herefordshire and Worcestershire School Air Quality Data Visualisation Project</h2>
+  </div>
+  <div class="centerDiv">
+  <div class="topnav" id="navMenu" style="position: relative; z-index: 1;"> 
+    <a href="">HOME</a>
+    <a href="">ABOUT</a>
+    <a href="">STUDIES</a>
+    <a href="">SEARCH</a>
+    <a href="">SENSORS</a>
+    <a href="">FILTERS</a>
+    <a href="">SEND FEEDBACK</a>
+    <a href="">HELP</a>
+    <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="navFunction()">&#9776;</a>
+  </div>
+</div>
+  <script>
+  function navFunction() {
+    var x = document.getElementById("navMenu");
+    if (x.className === "topnav") {
+      x.className += " responsive";
+    } else {
+      x.className = "topnav";
+    }
+  }
+  </script>
 </body>
 </html>

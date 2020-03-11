@@ -18,6 +18,8 @@ body {
     font-family: "apercu",sans-serif;
     font-weight: 500;
     font-size: larger;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 .centerDiv {
@@ -104,6 +106,18 @@ body {
   display: block;
 }
 
+.aboutSection {
+    position: relative;
+    z-index: 1;
+    padding: 50px;
+    text-align: center;
+    color: white;
+    font-family: "apercu",sans-serif;
+    opacity: 0.85;
+    display: none;
+    background-color: #555;
+}
+
 @media screen and (max-width: 800px) {
   .topnav a:not(:first-child), .dropdown .dropbtn {
     display: none;
@@ -113,8 +127,8 @@ body {
     display: block;
   }
   .centerDiv {
-    text-align: left;
-    width: 25%;
+    text-align: center;
+    width: 100%;
     }
 }
 
@@ -137,11 +151,4 @@ body {
     width: 100%;
     text-align: left;
   }
-}
-
-@media screen and (max-width: 600px){
-    .centerDiv {
-        text-align: center;
-        width: 100%;
-        }
 }

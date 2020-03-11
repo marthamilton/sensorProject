@@ -10,21 +10,27 @@
 <body>
   <div id="cesiumContainer" style="width:100%; height:100%; position:fixed; left:0;top:0;overflow:hidden;"></div>
   <div class="projectTitleDiv">
-    <h2 class="projectTitle">Herefordshire and Worcestershire School Air Quality Data Visualisation Project</h2>
+    <h2 class="projectTitle">School Air Quality Data Visualisation Project</h2>
   </div>
   <div class="centerDiv">
-  <div class="topnav" id="navMenu" style="position: relative; z-index: 1;"> 
-    <a href="">HOME</a>
-    <a href="">ABOUT</a>
-    <a href="">STUDIES</a>
-    <a href="">SEARCH</a>
-    <a href="">SENSORS</a>
-    <a href="">FILTERS</a>
-    <a href="">SEND FEEDBACK</a>
-    <a href="">HELP</a>
-    <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="navFunction()">&#9776;</a>
+    <div class="topnav" id="navMenu" style="position: relative; z-index: 1;"> 
+      <a id="homeButton">HOME</a>
+      <a id="aboutButton">ABOUT</a>
+      <a id="studiesButton">STUDIES</a>
+      <a id="searchButton">SEARCH</a>
+      <a id="sensorsButton">SENSORS</a>
+      <a id="filtersButton">FILTERS</a>
+      <a id="sendFeedbackButton">SEND FEEDBACK</a>
+      <a id="helpButton">HELP</a>
+      <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="navFunction()">&#9776;</a>
+    </div>
   </div>
-</div>
+    <div id="aboutSection" class="aboutSection">
+      <h2 id="aboutTitle"></h2>
+      <div class="aboutDescription">
+          <p id="aboutText"></p>
+      </div>
+    </div>
   <script>
   function navFunction() {
     var x = document.getElementById("navMenu");

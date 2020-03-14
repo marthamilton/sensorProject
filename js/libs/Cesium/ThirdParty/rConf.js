@@ -5,7 +5,7 @@ requirejs.config({
         cesium: 'Cesium/Cesium',
         main: 'index',
         displayManager: 'displayManager',
-        aboutBoxContent: 'aboutBoxContent'
+        aboutBoxContent: 'aboutBoxContent',
     }
 });
 requirejs(['jquery'], function ($) {

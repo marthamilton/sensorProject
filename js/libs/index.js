@@ -1,5 +1,6 @@
 const DisplayManager = requirejs(["displayManager"]);
 const aboutBoxContent = requirejs(["aboutBoxContent"]);
+//const counties = requirejs(["countiesUK"]);
 
 requirejs(['cesium'], function (Cesium) {
 
@@ -62,6 +63,13 @@ requirejs(['cesium'], function (Cesium) {
         destination: center,
         duration: 2
     }); 
+
+    viewer.dataSources.add(Cesium.GeoJsonDataSource.load('data/geo/northernIrelandCounties.json', {
+        stroke: Cesium.Color.HOTPINK,
+        fill: Cesium.Color.PINK,
+        strokeWidth: 3,
+        markerSymbol: '?'
+      }));
 
     //When the HOME button is pressed
     document.getElementById("homeButton").addEventListener("click", (event) => {

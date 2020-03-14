@@ -5,6 +5,7 @@
   <script data-main="js/libs/Cesium/ThirdParty/rConf" src="js/libs/Cesium/ThirdParty/require.js"></script>
   <link href="js/libs/Cesium/Widgets/widgets.css" rel="stylesheet">
   <link href="main.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <title>Air Quality Project</title>
 </head>
 <body>
@@ -31,6 +32,9 @@
           <p id="aboutText"></p>
       </div>
     </div>
+  <div class="testing" id="testing">
+    <canvas id="sensorChart" class="sensorChart"></canvas>
+  </div>
   <script>
   function navFunction() {
     var x = document.getElementById("navMenu");

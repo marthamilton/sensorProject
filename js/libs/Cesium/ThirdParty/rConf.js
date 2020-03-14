@@ -5,7 +5,9 @@ requirejs.config({
         cesium: 'Cesium/Cesium',
         main: 'index',
         displayManager: 'displayManager',
-        aboutBoxContent: 'aboutBoxContent'
+        aboutBoxContent: 'aboutBoxContent',
+        chartjs: 'Chart'
+
     }
 });
 requirejs(['jquery'], function ($) {
@@ -21,5 +23,9 @@ requirejs(['displayManager'], function ($) {
     console.log($) // OK
 });
 requirejs(['aboutBoxContent'], function ($) {
+    console.log($) // OK
+});
+
+requirejs(['chartjs'], function ($) {
     console.log($) // OK
 });

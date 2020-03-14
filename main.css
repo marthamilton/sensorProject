@@ -3,6 +3,21 @@ body {
     font-family:Arial
 }
 
+.testing {
+  display: block;
+  position: relative;
+  z-index: 1;
+  background-color: #0862AF;
+  opacity: 0.75;
+}
+
+
+.sensorChart {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
 .projectTitleDiv {
     display: block;
     position: relative;

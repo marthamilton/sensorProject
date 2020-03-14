@@ -1,4 +1,8 @@
+const DisplayManager = requirejs(["displayManager"]);
+const aboutBoxContent = requirejs(["aboutBoxContent"]);
+
 requirejs(['cesium'], function (Cesium) {
+
 
     // Default CesiumJS access token
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzNGE5YjRkNy0yYzE1LTRiMTEtYmIwNC03ZjI4OTYyMTRlZTkiLCJpZCI6MjMxMTcsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1ODI3Mzk0MzV9.kEPRva0D_vJ-mxASc7jdGAGL67M5GiT6r5sQ4LcgHwY';
@@ -57,6 +61,54 @@ requirejs(['cesium'], function (Cesium) {
     viewer.camera.flyTo({
         destination: center,
         duration: 2
-    });             
+    }); 
+
+    //When the HOME button is pressed
+    document.getElementById("homeButton").addEventListener("click", (event) => {
+        viewer.camera.flyTo({
+                destination: center,
+                duration: 2
+        });
+        document.getElementById("aboutSection").style.display = "none";
+ 
+    });
+
+    // When the cesium container (map) is clicked
+    cesiumContainer.addEventListener("click", () => {
+        document.getElementById("aboutSection").style.display = "none";
+    });
+      
 });
+
+document.getElementById("aboutButton").addEventListener("click", (event) => {
+    AboutBoxContent();
+    toggleAboutBox();
+    event.stopPropagation();
+});
+
+document.getElementById("studiesButton").addEventListener("click", (event) => {
+    console.log("test studies");
+});
+
+document.getElementById("searchButton").addEventListener("click", (event) => {
+    console.log("test search");
+});
+
+document.getElementById("sensorsButton").addEventListener("click", (event) => {
+    console.log("test sensors");
+});
+
+document.getElementById("filtersButton").addEventListener("click", (event) => {
+    console.log("test filters");
+});
+
+document.getElementById("sendFeedbackButton").addEventListener("click", (event) => {
+    console.log("test send feedback");
+});
+
+document.getElementById("helpButton").addEventListener("click", (event) => {
+    console.log("test help");
+});
+
+
 

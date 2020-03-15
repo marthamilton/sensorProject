@@ -4,10 +4,7 @@ requirejs.config({
         jquery: 'jquery-3.4.1.min',
         cesium: 'Cesium/Cesium',
         main: 'index',
-        displayManager: 'displayManager',
-        aboutBoxContent: 'aboutBoxContent',
         chartjs: 'Chart'
-
     }
 });
 requirejs(['jquery'], function ($) {
@@ -17,12 +14,6 @@ requirejs(['cesium'], function ($) {
     console.log($) // OK
 });
 requirejs(['main'], function ($) {
-    console.log($) // OK
-});
-requirejs(['displayManager'], function ($) {
-    console.log($) // OK
-});
-requirejs(['aboutBoxContent'], function ($) {
     console.log($) // OK
 });
 

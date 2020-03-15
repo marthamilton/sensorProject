@@ -1,6 +1,3 @@
-const DisplayManager = requirejs(["displayManager"]);
-const aboutBoxContent = requirejs(["aboutBoxContent"]);
-
 //Cesium
 requirejs(['cesium'], function (Cesium) {
 
@@ -70,15 +67,8 @@ requirejs(['cesium'], function (Cesium) {
                 destination: center,
                 duration: 2
         });
-        document.getElementById("aboutSection").style.display = "none";
  
-    });
-
-    // When the cesium container (map) is clicked
-    cesiumContainer.addEventListener("click", () => {
-        document.getElementById("aboutSection").style.display = "none";
-    });
-      
+    });  
 });
 
 //Chart JS 
@@ -122,36 +112,5 @@ requirejs(['chartjs'], function (Chart) {
     });
 
 });
-
-document.getElementById("aboutButton").addEventListener("click", (event) => {
-    AboutBoxContent();
-    toggleAboutBox();
-    event.stopPropagation();
-});
-
-document.getElementById("studiesButton").addEventListener("click", (event) => {
-    console.log("test studies");
-});
-
-document.getElementById("searchButton").addEventListener("click", (event) => {
-    console.log("test search");
-});
-
-document.getElementById("sensorsButton").addEventListener("click", (event) => {
-    console.log("test sensors");
-});
-
-document.getElementById("filtersButton").addEventListener("click", (event) => {
-    console.log("test filters");
-});
-
-document.getElementById("sendFeedbackButton").addEventListener("click", (event) => {
-    console.log("test send feedback");
-});
-
-document.getElementById("helpButton").addEventListener("click", (event) => {
-    console.log("test help");
-});
-
 
 

@@ -3,7 +3,7 @@ requirejs.config({
     paths: {
         jquery: 'jquery-3.4.1.min',
         cesium: 'Cesium/Cesium',
-        main: 'index',
+        main: 'index'
     }
 });
 requirejs(['jquery'], function ($) {

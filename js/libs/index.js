@@ -67,7 +67,20 @@ requirejs(['cesium'], function (Cesium) {
                 duration: 2
         });
  
-    });  
+    });
+    
+
+    viewer.entities.add({
+           position: Cesium.Cartesian3.fromDegrees(parseFloat(-2.3261), parseFloat(52.1116)),
+           point: {
+               pixelSize: 10,
+               color: Cesium.Color.PALEVIOLETRED
+           },
+           name: "Air Quality Sensor",
+           id: "id",
+           description: "description"
+    });
+
 });
 
 

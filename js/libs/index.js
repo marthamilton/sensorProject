@@ -1,3 +1,10 @@
+//filter checkboxes
+const england = document.getElementById("englandCheckbox");
+const wales = document.getElementById("walesCheckbox");
+const scotland = document.getElementById("scotlandCheckbox");
+const northernIreland = document.getElementById("northernIrelandCheckbox");
+const countyAverage = document.getElementById("averageCheckbox");
+
 requirejs(['cesium'], function (Cesium) {
 
 
@@ -60,13 +67,6 @@ requirejs(['cesium'], function (Cesium) {
         duration: 2
     }); 
 
-    viewer.dataSources.add(Cesium.GeoJsonDataSource.load('data/geo/northernIrelandCounties.json', {
-        stroke: Cesium.Color.HOTPINK,
-        fill: Cesium.Color.PINK,
-        strokeWidth: 3,
-        markerSymbol: '?'
-      }));
-
     //When the HOME button is pressed
     document.getElementById("homeButton").addEventListener("click", (event) => {
         viewer.camera.flyTo({
@@ -74,7 +74,59 @@ requirejs(['cesium'], function (Cesium) {
                 duration: 2
         });
  
-    });  
+    });
+    
+    //When the apply button in filters is clicked
+    document.getElementById("applyFilters").addEventListener("click", function(){
+        if(countyAverage.checked){
+            if(england.checked){
+                viewer.dataSources.add(Cesium.GeoJsonDataSource.load('data/geo/englandCounties.json', {
+                    stroke: Cesium.Color.HOTPINK,
+                    fill: Cesium.Color.PINK,
+                    strokeWidth: 3,
+                    markerSymbol: '?'
+                }));
+            }
+            if(wales.checked){
+                viewer.dataSources.add(Cesium.GeoJsonDataSource.load('data/geo/walesCounties.json', {
+                    stroke: Cesium.Color.HOTPINK,
+                    fill: Cesium.Color.PINK,
+                    strokeWidth: 3,
+                    markerSymbol: '?'
+                }));
+            }
+            if(scotland.checked){
+                viewer.dataSources.add(Cesium.GeoJsonDataSource.load('data/geo/scotlandCounties.json', {
+                    stroke: Cesium.Color.HOTPINK,
+                    fill: Cesium.Color.PINK,
+                    strokeWidth: 3,
+                    markerSymbol: '?'
+                }));
+            }
+            if(northernIreland.checked){
+                viewer.dataSources.add(Cesium.GeoJsonDataSource.load('data/geo/northernIrelandCounties.json', {
+                    stroke: Cesium.Color.HOTPINK,
+                    fill: Cesium.Color.PINK,
+                    strokeWidth: 3,
+                    markerSymbol: '?'
+                }));
+            }
+        } else {
+            console.log("not ticked");
+        }
+    });
+
+     //When the reset button in filters is clicked
+    document.getElementById("resetFilters").addEventListener("click", function(){
+        england.checked = false;
+        wales.checked = false;
+        scotland.checked = false;
+        northernIreland.checked = false;
+        countyAverage.checked = false;
+        viewer.dataSources.removeAll();
+    });
 });
+
+
 
 

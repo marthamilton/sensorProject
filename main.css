@@ -1,10 +1,17 @@
-
-
 body {
     margin:0;
     font-family:Arial !important;
 }
 
+.sensorMenu {
+  border-style: solid;
+  border-color: black;
+}
+
+.sensorMenu:hover {
+  background-color: #3e8e41;
+  color: white;
+}
 
 .navbar {
   margin-bottom: 0;

@@ -4,11 +4,9 @@ requirejs.config({
         jquery: 'jquery-3.4.1.min',
         cesium: 'Cesium/Cesium',
         main: 'index',
-<<<<<<< HEAD
-        chartjs: 'Chart'
-=======
-        sensor: 'sensor'
->>>>>>> addingSensorPoints
+        chartjs: 'Chart',
+        sensor: 'sensor',
+        createSensor: 'createSensor'
     }
 });
 requirejs(['jquery'], function ($) {
@@ -20,11 +18,14 @@ requirejs(['cesium'], function ($) {
 requirejs(['main'], function ($) {
     console.log($) // OK
 });
-<<<<<<< HEAD
-
 requirejs(['chartjs'], function ($) {
-=======
-requirejs(['sensor'], function ($) {
->>>>>>> addingSensorPoints
     console.log($) // OK
 });
+requirejs(['sensor'], function ($) {
+    console.log($) // OK
+});
+requirejs(['createSensor'], function ($) {
+    console.log($) // OK
+});
+
+

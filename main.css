@@ -1,14 +1,23 @@
-
-
 body {
     margin:0;
     font-family:Arial !important;
 }
 
+<<<<<<< HEAD
 .sensorChart {
   display: block;
   position: relative;
   z-index: 1;
+=======
+.sensorMenu {
+  border-style: solid;
+  border-color: black;
+}
+
+.sensorMenu:hover {
+  background-color: #c4efb0;
+  color: white;
+>>>>>>> addingSensorPoints
 }
 
 .navbar {

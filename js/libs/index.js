@@ -75,6 +75,28 @@ requirejs(['cesium'], function (Cesium) {
         });
  
     });
+
+    function filterWarning(){
+        requirejs(['sweetalert'], function (sweetAlert) {
+            console.log("testing");
+            sweetAlert.fire({
+                    title: 'Warning',
+                    html: '<b>Filter could not be applied, please make sure you select an area and filter type next time</b>',
+                    timer: 10000,
+                    showCloseButton: true,
+                    showCancelButton: true,
+                    focusConfirm: false,
+                    confirmButtonText:
+                      '<i class="fa fa-thumbs-up"></i> Great!',
+                    confirmButtonAriaLabel: 'Thumbs up, Thanks!',
+                    cancelButtonText:
+                      '<i class="fa fa-thumbs-down"></i>',
+                    cancelButtonAriaLabel: 'Thumbs down',
+                    imageUrl: 'happyearth.gif',
+                    imageHeight: 150,
+            });
+        });
+    }
     
     //When the apply button in filters is clicked
     document.getElementById("applyFilters").addEventListener("click", function(){
@@ -111,9 +133,11 @@ requirejs(['cesium'], function (Cesium) {
                     strokeWidth: 3,
                     markerSymbol: '?'
                 }));
+            }else{
+                filterWarning();
             }
         } else {
-            console.log("not ticked");
+            filterWarning();
         }
     });
 

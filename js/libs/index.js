@@ -78,6 +78,7 @@ requirejs(['cesium'], function (Cesium) {
     
     //When the apply button in filters is clicked
     document.getElementById("applyFilters").addEventListener("click", function(){
+        viewer.dataSources.removeAll();
         if(countyAverage.checked){
             if(england.checked){
                 viewer.dataSources.add(Cesium.GeoJsonDataSource.load('data/geo/englandCounties.json', {

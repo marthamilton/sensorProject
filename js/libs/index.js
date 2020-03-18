@@ -70,34 +70,27 @@ requirejs(['cesium'], function (Cesium) {
     
     });
 
-    //gets all sensor information from DB
-    $.get( "Php/getSensorInformation.php", function(data) {
-        var si;
-        var data = $.parseJSON(data);
-        console.log(data);
-        for (var i = 0; i < data.length; i++) {
-            si.push(data[i]);
-        }
-        console.log(si);
-    });
-
-    console.log('allSensorInformation');
-    console.log(si);
-
-    for(var i = 0; i < si.length; i++) {
-        // console.log("testing");
-        // console.log(allSensorInformation[i].latitude);
-        // viewer.entities.add({
-        //     position: Cesium.Cartesian3.fromDegrees(parseFloat(allSensorInformation[i].latitude), parseFloat(allSensorInformation[i].longitude)),
-        //     point: {
-        //         pixelSize: 10,
-        //         color: Cesium.Color.PALEVIOLETRED
-        //     },
-        //     name: allSensorInformation[i].type,
-        //     id: allSensorInformation[i].id,
-        // });
-        console.log("looping");
-    }
+    $.ajax({
+        async: true,
+        type: "GET",
+        url: "Php/getSensorInformation.php",
+        datatype: "json",
+        success: function(data) {
+            for(var i = 0; i < $.parseJSON(data).length; i++){
+                console.log($.parseJSON(data)[i]);
+                data2 = $.parseJSON(data)[i].latitude;
+                viewer.entities.add({
+                    position: Cesium.Cartesian3.fromDegrees(parseFloat($.parseJSON(data)[i].latitude), parseFloat($.parseJSON(data)[i].longitude)),
+                    point: {
+                        pixelSize: 10,
+                        color: Cesium.Color.PALEVIOLETRED
+                    },
+                    name: $.parseJSON(data)[i].type,
+                    id: $.parseJSON(data)[i].id,
+                });
+            };
+          }
+      });
 
     // viewer.entities.add({
     //     position: Cesium.Cartesian3.fromDegrees(parseFloat(AQsensorMalvern.latitude), parseFloat(AQsensorMalvern.longitude)),

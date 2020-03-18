@@ -77,8 +77,6 @@ requirejs(['cesium'], function (Cesium) {
         datatype: "json",
         success: function(data) {
             for(var i = 0; i < $.parseJSON(data).length; i++){
-                console.log($.parseJSON(data)[i]);
-                data2 = $.parseJSON(data)[i].latitude;
                 viewer.entities.add({
                     position: Cesium.Cartesian3.fromDegrees(parseFloat($.parseJSON(data)[i].latitude), parseFloat($.parseJSON(data)[i].longitude)),
                     point: {
@@ -91,38 +89,6 @@ requirejs(['cesium'], function (Cesium) {
             };
           }
       });
-
-    // viewer.entities.add({
-    //     position: Cesium.Cartesian3.fromDegrees(parseFloat(AQsensorMalvern.latitude), parseFloat(AQsensorMalvern.longitude)),
-    //     point: {
-    //         pixelSize: 10,
-    //         color: Cesium.Color.PALEVIOLETRED
-    //     },
-    //     name: AQsensorMalvern.type,
-    //     id: AQsensorMalvern.id,
-    //     description: '\
-    //     <p>\
-    //     This Air Quality Sensor has been placed in:\
-    //     ' + AQsensorMalvern.description + '</p>\
-    //     <p>\
-    //     <p>\
-    //         Deployment Date:\
-    //     '+ AQsensorMalvern.deploymentDate + '</p>\
-    //     Longitude:\
-    //     '+ AQsensorMalvern.longitude + '</p>\
-    //     <p>\
-    //         Latitude:\
-    //     '+ AQsensorMalvern.latitude + '</p>\
-    //     <p>\
-    //         Most Recent Data Reading:\
-    //     '+ AQsensorMalvern.currentData + '</p>\
-    //     <p>\
-    //         Highest Data Reading:\
-    //     '+ AQsensorMalvern.maxData + '</p>\
-    //     <p>\
-    //         Lowest Data Reading:\
-    //     '+ AQsensorMalvern.minData + '</p>'
-    // });
 });
 
 //Chart JS 

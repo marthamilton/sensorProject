@@ -40,20 +40,8 @@ class sensorDataOut
             $this->airQuality = $aq;
             $this->date_time = $dt;
             $resultJSON = json_encode($this);
-            $this->saveChanges($resultJSON);
         };
         $stmt->close();
         $GLOBALS['conn']->close();
-    }
-    function saveChanges($resultJSON)
-    {
-        if (file_get_contents($this->token . ".json") != $resultJSON) {
-            file_put_contents($this->token . '.json', $resultJSON);
-            //echo "Changes Written to File";
-            echo $resultJSON;
-        } else {
-            //echo "No recent changes found";
-            echo $resultJSON;
-        }
     }
 };

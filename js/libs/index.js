@@ -59,80 +59,77 @@ requirejs(['cesium'], function (Cesium) {
     viewer.camera.flyTo({
         destination: center,
         duration: 2
-    }); 
-
+    });
+    
     //When the HOME button is pressed
     document.getElementById("homeButton").addEventListener("click", (event) => {
         viewer.camera.flyTo({
                 destination: center,
                 duration: 2
         });
- 
+    
     });
 
-    AQsensorMalvern = {
-        "id": 1234,
-        "description": "Malvern, Worcestershire",
-        "latitude": -2.3261,
-        "longitude": 52.116,
-        "type": "Air Quality Sensor",
-        "deploymentDate": "02-02-2020",
-        //"minData": 0,
-        //"maxData": 0
-    };
-
-    $.getJSON("Php/1234.json", function(json) {
-        if(json.token = AQsensorMalvern.id){
-            AQsensorMalvern["currentData"] = json.airQuality;
-            AQsensorMalvern["dateTime"] = json.date_time;
-
-            var lowest = Number.POSITIVE_INFINITY;
-            var highest = Number.NEGATIVE_INFINITY;
-            var tmp;
-            var myArray = json.airQuality
-            for (var i=myArray.length-1; i>=0; i--) {
-                tmp = myArray[i];
-                if (tmp < lowest) lowest = tmp;
-                if (tmp > highest) highest = tmp;
-            }
-            AQsensorMalvern.minData = lowest;
-            AQsensorMalvern.maxData = highest;
+    //gets all sensor information from DB
+    $.get( "Php/getSensorInformation.php", function(data) {
+        var si;
+        var data = $.parseJSON(data);
+        console.log(data);
+        for (var i = 0; i < data.length; i++) {
+            si.push(data[i]);
         }
+        console.log(si);
     });
 
-    console.log(AQsensorMalvern.minData);
+    console.log('allSensorInformation');
+    console.log(si);
 
-    viewer.entities.add({
-        position: Cesium.Cartesian3.fromDegrees(parseFloat(AQsensorMalvern.latitude), parseFloat(AQsensorMalvern.longitude)),
-        point: {
-            pixelSize: 10,
-            color: Cesium.Color.PALEVIOLETRED
-        },
-        name: AQsensorMalvern.type,
-        id: AQsensorMalvern.id,
-        description: '\
-        <p>\
-        This Air Quality Sensor has been placed in:\
-        ' + AQsensorMalvern.description + '</p>\
-        <p>\
-        <p>\
-            Deployment Date:\
-        '+ AQsensorMalvern.deploymentDate + '</p>\
-        Longitude:\
-        '+ AQsensorMalvern.longitude + '</p>\
-        <p>\
-            Latitude:\
-        '+ AQsensorMalvern.latitude + '</p>\
-        <p>\
-            Most Recent Data Reading:\
-        '+ AQsensorMalvern.currentData + '</p>\
-        <p>\
-            Highest Data Reading:\
-        '+ AQsensorMalvern.maxData + '</p>\
-        <p>\
-            Lowest Data Reading:\
-        '+ AQsensorMalvern.minData + '</p>'
-    });
+    for(var i = 0; i < si.length; i++) {
+        // console.log("testing");
+        // console.log(allSensorInformation[i].latitude);
+        // viewer.entities.add({
+        //     position: Cesium.Cartesian3.fromDegrees(parseFloat(allSensorInformation[i].latitude), parseFloat(allSensorInformation[i].longitude)),
+        //     point: {
+        //         pixelSize: 10,
+        //         color: Cesium.Color.PALEVIOLETRED
+        //     },
+        //     name: allSensorInformation[i].type,
+        //     id: allSensorInformation[i].id,
+        // });
+        console.log("looping");
+    }
+
+    // viewer.entities.add({
+    //     position: Cesium.Cartesian3.fromDegrees(parseFloat(AQsensorMalvern.latitude), parseFloat(AQsensorMalvern.longitude)),
+    //     point: {
+    //         pixelSize: 10,
+    //         color: Cesium.Color.PALEVIOLETRED
+    //     },
+    //     name: AQsensorMalvern.type,
+    //     id: AQsensorMalvern.id,
+    //     description: '\
+    //     <p>\
+    //     This Air Quality Sensor has been placed in:\
+    //     ' + AQsensorMalvern.description + '</p>\
+    //     <p>\
+    //     <p>\
+    //         Deployment Date:\
+    //     '+ AQsensorMalvern.deploymentDate + '</p>\
+    //     Longitude:\
+    //     '+ AQsensorMalvern.longitude + '</p>\
+    //     <p>\
+    //         Latitude:\
+    //     '+ AQsensorMalvern.latitude + '</p>\
+    //     <p>\
+    //         Most Recent Data Reading:\
+    //     '+ AQsensorMalvern.currentData + '</p>\
+    //     <p>\
+    //         Highest Data Reading:\
+    //     '+ AQsensorMalvern.maxData + '</p>\
+    //     <p>\
+    //         Lowest Data Reading:\
+    //     '+ AQsensorMalvern.minData + '</p>'
+    // });
 });
 
 //Chart JS 

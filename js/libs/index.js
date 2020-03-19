@@ -76,15 +76,16 @@ requirejs(['cesium'], function (Cesium) {
         url: "Php/getSensorInformation.php",
         datatype: "json",
         success: function(data) {
-            for(var i = 0; i < $.parseJSON(data).length; i++){
+            var sensorData = $.parseJSON(data);
+            for(var i = 0; i < sensorData.length; i++){
                 viewer.entities.add({
-                    position: Cesium.Cartesian3.fromDegrees(parseFloat($.parseJSON(data)[i].latitude), parseFloat($.parseJSON(data)[i].longitude)),
+                    position: Cesium.Cartesian3.fromDegrees(parseFloat(sensorData[i].sensorLongitude), parseFloat(sensorData[i].sensorLatitude)),
                     point: {
                         pixelSize: 10,
                         color: Cesium.Color.PALEVIOLETRED
                     },
-                    name: $.parseJSON(data)[i].type,
-                    id: $.parseJSON(data)[i].id,
+                    name: sensorData[i].sensorType,
+                    id: sensorData[i].sensorID,
                 });
             };
           }

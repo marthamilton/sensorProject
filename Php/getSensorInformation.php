@@ -4,7 +4,7 @@
 $dbhost = 'localhost';
 $dbuser = 'root';
 $dbpass = '';
-$dbname = 'sensorDB';
+$dbname = 'dbairquality';
 
 //Create database connection
   $dblink = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
@@ -16,7 +16,7 @@ $dbname = 'sensorDB';
   }
 
 //Fetch 3 rows from actor table
-  $result = $dblink->query("SELECT * FROM sensorInformation");
+  $result = $dblink->query("SELECT sensorID, sensorLatitude, sensorLongitude, sensorType FROM tblsensorinformation");
 
 //Initialize array variable
   $dbdata = array();

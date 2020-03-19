@@ -117,10 +117,10 @@ requirejs(['cesium'], function (Cesium) {
     var handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
     handler.setInputAction(function(movement) {
         var pickedObject = scene.pick(movement.endPosition);
-        var entities2 = viewer.entities;
+        var allCesiumEntities = viewer.entities;
         if (Cesium.defined(pickedObject)) {
-            for (index = 0; index < entities2._entities.length; index++) {
-                if(pickedObject.id._id === entities2._entities._array[index].id){
+            for (index = 0; index < allCesiumEntities._entities.length; index++) {
+                if(pickedObject.id._id === allCesiumEntities._entities._array[index].id){
                     console.log("success");
                     requirejs(['sweetalert'], function (sweetAlert) {
                         console.log("testing");
@@ -148,7 +148,7 @@ requirejs(['cesium'], function (Cesium) {
     }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
 
 
-    //   viewer.selectedEntityChanged.addEventListener(function(entity) {
+    viewer.selectedEntityChanged.addEventListener(function(entity) {
     //     // Check if an entity with a point color was selected.
     //     if (Cesium.defined(entity) &&
     //         Cesium.defined(entity.point) &&
@@ -169,7 +169,7 @@ requirejs(['cesium'], function (Cesium) {
     //             entity.point.color = Cesium.Color.STEELBLUE;
     //         }
     //     }
-    // });
+    });
 
     function filterWarning(){
         requirejs(['sweetalert'], function (sweetAlert) {

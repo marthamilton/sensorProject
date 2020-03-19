@@ -15,4 +15,3 @@ include('DBConnect.php');
 //Print array in JSON format
 echo json_encode($dbdata);
 
-?>

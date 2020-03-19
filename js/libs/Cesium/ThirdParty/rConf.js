@@ -7,7 +7,8 @@ requirejs.config({
         chartjs: 'Chart',
         sensor: 'sensor',
         createSensor: 'createSensor',
-        sweetalert: 'sweetalert2.all.min'
+        sweetalert: 'sweetalert2.all.min',
+        bootstrapModelWrapper: 'bootstrap.model.wrapper'
     }
 });
 requirejs(['jquery'], function ($) {
@@ -31,3 +32,7 @@ requirejs(['createSensor'], function ($) {
 requirejs(['sweetalert'], function ($) {
     console.log($) // OK
 });
+requirejs(['bootstrapModelWrapper'], function ($) {
+    console.log($) // OK
+});
+

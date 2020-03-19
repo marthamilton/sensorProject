@@ -8,18 +8,6 @@ const countyAverage = document.getElementById("averageCheckbox");
 //Cesium
 requirejs(['cesium'], function (Cesium) {
 
-    // Element for the cesium container
-    const cesiumContainer = document.getElementById("cesiumContainer");
-
-    // When the cesium container (map) is clicked
-    cesiumContainer.addEventListener("click", () => {
-        if(viewer.selectedEntity == undefined){
-            $('#sensorInformation').modal('hide');
-        }
-    });
-    
-
-
     // Default CesiumJS access token
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzNGE5YjRkNy0yYzE1LTRiMTEtYmIwNC03ZjI4OTYyMTRlZTkiLCJpZCI6MjMxMTcsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1ODI3Mzk0MzV9.kEPRva0D_vJ-mxASc7jdGAGL67M5GiT6r5sQ4LcgHwY';
 
@@ -94,20 +82,30 @@ requirejs(['cesium'], function (Cesium) {
         url: "Php/getCesiumEntityInformation.php",
         datatype: "json",
         success: function(data) {
-            var sensorData = $.parseJSON(data);
-            for(var i = 0; i < sensorData.length; i++){
-                viewer.entities.add({
-                    position: Cesium.Cartesian3.fromDegrees(parseFloat(sensorData[i].sensorLongitude), parseFloat(sensorData[i].sensorLatitude)),
-                    point: {
-                        pixelSize: 10,
-                        color: Cesium.Color.DARKORCHID
-                    },
-                    name: sensorData[i].sensorType,
-                    id: sensorData[i].sensorID,
-                });
-            };
-          }
-      });
+            requirejs(['bootstrapModelWrapper'], function (BootstrapModelWrapper) {  
+                var sensorData = $.parseJSON(data);
+                for(var i = 0; i < sensorData.length; i++){
+                    viewer.entities.add({
+                        position: Cesium.Cartesian3.fromDegrees(parseFloat(sensorData[i].sensorLongitude), parseFloat(sensorData[i].sensorLatitude)),
+                        point: {
+                            pixelSize: 10,
+                            color: Cesium.Color.DARKORCHID
+                        },
+                        name: sensorData[i].sensorType,
+                        id: sensorData[i].sensorID,
+                    });
+                    showBSModal({
+                        id: sensorData[i].sensorID,
+                        title: "This is a large popup!",
+                        body: "&lt;p&gt;Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.&lt;/p&gt;&lt;p&gt;The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.&lt;/p&gt;", 
+                        size: "large",
+                        onHide : true,
+                        onShow : false,
+                    });
+                };
+            });
+        }
+    });
 
     // 
     // var scene = viewer.scene;
@@ -146,7 +144,9 @@ requirejs(['cesium'], function (Cesium) {
 
 
     viewer.selectedEntityChanged.addEventListener(function(entity) {
-        $('#sensorInformation').modal('show');
+        if(viewer.selectedEntity != undefined){
+            ('#sensorInformation').modal('show');
+        }
         // if(viewer.selectedEntity == defined){
         //     $('#chart').modal('show');
         // }
@@ -290,3 +290,18 @@ requirejs(['cesium'], function (Cesium) {
 //     });
 
 // });
+
+function addSensorInformationBox(sensorID) { 
+    // // create a new div element 
+    // var model = document.createElement("div"); 
+    // model.id = sensorID;
+    // model.class = "modal fade";
+    // // and give it some content 
+    // var newContent = document.createTextNode("Hi there and greetings!"); 
+    // // add the text node to the newly created div
+    // newDiv.appendChild(newContent);  
+  
+    // // add the newly created element and its content into the DOM 
+    // var currentDiv = document.getElementById("div1"); 
+    // document.body.insertBefore(newDiv, currentDiv); 
+  }

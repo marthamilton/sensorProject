@@ -31,6 +31,7 @@ requirejs(['cesium'], function (Cesium) {
             requestVertexNormals: true
         }),
 
+        infoBox: false,
         // Hiding the home button
         homeButton: false,
         // Allowing animations
@@ -82,7 +83,7 @@ requirejs(['cesium'], function (Cesium) {
                     position: Cesium.Cartesian3.fromDegrees(parseFloat(sensorData[i].sensorLongitude), parseFloat(sensorData[i].sensorLatitude)),
                     point: {
                         pixelSize: 10,
-                        color: Cesium.Color.PALEVIOLETRED
+                        color: Cesium.Color.STEELBLUE
                     },
                     name: sensorData[i].sensorType,
                     id: sensorData[i].sensorID,
@@ -90,48 +91,102 @@ requirejs(['cesium'], function (Cesium) {
             };
           }
       });
+
+    var scene = viewer.scene;
+    //   var handler;
+    //   var color = Cesium.Color.WHITE;
+          
+    //   handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
+    //   handler.setInputAction(function(movement) {
+    //       var pickedObject = scene.pick(movement.endPosition);
+    //       console.log(pickedObject);
+    //         //var color = entity.point.color.getValue(viewer.clock.currentTime);
+    //       //console.log(color)
+    //       if (Cesium.defined(pickedObject)) {
+    //           console.log("testing");
+    //           viewer.selectedEntityChanged.Cesium.Color.AQUAMARINE;
+    //       }
+    //   }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+
+    var handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
+    handler.setInputAction(function(movement) {
+        var pickedObject = scene.pick(movement.endPosition);
+        var entities2 = viewer.entities;
+        if (Cesium.defined(pickedObject)) {
+            for (index = 0; index < entities2._entities.length; index++) {
+                if(pickedObject.id._id === entities2._entities._array[index].id){
+                    console.log("success");
+                } 
+            } 
+        } 
+    }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+
+
+    //   viewer.selectedEntityChanged.addEventListener(function(entity) {
+    //     // Check if an entity with a point color was selected.
+    //     if (Cesium.defined(entity) &&
+    //         Cesium.defined(entity.point) &&
+    //         Cesium.defined(entity.point.color)) {
+            
+    //         // Get the current color
+    //         var color = entity.point.color.getValue(viewer.clock.currentTime);
+            
+    //         // Test for blue
+    //         if (Cesium.Color.equals(color, Cesium.Color.STEELBLUE)) {
+    //             // Set to red
+    //             entity.point.color = Cesium.Color.RED;
+    //         }
+    
+    //         // Test for red
+    //         else if (Cesium.Color.equals(color, Cesium.Color.RED)) {
+    //             // Set to red
+    //             entity.point.color = Cesium.Color.STEELBLUE;
+    //         }
+    //     }
+    // });
+
 });
 
-//Chart JS 
-requirejs(['chartjs'], function (Chart) {
-    var chart = document.getElementById("sensorChart").getContext("2d");
-    var chart = new Chart(chart, {
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
+// //Chart JS 
+// requirejs(['chartjs'], function (Chart) {
+//     var chart = document.getElementById("sensorChart").getContext("2d");
+//     var chart = new Chart(chart, {
+//         type: 'bar',
+//         data: {
+//             labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+//             datasets: [{
+//                 label: '# of Votes',
+//                 data: [12, 19, 3, 5, 2, 3],
+//                 backgroundColor: [
+//                     'rgba(255, 99, 132, 0.2)',
+//                     'rgba(54, 162, 235, 0.2)',
+//                     'rgba(255, 206, 86, 0.2)',
+//                     'rgba(75, 192, 192, 0.2)',
+//                     'rgba(153, 102, 255, 0.2)',
+//                     'rgba(255, 159, 64, 0.2)'
+//                 ],
+//                 borderColor: [
+//                     'rgba(255, 99, 132, 1)',
+//                     'rgba(54, 162, 235, 1)',
+//                     'rgba(255, 206, 86, 1)',
+//                     'rgba(75, 192, 192, 1)',
+//                     'rgba(153, 102, 255, 1)',
+//                     'rgba(255, 159, 64, 1)'
+//                 ],
+//                 borderWidth: 1
+//             }]
+//         },
+//         options: {
+//             scales: {
+//                 yAxes: [{
+//                     ticks: {
+//                         beginAtZero: true
+//                     }
+//                 }]
+//             }
+//         }
+//     });
 
-});
+// });
 
 

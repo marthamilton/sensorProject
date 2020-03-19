@@ -80,7 +80,7 @@ requirejs(['cesium'], function (Cesium) {
     $.ajax({
         async: true,
         type: "GET",
-        url: "Php/getSensorInformation.php",
+        url: "Php/getCesiumEntityInformation.php",
         datatype: "json",
         success: function(data) {
             var sensorData = $.parseJSON(data);
@@ -127,8 +127,8 @@ requirejs(['cesium'], function (Cesium) {
                         sweetAlert.fire({
                                 position: 'top-end',
                                 title: 'Sensor Information',
-                                html: '<b>Sensor Type: </br> Sensor Latitude: </br></b>',
-                                timer: 10000,
+                                html: '<b>Sensor Type: </br> Sensor ID: </br>Status: </br>Region: </br>Latitude: </br>Longitude: </br>Deployment Date: </br>Latest Data: </br>Maximum Data Value: </br>Minimum Data Value: </br>',
+                                timer: 30000,
                                 showCloseButton: true,
                                 showCancelButton: true,
                                 focusConfirm: false,
@@ -138,8 +138,8 @@ requirejs(['cesium'], function (Cesium) {
                                 cancelButtonText:
                                   '<i class="fa fa-thumbs-down"></i>',
                                 cancelButtonAriaLabel: 'Thumbs down',
-                                imageUrl: 'happyearth.gif',
-                                imageHeight: 150,
+                                imageUrl: 'images/co2.png',
+                                imageHeight: 75,
                         });
                     });
                 } 

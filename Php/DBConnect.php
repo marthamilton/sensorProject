@@ -1,13 +1,15 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "sensor";
+// Initialize variable for database credentials
+$dbhost = 'localhost';
+$dbuser = 'root';
+$dbpass = '';
+$dbname = 'dbairquality';
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+//Create database connection
+$dblink = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+//Check connection was successful
+if ($dblink->connect_errno) {
+    printf("Failed to connect to database");
+    exit();
 }

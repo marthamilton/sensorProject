@@ -1,4 +1,14 @@
+<<<<<<< HEAD
 //Cesium
+=======
+//filter checkboxes
+const england = document.getElementById("englandCheckbox");
+const wales = document.getElementById("walesCheckbox");
+const scotland = document.getElementById("scotlandCheckbox");
+const northernIreland = document.getElementById("northernIrelandCheckbox");
+const countyAverage = document.getElementById("averageCheckbox");
+
+>>>>>>> addingSweetAlerts
 requirejs(['cesium'], function (Cesium) {
 
 
@@ -68,6 +78,7 @@ requirejs(['cesium'], function (Cesium) {
                 destination: center,
                 duration: 2
         });
+<<<<<<< HEAD
     
     });
 
@@ -145,6 +156,85 @@ requirejs(['cesium'], function (Cesium) {
     //     }
     // });
 
+=======
+ 
+    });
+
+    function filterWarning(){
+        requirejs(['sweetalert'], function (sweetAlert) {
+            console.log("testing");
+            sweetAlert.fire({
+                    title: 'Warning',
+                    html: '<b>Filter could not be applied, please make sure you select an area and filter type next time</b>',
+                    timer: 10000,
+                    showCloseButton: true,
+                    showCancelButton: true,
+                    focusConfirm: false,
+                    confirmButtonText:
+                      '<i class="fa fa-thumbs-up"></i> Great!',
+                    confirmButtonAriaLabel: 'Thumbs up, Thanks!',
+                    cancelButtonText:
+                      '<i class="fa fa-thumbs-down"></i>',
+                    cancelButtonAriaLabel: 'Thumbs down',
+                    imageUrl: 'happyearth.gif',
+                    imageHeight: 150,
+            });
+        });
+    }
+    
+    //When the apply button in filters is clicked
+    document.getElementById("applyFilters").addEventListener("click", function(){
+        viewer.dataSources.removeAll();
+        if(countyAverage.checked){
+            if(england.checked){
+                viewer.dataSources.add(Cesium.GeoJsonDataSource.load('data/geo/englandCounties.json', {
+                    stroke: Cesium.Color.HOTPINK,
+                    fill: Cesium.Color.PINK,
+                    strokeWidth: 3,
+                    markerSymbol: '?'
+                }));
+            }
+            if(wales.checked){
+                viewer.dataSources.add(Cesium.GeoJsonDataSource.load('data/geo/walesCounties.json', {
+                    stroke: Cesium.Color.HOTPINK,
+                    fill: Cesium.Color.PINK,
+                    strokeWidth: 3,
+                    markerSymbol: '?'
+                }));
+            }
+            if(scotland.checked){
+                viewer.dataSources.add(Cesium.GeoJsonDataSource.load('data/geo/scotlandCounties.json', {
+                    stroke: Cesium.Color.HOTPINK,
+                    fill: Cesium.Color.PINK,
+                    strokeWidth: 3,
+                    markerSymbol: '?'
+                }));
+            }
+            if(northernIreland.checked){
+                viewer.dataSources.add(Cesium.GeoJsonDataSource.load('data/geo/northernIrelandCounties.json', {
+                    stroke: Cesium.Color.HOTPINK,
+                    fill: Cesium.Color.PINK,
+                    strokeWidth: 3,
+                    markerSymbol: '?'
+                }));
+            }else{
+                filterWarning();
+            }
+        } else {
+            filterWarning();
+        }
+    });
+
+     //When the reset button in filters is clicked
+    document.getElementById("resetFilters").addEventListener("click", function(){
+        england.checked = false;
+        wales.checked = false;
+        scotland.checked = false;
+        northernIreland.checked = false;
+        countyAverage.checked = false;
+        viewer.dataSources.removeAll();
+    });
+>>>>>>> addingSweetAlerts
 });
 
 // //Chart JS 
@@ -188,5 +278,7 @@ requirejs(['cesium'], function (Cesium) {
 //     });
 
 // });
+
+
 
 

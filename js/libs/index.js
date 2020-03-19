@@ -8,6 +8,17 @@ const countyAverage = document.getElementById("averageCheckbox");
 //Cesium
 requirejs(['cesium'], function (Cesium) {
 
+    // Element for the cesium container
+    const cesiumContainer = document.getElementById("cesiumContainer");
+
+    // When the cesium container (map) is clicked
+    cesiumContainer.addEventListener("click", () => {
+        if(viewer.selectedEntity == undefined){
+            $('#sensorInformation').modal('hide');
+        }
+    });
+    
+
 
     // Default CesiumJS access token
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzNGE5YjRkNy0yYzE1LTRiMTEtYmIwNC03ZjI4OTYyMTRlZTkiLCJpZCI6MjMxMTcsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1ODI3Mzk0MzV9.kEPRva0D_vJ-mxASc7jdGAGL67M5GiT6r5sQ4LcgHwY';
@@ -89,7 +100,7 @@ requirejs(['cesium'], function (Cesium) {
                     position: Cesium.Cartesian3.fromDegrees(parseFloat(sensorData[i].sensorLongitude), parseFloat(sensorData[i].sensorLatitude)),
                     point: {
                         pixelSize: 10,
-                        color: Cesium.Color.STEELBLUE
+                        color: Cesium.Color.DARKORCHID
                     },
                     name: sensorData[i].sensorType,
                     id: sensorData[i].sensorID,
@@ -98,57 +109,48 @@ requirejs(['cesium'], function (Cesium) {
           }
       });
 
-    var scene = viewer.scene;
-    //   var handler;
-    //   var color = Cesium.Color.WHITE;
-          
-    //   handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
-    //   handler.setInputAction(function(movement) {
-    //       var pickedObject = scene.pick(movement.endPosition);
-    //       console.log(pickedObject);
-    //         //var color = entity.point.color.getValue(viewer.clock.currentTime);
-    //       //console.log(color)
-    //       if (Cesium.defined(pickedObject)) {
-    //           console.log("testing");
-    //           viewer.selectedEntityChanged.Cesium.Color.AQUAMARINE;
-    //       }
-    //   }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
-
-    var handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
-    handler.setInputAction(function(movement) {
-        var pickedObject = scene.pick(movement.endPosition);
-        var allCesiumEntities = viewer.entities;
-        if (Cesium.defined(pickedObject)) {
-            for (index = 0; index < allCesiumEntities._entities.length; index++) {
-                if(pickedObject.id._id === allCesiumEntities._entities._array[index].id){
-                    console.log("success");
-                    requirejs(['sweetalert'], function (sweetAlert) {
-                        console.log("testing");
-                        sweetAlert.fire({
-                                position: 'top-end',
-                                title: 'Sensor Information',
-                                html: '<b>Sensor Type: </br> Sensor ID: </br>Status: </br>Region: </br>Latitude: </br>Longitude: </br>Deployment Date: </br>Latest Data: </br>Maximum Data Value: </br>Minimum Data Value: </br>',
-                                timer: 30000,
-                                showCloseButton: true,
-                                showCancelButton: true,
-                                focusConfirm: false,
-                                confirmButtonText:
-                                  '<i class="fa fa-thumbs-up"></i> Great!',
-                                confirmButtonAriaLabel: 'Thumbs up, Thanks!',
-                                cancelButtonText:
-                                  '<i class="fa fa-thumbs-down"></i>',
-                                cancelButtonAriaLabel: 'Thumbs down',
-                                imageUrl: 'images/co2.png',
-                                imageHeight: 75,
-                        });
-                    });
-                } 
-            } 
-        } 
-    }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+    // 
+    // var scene = viewer.scene;
+    // var handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
+    // handler.setInputAction(function(movement) {
+    //     var pickedObject = scene.pick(movement.endPosition);
+    //     var allCesiumEntities = viewer.entities;
+    //     if (Cesium.defined(pickedObject)) {
+    //         for (index = 0; index < allCesiumEntities._entities.length; index++) {
+    //             if(pickedObject.id._id === allCesiumEntities._entities._array[index].id){
+    //                 console.log("success");
+    //                 requirejs(['sweetalert'], function (sweetAlert) {
+    //                     console.log("testing");
+    //                     sweetAlert.fire({
+    //                             position: 'top-end',
+    //                             title: 'Sensor Information',
+    //                             html: '<b>Sensor Type: </br> Sensor ID: </br>Status: </br>Region: </br>Latitude: </br>Longitude: </br>Deployment Date: </br>Latest Data: </br>Maximum Data Value: </br>Minimum Data Value: </br>',
+    //                             timer: 30000,
+    //                             showCloseButton: true,
+    //                             showCancelButton: true,
+    //                             focusConfirm: false,
+    //                             confirmButtonText:
+    //                               '<i class="fa fa-thumbs-up"></i> Great!',
+    //                             confirmButtonAriaLabel: 'Thumbs up, Thanks!',
+    //                             cancelButtonText:
+    //                               '<i class="fa fa-thumbs-down"></i>',
+    //                             cancelButtonAriaLabel: 'Thumbs down',
+    //                             imageUrl: 'images/co2.png',
+    //                             imageHeight: 75,
+    //                     });
+    //                 });
+    //             } 
+    //         } 
+    //     } 
+    // }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
 
 
     viewer.selectedEntityChanged.addEventListener(function(entity) {
+        $('#sensorInformation').modal('show');
+        // if(viewer.selectedEntity == defined){
+        //     $('#chart').modal('show');
+        // }
+                //location.href = "#chart";
     //     // Check if an entity with a point color was selected.
     //     if (Cesium.defined(entity) &&
     //         Cesium.defined(entity.point) &&

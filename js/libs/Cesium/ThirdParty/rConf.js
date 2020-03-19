@@ -4,13 +4,10 @@ requirejs.config({
         jquery: 'jquery-3.4.1.min',
         cesium: 'Cesium/Cesium',
         main: 'index',
-<<<<<<< HEAD
         chartjs: 'Chart',
         sensor: 'sensor',
-        createSensor: 'createSensor'
-=======
+        createSensor: 'createSensor',
         sweetalert: 'sweetalert2.all.min'
->>>>>>> addingSweetAlerts
     }
 });
 requirejs(['jquery'], function ($) {
@@ -22,7 +19,6 @@ requirejs(['cesium'], function ($) {
 requirejs(['main'], function ($) {
     console.log($) // OK
 });
-<<<<<<< HEAD
 requirejs(['chartjs'], function ($) {
     console.log($) // OK
 });
@@ -32,10 +28,6 @@ requirejs(['sensor'], function ($) {
 requirejs(['createSensor'], function ($) {
     console.log($) // OK
 });
-
-
-=======
 requirejs(['sweetalert'], function ($) {
     console.log($) // OK
 });
->>>>>>> addingSweetAlerts

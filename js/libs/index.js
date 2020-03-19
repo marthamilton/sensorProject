@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-//Cesium
-=======
 //filter checkboxes
 const england = document.getElementById("englandCheckbox");
 const wales = document.getElementById("walesCheckbox");
@@ -8,7 +5,7 @@ const scotland = document.getElementById("scotlandCheckbox");
 const northernIreland = document.getElementById("northernIrelandCheckbox");
 const countyAverage = document.getElementById("averageCheckbox");
 
->>>>>>> addingSweetAlerts
+//Cesium
 requirejs(['cesium'], function (Cesium) {
 
 
@@ -77,9 +74,7 @@ requirejs(['cesium'], function (Cesium) {
         viewer.camera.flyTo({
                 destination: center,
                 duration: 2
-        });
-<<<<<<< HEAD
-    
+        });    
     });
 
     $.ajax({
@@ -127,6 +122,26 @@ requirejs(['cesium'], function (Cesium) {
             for (index = 0; index < entities2._entities.length; index++) {
                 if(pickedObject.id._id === entities2._entities._array[index].id){
                     console.log("success");
+                    requirejs(['sweetalert'], function (sweetAlert) {
+                        console.log("testing");
+                        sweetAlert.fire({
+                                position: 'top-end',
+                                title: 'Sensor Information',
+                                html: '<b>Sensor Type: </br> Sensor Latitude: </br></b>',
+                                timer: 10000,
+                                showCloseButton: true,
+                                showCancelButton: true,
+                                focusConfirm: false,
+                                confirmButtonText:
+                                  '<i class="fa fa-thumbs-up"></i> Great!',
+                                confirmButtonAriaLabel: 'Thumbs up, Thanks!',
+                                cancelButtonText:
+                                  '<i class="fa fa-thumbs-down"></i>',
+                                cancelButtonAriaLabel: 'Thumbs down',
+                                imageUrl: 'happyearth.gif',
+                                imageHeight: 150,
+                        });
+                    });
                 } 
             } 
         } 
@@ -155,10 +170,6 @@ requirejs(['cesium'], function (Cesium) {
     //         }
     //     }
     // });
-
-=======
- 
-    });
 
     function filterWarning(){
         requirejs(['sweetalert'], function (sweetAlert) {
@@ -234,7 +245,6 @@ requirejs(['cesium'], function (Cesium) {
         countyAverage.checked = false;
         viewer.dataSources.removeAll();
     });
->>>>>>> addingSweetAlerts
 });
 
 // //Chart JS 
@@ -278,7 +288,3 @@ requirejs(['cesium'], function (Cesium) {
 //     });
 
 // });
-
-
-
-

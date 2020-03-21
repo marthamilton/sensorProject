@@ -2,287 +2,285 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <!--CSS-->
-  <link href="main.css" rel="stylesheet">
-  <link href="js/libs/Cesium/Widgets/widgets.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!--JS-->
-  <script data-main="js/libs/Cesium/ThirdParty/rConf" src="js/libs/Cesium/ThirdParty/require.js"></script>
-  <script src="js/libs/jquery-3.4.1.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <title>Air Quality Project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!--CSS-->
+    <link href="main.css" rel="stylesheet">
+    <link href="js/libs/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--JS-->
+    <script data-main="js/libs/Cesium/ThirdParty/rConf" src="js/libs/Cesium/ThirdParty/require.js"></script>
+    <script src="js/libs/jquery-3.4.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Air Quality Project</title>
 </head>
 
 <body>
-  <!--Cesium Container-->
-  <div id="cesiumContainer" style="width:100%; height:100%; position:fixed; left:0;top:0;overflow:hidden;"></div>
-  <!--Navigation Bar-->
-  <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+    <!--Cesium Container-->
+    <div id="cesiumContainer" style="width:100%; height:100%; position:fixed; left:0;top:0;overflow:hidden;"></div>
+    <!--Navigation Bar-->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">School Air Quality Project</a>
-      </div>
+                <a class="navbar-brand" href="#">School Air Quality Project</a>
+            </div>
 
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <form class="navbar-form navbar-right" action="/">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" name="search">
-            <div class="input-group-btn">
-              <button class="btn btn-default" type="submit">
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <form class="navbar-form navbar-right" action="/">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="search">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
                 <i class="glyphicon glyphicon-search"></i>
               </button>
+                        </div>
+                    </div>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a data-toggle="modal" id="homeButton">Home</a></li>
+                    <li><a data-toggle="modal" href="#about">About</a></li>
+                    <li><a data-toggle="modal" href="#studies">Studies</a></li>
+                    <li><a data-toggle="modal" href="#sensors">Sensors</a></li>
+                    <li><a data-toggle="modal" href="#filters">Filters</a></li>
+                    <li><a data-toggle="modal" href="#feedback">Send Feedback</a></li>
+                    <li><a data-toggle="modal" href="#help">Help</a></li>
+                </ul>
+
             </div>
-          </div>
-        </form>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a data-toggle="modal" id="homeButton">Home</a></li>
-          <li><a data-toggle="modal" href="#about">About</a></li>
-          <li><a data-toggle="modal" href="#studies">Studies</a></li>
-          <li><a data-toggle="modal" href="#sensors">Sensors</a></li>
-          <li><a data-toggle="modal" href="#filters">Filters</a></li>
-          <li><a data-toggle="modal" href="#feedback">Send Feedback</a></li>
-          <li><a data-toggle="modal" href="#help">Help</a></li>
-        </ul>
-
-      </div>
-    </div>
-  </nav>
-
-  <!--About Modal-->
-  <div id="about" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title text-center">About This Project</h4>
         </div>
-        <div class="modal-body">
-          <p>Many parents and teaching professionals are not aware of the threat posed by air pollution around schools 
-            and the possible long-term effects. The aim of this project is to utilise computer hardware and data visualisation
-             to provide parents, governors, teachers, local MPs and the general public with an up to date and accessible way of 
-             understanding the air quality in and around schools.</p>
+    </nav>
 
-          <p>This project involves creating a forward thinking proof of concept, with the long term aim of it being maintained 
-              and extended. A sensor will be placed at a school location to collect live data which will be displayed using 3D 
-              mapping and its location. The sensor will be purchased and setup for data to be transmitted securely over the internet 
-              and then stored in  a database. The data provided by the sensor will be compared to environmental standards with consideration
-               of local surroundings and its contribution to air pollution. This data will be made available to the public using an 
-               interactive website displaying the data visualisation and analysis. The interactive website will present the data so that 
-               it is accessible to all. Being based on a 3D map featuring the location of the sensor will allow for more sensors to be 
-               added at other school locations in the future.</p>
-               
-          <p>In addition to creating the proof of concept, the project will also involve exploring the wider context of such a 
-            system, the benefits of having this information and its influence in society as a whole. The school involved will be 
-            part of any decision making and be continually updated with progress throughout the project. </p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!--Studies Modal-->
-  <div id="studies" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Studies</h4>
-        </div>
-        <div class="modal-body">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.</p>
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <!--Sensors Modal-->
-  <div id="sensors" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title text-center">Sensor Menu</h4>
-        </div>
-        <div class="modal-body">
-          <div class="container-fluid">
-            <p>Click on one of the following sensors to find it on the map and find out more.</p>
-            <div class="row">
-              <div class="col-sm-3 text-center">
-                <div class="sensorMenu" id="sensorMenu">
-                  <h5>Air Quality Sensor</h5>
-                  <img src="images/co2.png" height="50px" width="50px">
-                  <br>
-                  <p>id: 1234</p>
-                  <p>longitude: -2.3261 </p>
-                  <p>latitude: 52.1116</p>
+    <!--About Modal-->
+    <div id="about" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">About This Project</h4>
                 </div>
-              </div>
-              <div class="col-sm-3 text-center">
-                <div class="sensorMenu" id="sensorMenu">
-                  <h5>Air Quality Sensor</h5>
-                  <img src="images/co2.png" height="50px" width="50px">
-                  <br>
-                  <p>id: 1234</p>
-                  <p>longitude: -2.3261 </p>
-                  <p>latitude: 52.1116</p>
+                <div class="modal-body">
+                    <p>Many parents and teaching professionals are not aware of the threat posed by air pollution around schools and the possible long-term effects. The aim of this project is to utilise computer hardware and data visualisation to provide
+                        parents, governors, teachers, local MPs and the general public with an up to date and accessible way of understanding the air quality in and around schools.</p>
+
+                    <p>This project involves creating a forward thinking proof of concept, with the long term aim of it being maintained and extended. A sensor will be placed at a school location to collect live data which will be displayed using 3D mapping
+                        and its location. The sensor will be purchased and setup for data to be transmitted securely over the internet and then stored in a database. The data provided by the sensor will be compared to environmental standards with consideration
+                        of local surroundings and its contribution to air pollution. This data will be made available to the public using an interactive website displaying the data visualisation and analysis. The interactive website will present the data
+                        so that it is accessible to all. Being based on a 3D map featuring the location of the sensor will allow for more sensors to be added at other school locations in the future.</p>
+
+                    <p>In addition to creating the proof of concept, the project will also involve exploring the wider context of such a system, the benefits of having this information and its influence in society as a whole. The school involved will be
+                        part of any decision making and be continually updated with progress throughout the project. </p>
                 </div>
-              </div>
-              <div class="col-sm-3 text-center">
-                <div class="sensorMenu" id="sensorMenu">
-                  <h5>Air Quality Sensor</h5>
-                  <img src="images/co2.png" height="50px" width="50px">
-                  <br>
-                  <p>id: 1234</p>
-                  <p>longitude: -2.3261 </p>
-                  <p>latitude: 52.1116</p>
-                </div>
-              </div>
-              <div class="col-sm-3 text-center">
-                <div class="sensorMenu" id="sensorMenu">
-                  <h5>Air Quality Sensor</h5>
-                  <img src="images/co2.png" height="50px" width="50px">
-                  <br>
-                  <p>id: 1234</p>
-                  <p>longitude: -2.3261 </p>
-                  <p>latitude: 52.1116</p>
-                </div>
-              </div>
-              </div>
             </div>
-          </div>
         </div>
-
-      </div>
     </div>
-  </div>
-  <!--Filters Modal-->
-  <div id="filters" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title text-center">Sensor Filters</h4>
-        </div>
-        <div class="modal-body">
-          <p>These filters demonstrate the capabilities of this project with nationwide cooperation from schools. 
-            If you click on a selected county, the active sensors in that area will be listed. The data provided is not accurate.</p>
-          <br>
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-6">
-                <p>Select area:</p>
-                <input type="checkbox" class="form-check-input" id="englandCheckbox">
-                <label class="form-check-label" for="englandCheckbox">England</label>
-                <br>
-                <input type="checkbox" class="form-check-input" id="walesCheckbox">
-                <label class="form-check-label" for="walesCheckbox">Wales</label>
-                <br>
-                <input type="checkbox" class="form-check-input" id="scotlandCheckbox">
-                <label class="form-check-label" for="scotlandCheckbox">Scotland</label>
-                <br>
-                <input type="checkbox" class="form-check-input" id="northernIrelandCheckbox">
-                <label class="form-check-label" for="northernIrelandCheckbox">Northern Ireland</label>
-              </div>
-              <br>
-              <div class="col-sm-6">
-                <p>Select Filter:</p>
-                <input type="checkbox" class="form-check-input" id="averageCheckbox">
-                <label class="form-check-label" for="averageCheckbox">County Average</label>
-              </div>
+
+    <!--Studies Modal-->
+    <div id="studies" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Studies</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+
             </div>
-          </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal" id="resetFilters">Reset</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" id="applyFilters">Apply</button>
-        </div>
-
-      </div>
     </div>
-  </div>
-  <!--Feedback Modal-->
-  <div id="feedback" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Send Feedback</h4>
-        </div>
-        <div class="modal-body">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.</p>
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <!--Help Modal-->
-  <div id="help" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Help</h4>
-        </div>
-        <div class="modal-body">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.</p>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!--Search Modal-->
-  <div id="search" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Search</h4>
-        </div>
-        <div class="modal-body">
-          <form class="navbar-form " role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
+    <!--Sensors Modal-->
+    <div id="sensors" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">Sensor Menu</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <p>Click on one of the following sensors to find it on the map and find out more.</p>
+                        <div class="row">
+                            <div class="col-sm-3 text-center">
+                                <div class="sensorMenu" id="sensorMenu">
+                                    <h5>Air Quality Sensor</h5>
+                                    <img src="images/co2.png" height="50px" width="50px">
+                                    <br>
+                                    <p>id: 1234</p>
+                                    <p>longitude: -2.3261 </p>
+                                    <p>latitude: 52.1116</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <div class="sensorMenu" id="sensorMenu">
+                                    <h5>Air Quality Sensor</h5>
+                                    <img src="images/co2.png" height="50px" width="50px">
+                                    <br>
+                                    <p>id: 1234</p>
+                                    <p>longitude: -2.3261 </p>
+                                    <p>latitude: 52.1116</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <div class="sensorMenu" id="sensorMenu">
+                                    <h5>Air Quality Sensor</h5>
+                                    <img src="images/co2.png" height="50px" width="50px">
+                                    <br>
+                                    <p>id: 1234</p>
+                                    <p>longitude: -2.3261 </p>
+                                    <p>latitude: 52.1116</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <div class="sensorMenu" id="sensorMenu">
+                                    <h5>Air Quality Sensor</h5>
+                                    <img src="images/co2.png" height="50px" width="50px">
+                                    <br>
+                                    <p>id: 1234</p>
+                                    <p>longitude: -2.3261 </p>
+                                    <p>latitude: 52.1116</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-          </form>
+
         </div>
-      </div>
     </div>
-  </div>
-  <div class="testing" id="testing">
-    <canvas id="sensorChart" class="sensorChart"></canvas>
-  </div> 
+    </div>
+    <!--Filters Modal-->
+    <div id="filters" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">Sensor Filters</h4>
+                </div>
+                <div class="modal-body">
+                    <p>These filters demonstrate the capabilities of this project with nationwide cooperation from schools. If you click on a selected county, the active sensors in that area will be listed. The data provided is not accurate.
+                    </p>
+                    <br>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>Select area:</p>
+                                <input type="checkbox" class="form-check-input" id="englandCheckbox">
+                                <label class="form-check-label" for="englandCheckbox">England</label>
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="walesCheckbox">
+                                <label class="form-check-label" for="walesCheckbox">Wales</label>
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="scotlandCheckbox">
+                                <label class="form-check-label" for="scotlandCheckbox">Scotland</label>
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="northernIrelandCheckbox">
+                                <label class="form-check-label" for="northernIrelandCheckbox">Northern Ireland</label>
+                            </div>
+                            <br>
+                            <div class="col-sm-6">
+                                <p>Select Filter:</p>
+                                <input type="checkbox" class="form-check-input" id="averageCheckbox">
+                                <label class="form-check-label" for="averageCheckbox">County Average</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="resetFilters">Reset</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="applyFilters">Apply</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--Feedback Modal-->
+    <div id="feedback" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Send Feedback</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--Help Modal-->
+    <div id="help" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Help</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--Information Box Modal-->
+    <div id="informationBox" class="modal fade infoBox" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">Sensor Information Box</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>DISCLAIMER: The information displayed by this sensor is for demonstration purposes only.</p>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Sensor Type:
+                            <span class="badge badge-primary badge-pill">Air Quality</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Sensor Id:
+                            <span class="badge badge-primary badge-pill">2</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Region Name:
+                            <span class="badge badge-primary badge-pill">1</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="testing" id="testing">
+        <canvas id="sensorChart" class="sensorChart"></canvas>
+    </div>
 </body>
-<script>$('.nav a').on('click', function(){
-  $('.navbar-toggle').click(); 
-});
+<script>
+    $('.nav a').on('click', function() {
+        $('.navbar-toggle').click();
+    });
 </script>
 
 </html>

@@ -32,16 +32,6 @@
             </div>
 
             <div class="collapse navbar-collapse" id="myNavbar">
-                <form class="navbar-form navbar-right" action="/">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search" name="search">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit">
-                <i class="glyphicon glyphicon-search"></i>
-              </button>
-                        </div>
-                    </div>
-                </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a data-toggle="modal" id="homeButton">Home</a></li>
                     <li><a data-toggle="modal" href="#about">About</a></li>
@@ -51,7 +41,6 @@
                     <li><a data-toggle="modal" href="#feedback">Send Feedback</a></li>
                     <li><a data-toggle="modal" href="#help">Help</a></li>
                 </ul>
-
             </div>
         </div>
     </nav>
@@ -251,22 +240,21 @@
                 </div>
                 <div class="modal-body">
                     <div>
-                        <p><b>DISCLAIMER: The information displayed by this sensor is for demonstration purposes only.</b></p>
+                        <p>DISCLAIMER: The information displayed by this sensor is for demonstration purposes only.</p>
                     </div>
+                    <p class="text-center"><b>Sensor Information</b></p>
                     <ul class="list-group">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Sensor Type:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxSensorType">Air Quality</span>
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxSensorType"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Sensor Id:
-                            <span class="badge badge-primary badge-pill informationBoxPill">
-                            <p id="informationBoxSensorId"></p>
-                            </span>
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxSensorId"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Deployment Date:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxSensorId">02/20/2020</span>
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxSensorDeploymentDate"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Status:
@@ -274,15 +262,15 @@
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Region:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxRegionName">1</span>
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxRegionName"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Latitude:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxLatitude">1</span>
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxLatitude"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Longitude:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxLongitude">1</span>
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxLongitude"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Current Air Quality:
@@ -293,7 +281,7 @@
                             <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxLastUpdated">1</span>
                         </li>
                         </br>
-                        <p><b>In the last week:</b></p>
+                        <p class="text-center"><b>In the last week:</b></p>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Maximum:
                             <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxMaximum">1</span>
@@ -303,6 +291,8 @@
                             <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxMinimum">1</span>
                         </li>
                     </ul>
+                    </br>
+                    <p class="text-center"><b>Sensor Air Quality Measurements Over Time</b></p>
                     <div class="testing" id="testing">
                       <canvas id="sensorChart" class="sensorChart"></canvas>
                     </div>

@@ -113,45 +113,38 @@ requirejs(['cesium'], function(Cesium) {
         }
     });
 
-    // 
-    // var scene = viewer.scene;
-    // var handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
-    // handler.setInputAction(function(movement) {
-    //     var pickedObject = scene.pick(movement.endPosition);
-    //     var allCesiumEntities = viewer.entities;
-    //     if (Cesium.defined(pickedObject)) {
-    //         for (index = 0; index < allCesiumEntities._entities.length; index++) {
-    //             if(pickedObject.id._id === allCesiumEntities._entities._array[index].id){
-    //                 console.log("success");
-    //                 requirejs(['sweetalert'], function (sweetAlert) {
-    //                     console.log("testing");
-    //                     sweetAlert.fire({
-    //                             position: 'top-end',
-    //                             title: 'Sensor Information',
-    //                             html: '<b>Sensor Type: </br> Sensor ID: </br>Status: </br>Region: </br>Latitude: </br>Longitude: </br>Deployment Date: </br>Latest Data: </br>Maximum Data Value: </br>Minimum Data Value: </br>',
-    //                             timer: 30000,
-    //                             showCloseButton: true,
-    //                             showCancelButton: true,
-    //                             focusConfirm: false,
-    //                             confirmButtonText:
-    //                               '<i class="fa fa-thumbs-up"></i> Great!',
-    //                             confirmButtonAriaLabel: 'Thumbs up, Thanks!',
-    //                             cancelButtonText:
-    //                               '<i class="fa fa-thumbs-down"></i>',
-    //                             cancelButtonAriaLabel: 'Thumbs down',
-    //                             imageUrl: 'images/co2.png',
-    //                             imageHeight: 75,
-    //                     });
-    //                 });
-    //             } 
-    //         } 
-    //     } 
-    // }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
-
-
     viewer.selectedEntityChanged.addEventListener(function(entity) {
         if (viewer.selectedEntity !== undefined) {
             console.log("entity clicked:" + viewer.selectedEntity._id);
+            //document.getElementById("informationBoxSensorId").innerHTML = viewer.selectedEntity._id;
+            console.log("before get element by id");
+            document.getElementById("informationBoxSensorId").innerHTML="newtext";
+            console.log("after get element by id");
+
+
+                // $.ajax({
+                //     async: true,
+                //     type: "GET",
+                //     url: "Php/getSensorInformationBox.php",
+                //     datatype: "json",
+                //     data: {
+                //         "sensorID": viewer.selectedEntity._id
+                //     },
+                //     success: function(data) {
+                //         var sensorData = $.parseJSON(data);
+                //             for (var i = 0; i < sensorData.length; i++) {
+                //                 viewer.entities.add({
+                //                     position: Cesium.Cartesian3.fromDegrees(parseFloat(sensorData[i].sensorLongitude), parseFloat(sensorData[i].sensorLatitude)),
+                //                     point: {
+                //                     pixelSize: 10,
+                //                     color: Cesium.Color.DARKORCHID
+                //                     },
+                //                     name: sensorData[i].sensorType,
+                //                     id: sensorData[i].sensorID,
+                //                 });
+                //             };
+                //     };
+                // });
             $(document.getElementById("informationBox")).modal('show');
         }
         // if(viewer.selectedEntity == defined){

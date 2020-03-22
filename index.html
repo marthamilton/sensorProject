@@ -251,22 +251,61 @@
                 </div>
                 <div class="modal-body">
                     <div>
-                        <p>DISCLAIMER: The information displayed by this sensor is for demonstration purposes only.</p>
+                        <p><b>DISCLAIMER: The information displayed by this sensor is for demonstration purposes only.</b></p>
                     </div>
                     <ul class="list-group">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Sensor Type:
-                            <span class="badge badge-primary badge-pill">Air Quality</span>
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxSensorType">Air Quality</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Sensor Id:
-                            <span class="badge badge-primary badge-pill">2</span>
+                            <span class="badge badge-primary badge-pill informationBoxPill">
+                            <p id="informationBoxSensorId"></p>
+                            </span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Region Name:
-                            <span class="badge badge-primary badge-pill">1</span>
+                            Deployment Date:
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxSensorId">02/20/2020</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Status:
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxSensorStatus">Online</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Region:
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxRegionName">1</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Latitude:
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxLatitude">1</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Longitude:
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxLongitude">1</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Current Air Quality:
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxCurrentAirQuality">1</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Last Updated:
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxLastUpdated">1</span>
+                        </li>
+                        </br>
+                        <p><b>In the last week:</b></p>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Maximum:
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxMaximum">1</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Minimum:
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxMinimum">1</span>
                         </li>
                     </ul>
+                    <div class="testing" id="testing">
+                      <canvas id="sensorChart" class="sensorChart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>

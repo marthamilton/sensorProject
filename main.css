@@ -55,6 +55,10 @@ body {
 
 .modal {
     text-align: center;
+} 
+
+.informationBoxPill {
+  background-color: #0fa1e6 !important;
 }
 
 @media screen and (min-width: 768px) {

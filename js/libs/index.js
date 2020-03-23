@@ -253,10 +253,20 @@ requirejs(['cesium'], function(Cesium) {
                     strokeWidth: 3,
                     markerSymbol: '?'
                 }));
-            } else {
+            }
+            if (england.checked == false && wales.checked == false && scotland.checked == false && northernIreland.checked == false) {
+                viewer.dataSources.removeAll();
+                console.log("areanotchecked");
                 filterWarning();
             }
         } else {
+            england.checked = false;
+            wales.checked = false;
+            scotland.checked = false;
+            northernIreland.checked = false;
+            countyAverage.checked = false;
+            viewer.dataSources.removeAll();
+            console.log("countyaveragenotchecked");
             filterWarning();
         }
     });

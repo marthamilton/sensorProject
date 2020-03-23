@@ -1,13 +1,5 @@
-//filter checkboxes
-const england = document.getElementById("englandCheckbox");
-const wales = document.getElementById("walesCheckbox");
-const scotland = document.getElementById("scotlandCheckbox");
-const northernIreland = document.getElementById("northernIrelandCheckbox");
-const countyAverage = document.getElementById("averageCheckbox");
-
 //Cesium
 requirejs(['cesium'], function(Cesium) {
-
     // Default CesiumJS access token
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzNGE5YjRkNy0yYzE1LTRiMTEtYmIwNC03ZjI4OTYyMTRlZTkiLCJpZCI6MjMxMTcsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1ODI3Mzk0MzV9.kEPRva0D_vJ-mxASc7jdGAGL67M5GiT6r5sQ4LcgHwY';
 
@@ -69,7 +61,6 @@ requirejs(['cesium'], function(Cesium) {
     // When the cesium container (map) is clicked
     cesiumContainer.addEventListener("click", () => {
         viewer.selectedEntity = undefined;
-        console.log("clicking cesium container");
     });
 
     // Zoom to UK immediately
@@ -131,10 +122,10 @@ requirejs(['cesium'], function(Cesium) {
                 }
             });
             //Chart JS 
-            requirejs(['chartjs'], function (Chart) {
+            requirejs(['chartjs'], function(Chart) {
                 var chart = document.getElementById("sensorChart").getContext("2d");
                 var chartLabels = ["hello", "hello", "hello"];
-                var chartData = [67,25,45];
+                var chartData = [67, 25, 45];
                 var chart = new Chart(chart, {
                     type: "line",
                     data: {
@@ -154,26 +145,25 @@ requirejs(['cesium'], function(Cesium) {
                             display: false,
                         },
                         scales: {
-                            xAxes: [ {
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Time'
-                            },
-                            display: true
+                            xAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Time'
+                                },
+                                display: true
                             }],
-                            yAxes: [ {
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Air Quality'
-                            },
-                            display: true
+                            yAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Air Quality'
+                                },
+                                display: true
                             }]
                         }
                     }
                 });
 
             });
-
             $(document.getElementById("informationBox")).modal('show');
         }
         // if(viewer.selectedEntity == defined){
@@ -204,7 +194,6 @@ requirejs(['cesium'], function(Cesium) {
 
     function filterWarning() {
         requirejs(['sweetalert'], function(sweetAlert) {
-            console.log("testing");
             sweetAlert.fire({
                 title: 'Warning',
                 html: '<b>Filter could not be applied, please make sure you select an area and filter type next time</b>',
@@ -216,11 +205,18 @@ requirejs(['cesium'], function(Cesium) {
                 confirmButtonAriaLabel: 'Thumbs up, Thanks!',
                 cancelButtonText: '<i class="fa fa-thumbs-down"></i>',
                 cancelButtonAriaLabel: 'Thumbs down',
-                imageUrl: 'happyearth.gif',
+                imageUrl: 'images/happyearth.gif',
                 imageHeight: 150,
             });
         });
     }
+
+    //filter checkboxes
+    const england = document.getElementById("englandCheckbox");
+    const wales = document.getElementById("walesCheckbox");
+    const scotland = document.getElementById("scotlandCheckbox");
+    const northernIreland = document.getElementById("northernIrelandCheckbox");
+    const countyAverage = document.getElementById("averageCheckbox");
 
     //When the apply button in filters is clicked
     document.getElementById("applyFilters").addEventListener("click", function() {

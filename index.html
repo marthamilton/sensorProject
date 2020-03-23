@@ -2,20 +2,6 @@
 <html lang="en">
 
 <head>
-<<<<<<< HEAD
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <!--CSS-->
-  <link href="main.css" rel="stylesheet">
-  <link href="js/libs/Cesium/Widgets/widgets.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!--JS-->
-  <script data-main="js/libs/Cesium/ThirdParty/rConf" src="js/libs/Cesium/ThirdParty/require.js"></script>
-  <script src="js/libs/jquery-3.4.1.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <title>Air Quality Project</title>
-=======
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!--CSS-->
@@ -28,7 +14,18 @@
     <script src="js/libs/jquery-3.4.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Air Quality Project</title>
->>>>>>> implementChartJS
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!--CSS-->
+    <link href="main.css" rel="stylesheet">
+    <link href="js/libs/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--JS-->
+    <script data-main="js/libs/Cesium/ThirdParty/rConf" src="js/libs/Cesium/ThirdParty/require.js"></script>
+    <script src="js/libs/jquery-3.4.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Air Quality Project</title>
 </head>
 
 <body>
@@ -39,10 +36,10 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <a class="navbar-brand" href="#">School Air Quality Project</a>
             </div>
 
@@ -79,7 +76,8 @@
                         so that it is accessible to all. Being based on a 3D map featuring the location of the sensor will allow for more sensors to be added at other school locations in the future.</p>
 
                     <p>In addition to creating the proof of concept, the project will also involve exploring the wider context of such a system, the benefits of having this information and its influence in society as a whole. The school involved will be
-                        part of any decision making and be continually updated with progress throughout the project. </p>
+                        part of any decision making and be continually updated with progress throughout the project.
+                    </p>
                 </div>
             </div>
         </div>
@@ -102,6 +100,7 @@
             </div>
         </div>
     </div>
+
     <!--Sensors Modal-->
     <div id="sensors" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
@@ -159,9 +158,9 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
+
     </div>
     <!--Filters Modal-->
     <div id="filters" class="modal fade" role="dialog">
@@ -209,6 +208,7 @@
             </div>
         </div>
     </div>
+
     <!--Feedback Modal-->
     <div id="feedback" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
@@ -226,40 +226,24 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-  </div>
-  <!--Feedback Modal-->
-  <div id="feedback" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title text-center">Send Feedback</h4>
+
+    <!--Feedback Modal-->
+    <div id="feedback" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">Send Feedback</h4>
+                </div>
+                <div class="modal-body">
+                    <p><b>Thank you for taking the time to explore my project.
+                            Please follow the link below to submit feedback:</b></p>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-            <p><b>Thank you for taking the time to explore my project. 
-            Please follow the link below to submit feedback:</b></p>
-        </div>
-      </div>
     </div>
-  </div>
-  <!--Help Modal-->
-  <div id="help" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Help</h4>
-        </div>
-        <div class="modal-body">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.</p>
-=======
+
     <!--Help Modal-->
     <div id="help" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
@@ -272,12 +256,28 @@
                 <div class="modal-body">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <!--Help Modal-->
+                    <div id="help" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-lg">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Help</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+                                        est laborum.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
->>>>>>> implementChartJS
         </div>
     </div>
+
 
     <!--Information Box Modal-->
     <div id="informationBox" class="modal fade infoBox" role="dialog">
@@ -344,17 +344,13 @@
                     </br>
                     <p class="text-center"><b>Sensor Air Quality Measurements Over Time</b></p>
                     <div class="testing" id="testing">
-                      <canvas id="sensorChart" class="sensorChart"></canvas>
+                        <canvas id="sensorChart" class="sensorChart"></canvas>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-
-    <div class="testing" id="testing">
-        <canvas id="sensorChart" class="sensorChart"></canvas>
-    </div>
 </body>
 <script>
     $('.nav a').on('click', function() {

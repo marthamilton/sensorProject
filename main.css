@@ -1,3 +1,16 @@
+.disable-select {
+    user-select: none;
+    /* supported by Chrome and Opera */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+}
+
 body {
     margin: 0;
     font-family: Arial !important;
@@ -9,13 +22,17 @@ body {
     z-index: 1;
 }
 
+.sensorMenuPadding {
+    padding: 10px;
+}
+
 .sensorMenu {
     border-style: solid;
     border-color: black;
 }
 
 .sensorMenu:hover {
-    background-color: #c4efb0;
+    background-color: #bbbbbb;
     color: white;
 }
 
@@ -55,10 +72,10 @@ body {
 
 .modal {
     text-align: center;
-} 
+}
 
 .informationBoxPill {
-  background-color: #0fa1e6 !important;
+    background-color: #0fa1e6 !important;
 }
 
 @media screen and (min-width: 768px) {

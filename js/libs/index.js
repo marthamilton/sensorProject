@@ -128,20 +128,6 @@ requirejs(['cesium'], function(Cesium) {
                     document.getElementById("informationBoxRegionName").innerHTML = sensorData.regionName;
                     document.getElementById("informationBoxLatitude").innerHTML = sensorData.sensorLatitude;
                     document.getElementById("informationBoxLongitude").innerHTML = sensorData.sensorLongitude;
-
-
-
-                        // for (var i = 0; i < sensorData.length; i++) {
-                        //     viewer.entities.add({
-                        //         position: Cesium.Cartesian3.fromDegrees(parseFloat(sensorData[i].sensorLongitude), parseFloat(sensorData[i].sensorLatitude)),
-                        //         point: {
-                        //         pixelSize: 10,
-                        //         color: Cesium.Color.DARKORCHID
-                        //         },
-                        //         name: sensorData[i].sensorType,
-                        //         id: sensorData[i].sensorID,
-                        //     });
-                        // };
                 }
             });
             //Chart JS 

@@ -6,24 +6,22 @@ include('Validation.php');
 //On receipt of request take params and send them to validation
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     // collect value of input field
-    $sensorID = $_REQUEST['id'];
-    $county = $_REQUEST['county'];   
-    $latitude = $_REQUEST['latitude'];
-    $longitude = $_REQUEST['longitude'];
-    $type = $_REQUEST['type'];
-    $deploymentDate = $_REQUEST['deploymentDate'];
-    if (empty($sensorID) or empty($county) or empty($latitude) or empty($longitude) or empty($type) or empty($deploymentDate)) {
+    $token = $_REQUEST['t'];
+    $airQuality = $_REQUEST['aq'];
+    $humidity = $_REQUEST['h'];
+    $date_time = $_REQUEST['dt'];
+    if (empty($token) or empty($airQuality) or empty($humidity) or empty($date_time)) {
         echo "Invalid Request";
     } else {
-        validateRequest($sensorID, $county, $latitude, $longitude, $type, $deploymentDate);
+        validateRequest($token, $airQuality, $humidity, $date_time);
     };
 };
 
 //Checks all parameters pass validation 
-function validateRequest($sensorID, $county, $latitude, $longitude, $type, $deploymentDate)
+function validateRequest($token, $airQuality, $humidity, $date_time)
 {
-    if (validatesensorID($sensorID) == true && validatecounty($county) == true && validatecounty($latitude) == true && validatecounty($longitude) == true && validatecounty($type) == true && validateDate($deploymentDate) == true) {
-        $sensorObj = new sensorDataIn($sensorID, $county, $latitude, $longitude, $type, $deploymentDate);
+    if (validateToken($token) == true && validateAirQuality($airQuality) == true && validateAirQuality($humidity) == true && validateDate($date_time) == true) {
+        $sensorObj = new sensorDataIn($token, $airQuality, $humidity, $date_time);
     } else {
         echo "Validation Failed";
     };
@@ -32,16 +30,17 @@ function validateRequest($sensorID, $county, $latitude, $longitude, $type, $depl
 class sensorDataIn
 {
 
-    function __construct($sensorID, $county, $latitude, $longitude, $type, $deploymentDate)
+    function __construct($token, $airQuality, $humidity, $date_time)
     {
-        $stmt = $GLOBALS['conn']->prepare("insert into readings (sensorID, county, latitude, longitude, type, deploymentDate) values (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("iss", $sensorID, $county, $latitude, $longitude, $type, $deploymentDate);
+        $stmt = $GLOBALS['dblink']->prepare("insert into tblsensordata (sensorID, airQuality, humidity, dateTime) values (?, ?, ?, ?)");
+        $stmt->bind_param("isss", $token, $airQuality, $humidity, $date_time);
         if ($stmt->execute() === TRUE) {
             echo "data entry success";
         } else {
-            echo "data entry fail " . "Error: " . $stmt . "<br>" . $GLOBALS['conn']->error;
+            echo "data entry fail " . "Error: " . $stmt . "<br>" . $GLOBALS['dblink']->error;
         }
+        
+        $GLOBALS['dblink']->close();
         $stmt->close();
-        $GLOBALS['conn']->close();
     }
-}
+};

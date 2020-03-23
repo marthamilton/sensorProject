@@ -1,71 +1,81 @@
 body {
-    margin:0;
-    font-family:Arial !important;
+    margin: 0;
+    font-family: Arial !important;
 }
 
 .sensorChart {
-  display: block;
-  position: relative;
-  z-index: 1;
+    display: block;
+    position: relative;
+    z-index: 1;
 }
+
 .sensorMenu {
-  border-style: solid;
-  border-color: black;
+    border-style: solid;
+    border-color: black;
 }
 
 .sensorMenu:hover {
-  background-color: #c4efb0;
-  color: white;
+    background-color: #c4efb0;
+    color: white;
 }
 
 .navbar {
-  margin-bottom: 0;
-  background-color: #0fa1e6 !important;
-  border: 0;
-  opacity: 0.9;
+    margin-bottom: 0;
+    background-color: #0fa1e6 !important;
+    border: 0;
+    opacity: 0.9;
 }
-.navbar li a, .navbar .navbar-brand { 
-  color: #d5d5d5 !important;
+
+.navbar li a,
+.navbar .navbar-brand {
+    color: #d5d5d5 !important;
 }
+
 .navbar-nav li a:hover {
-  color: #fff !important;
-  background-color: #0fa1e6;
+    color: #fff !important;
+    background-color: #0fa1e6;
 }
+
 .navbar-nav li.active a {
-  color: #fff !important;
-  background-color: #29292c !important;
+    color: #fff !important;
+    background-color: #29292c !important;
 }
+
 .navbar-default {
-  border-color: #fff !important;
-  color: #fff !important;
-  background-color: #fff !important;
+    border-color: #fff !important;
+    color: #fff !important;
+    background-color: #fff !important;
 }
-.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
-  background-color: #0fa1e6 !important;
-  border-color: white !important;
+
+.navbar-inverse .navbar-toggle:focus,
+.navbar-inverse .navbar-toggle:hover {
+    background-color: #0fa1e6 !important;
+    border-color: white !important;
 }
 
 .modal {
-  text-align: center;
+    text-align: center;
+} 
+
+.informationBoxPill {
+  background-color: #0fa1e6 !important;
 }
 
-@media screen and (min-width: 768px) { 
-  .modal:before {
-    display: inline-block;
-    vertical-align: middle;
-    content: " ";
-    height: 100%;
-  }
+@media screen and (min-width: 768px) {
+    .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+    }
 }
 
 .modal-dialog {
-  display: inline-block;
-  text-align: left;
-  vertical-align: middle;
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
 }
 
 .navbar-form {
-  border-color: #0fa1e6 !important;
+    border-color: #0fa1e6 !important;
 }
-
-

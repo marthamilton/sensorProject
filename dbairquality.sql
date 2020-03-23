@@ -2,8 +2,8 @@
 -- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 18, 2020 at 11:37 PM
+-- Host: localhost
+-- Generation Time: Mar 22, 2020 at 06:18 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -34,6 +34,13 @@ CREATE TABLE `tblregion` (
   `regionCountry` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tblregion`
+--
+
+INSERT INTO `tblregion` (`regionID`, `regionName`, `regionCountry`) VALUES
+(5431, 'West Midlands', 'United Kingdom');
+
 -- --------------------------------------------------------
 
 --
@@ -46,6 +53,13 @@ CREATE TABLE `tblsensordata` (
   `humidity` decimal(5,2) NOT NULL,
   `dateTime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tblsensordata`
+--
+
+INSERT INTO `tblsensordata` (`sensorID`, `airQuality`, `humidity`, `dateTime`) VALUES
+(1234, '66.66', '57.76', '2020-02-21 22:22:45');
 
 -- --------------------------------------------------------
 
@@ -61,6 +75,14 @@ CREATE TABLE `tblsensorinformation` (
   `sensorDeploymentDate` date NOT NULL,
   `sensorType` enum('Air Quality','Temperature') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tblsensorinformation`
+--
+
+INSERT INTO `tblsensorinformation` (`sensorID`, `regionID`, `sensorLatitude`, `sensorLongitude`, `sensorDeploymentDate`, `sensorType`) VALUES
+(1234, 5431, 52.1116, -2.3261, '2020-03-09', 'Air Quality'),
+(3456, 5431, 52.4862, -1.8904, '2020-02-29', 'Air Quality');
 
 --
 -- Indexes for dumped tables
@@ -93,13 +115,13 @@ ALTER TABLE `tblsensorinformation`
 -- AUTO_INCREMENT for table `tblregion`
 --
 ALTER TABLE `tblregion`
-  MODIFY `regionID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `regionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5432;
 
 --
 -- AUTO_INCREMENT for table `tblsensorinformation`
 --
 ALTER TABLE `tblsensorinformation`
-  MODIFY `sensorID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sensorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3457;
 
 --
 -- Constraints for dumped tables

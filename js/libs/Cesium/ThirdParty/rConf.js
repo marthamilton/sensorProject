@@ -7,27 +7,31 @@ requirejs.config({
         chartjs: 'Chart',
         sensor: 'sensor',
         createSensor: 'createSensor',
-        sweetalert: 'sweetalert2.all.min'
+        sweetalert: 'sweetalert2.all.min',
+        bootstrapModelWrapper: 'bootstrap.model.wrapper'
     }
 });
-requirejs(['jquery'], function ($) {
+requirejs(['jquery'], function($) {
     console.log($) // OK
 });
-requirejs(['cesium'], function ($) {
+requirejs(['cesium'], function($) {
     console.log($) // OK
 });
-requirejs(['main'], function ($) {
+requirejs(['main'], function($) {
     console.log($) // OK
 });
-requirejs(['chartjs'], function ($) {
+requirejs(['chartjs'], function($) {
     console.log($) // OK
 });
-requirejs(['sensor'], function ($) {
+requirejs(['sensor'], function($) {
     console.log($) // OK
 });
-requirejs(['createSensor'], function ($) {
+requirejs(['createSensor'], function($) {
     console.log($) // OK
 });
-requirejs(['sweetalert'], function ($) {
+requirejs(['sweetalert'], function($) {
+    console.log($) // OK
+});
+requirejs(['bootstrapModelWrapper'], function($) {
     console.log($) // OK
 });

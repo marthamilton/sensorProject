@@ -117,11 +117,6 @@ requirejs(['cesium'], function(Cesium) {
                 var coloumnDiv = document.createElement("div");
                 coloumnDiv.setAttribute('class', 'col-sm-4 text-center sensorMenuPadding');
                 coloumnDiv.setAttribute('id', 'coloumnDiv' + cesiumSensors[i]._id);
-                //coloumnDiv.setAttribute('href', '#');
-                //coloumnDiv.setAttribute('onclick', 'sensorMenuEntitySelected(cesiumSensors[i].longitude, cesiumSensors[i].latitude)');
-
-
-                //coloumnDiv.onclick = sensorMenuEntitySelected(cesiumSensors[i].longitude, cesiumSensors[i].latitude);
 
                 document.getElementById("sensorGrid").appendChild(coloumnDiv);
 
@@ -173,40 +168,33 @@ requirejs(['cesium'], function(Cesium) {
                 });
             });
         };
-
     });
 
-
-
-
-    // var sensorMenuEntitySelected = function(longitude, latitude) {
-    //     console.log("latitude:" + latitude);
-    //     console.log("longitude:" + longitude);
-    //     // viewer.camera.flyTo({
-    //     //     destination: Cesium.Cartesian3.fromDegrees(longitude, latitude, 15000.0),
-    //     //     duration: 5.0
-    //     // });
-    // };
-
-
+    // User clicks on a point on the map (entity)
     viewer.selectedEntityChanged.addEventListener(function(entity) {
         if (viewer.selectedEntity !== undefined) {
-            console.log(entity);
-            console.log("entity clicked:" + viewer.selectedEntity);
             document.getElementById("informationBoxSensorId").innerHTML = entity._id;
             document.getElementById("informationBoxSensorType").innerHTML = entity._name;
+            document.getElementById("informationBoxSensorDeploymentDate").innerHTML = entity.deploymentDate;
+            document.getElementById("informationBoxRegionName").innerHTML = entity.regionName;
+            document.getElementById("informationBoxLatitude").innerHTML = entity.latitude;
+            document.getElementById("informationBoxLongitude").innerHTML = entity.longitude;
+
+            //gets the most recend air quality record with dateTime
             $.ajax({
                 async: true,
                 type: "GET",
-                url: "Php/getSensorInformationBox.php?id=" + viewer.selectedEntity._id,
+                url: "Php/getMostRecentAQ.php?id=" + viewer.selectedEntity._id,
                 datatype: "json",
                 success: function(data) {
                     var sensorData = $.parseJSON(data);
-                    console.log(sensorData);
-                    document.getElementById("informationBoxSensorDeploymentDate").innerHTML = sensorData.sensorDeploymentDate;
-                    document.getElementById("informationBoxRegionName").innerHTML = sensorData.regionName;
-                    document.getElementById("informationBoxLatitude").innerHTML = sensorData.sensorLatitude;
-                    document.getElementById("informationBoxLongitude").innerHTML = sensorData.sensorLongitude;
+                    if (sensorData === null) {
+                        document.getElementById("informationBoxCurrentAirQuality").innerHTML = "No air quality readings";
+                        document.getElementById("informationBoxLastUpdated").innerHTML = "No air quality readings";
+                    } else {
+                        document.getElementById("informationBoxCurrentAirQuality").innerHTML = sensorData.airQuality + "%";
+                        document.getElementById("informationBoxLastUpdated").innerHTML = sensorData.dateTime;
+                    }
                 }
             });
             //Chart JS 

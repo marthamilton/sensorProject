@@ -238,47 +238,78 @@ requirejs(['cesium'], function(Cesium) {
                     }
                 }
             });
-            //Chart JS 
-            requirejs(['chartjs'], function(Chart) {
-                var chart = document.getElementById("sensorChart").getContext("2d");
-                var chartLabels = ["hello", "hello", "hello"];
-                var chartData = [67, 25, 45];
-                var chart = new Chart(chart, {
-                    type: "line",
-                    data: {
-                        labels: chartLabels,
-                        datasets: [{
-                            label: 'Air Quality',
-                            backgroundColor: 'rgb(255, 99, 132)',
-                            borderColor: 'rgb(255, 99, 132)',
-                            data: chartData
-                        }]
-                    },
-                    options: {
-                        tooltips: {
-                            displayColors: false,
-                        },
-                        legend: {
-                            display: false,
-                        },
-                        scales: {
-                            xAxes: [{
-                                scaleLabel: {
-                                    display: true,
-                                    labelString: 'Time'
+
+            //gets the last 100 readings of air quality and dateTime based on sensor id
+            $.ajax({
+                async: true,
+                type: "GET",
+                url: "Php/getLast100AQ.php?id=" + viewer.selectedEntity._id,
+                datatype: "json",
+                success: function(data) {
+                    //chart js
+                    requirejs(['chartjs'], function(Chart) {
+                        var sensorData = $.parseJSON(data);
+                        console.log(sensorData);
+                        if (sensorData === null) {
+                            console.log("null");
+                        } else {
+                            var airQualityReadings = [];
+                            var DateTimeReadings = [];
+                            for (var i = 0; i < sensorData.length; i++) {
+                                airQualityReadings.push(sensorData[i].airQuality);
+                                DateTimeReadings.push(sensorData[i].dateTime);
+                            }
+                            console.log(airQualityReadings);
+                            console.log(DateTimeReadings);
+                            var chart = document.getElementById("sensorChart").getContext("2d");
+                            var chartLabels = ["hello", "hello", "hello"];
+                            var chartData = [67, 25, 45];
+                            var chart = new Chart(chart, {
+                                type: "line",
+                                data: {
+                                    labels: DateTimeReadings,
+                                    datasets: [{
+                                        label: 'Air Quality',
+                                        fill: false,
+                                        backgroundColor: 'rgb(255, 99, 132)',
+                                        borderColor: 'rgb(255, 99, 132)',
+                                        data: airQualityReadings
+                                    }]
                                 },
-                                display: true
-                            }],
-                            yAxes: [{
-                                scaleLabel: {
-                                    display: true,
-                                    labelString: 'Air Quality'
-                                },
-                                display: true
-                            }]
+                                options: {
+                                    tooltips: {
+                                        displayColors: false,
+                                    },
+                                    legend: {
+                                        display: false,
+                                    },
+                                    scales: {
+                                        xAxes: [{
+                                            scaleLabel: {
+                                                display: true,
+                                                labelString: 'Time'
+                                            },
+                                            display: false
+                                        }],
+                                        yAxes: [{
+                                            scaleLabel: {
+                                                display: true,
+                                                labelString: 'Air Quality %'
+                                            },
+                                            display: true,
+                                            ticks: {
+                                                max: 100,
+                                                min: 0,
+                                                stepSize: 10
+                                            }
+                                        }]
+                                    }
+                                }
+                            });
                         }
-                    }
-                });
+                    });
+                }
+
 
             });
             $(document.getElementById("informationBox")).modal('show');

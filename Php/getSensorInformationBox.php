@@ -27,10 +27,8 @@ class getInformation{
 function __construct($token)
     {
         $stmt = $GLOBALS['dblink']->prepare("
-        SELECT s.sensorLatitude, s.sensorLongitude, s.sensorDeploymentDate, r.regionName, d.airQuality AS currentAQ, MAX(d.dateTime) AS currentDT, MAX(d.airQuality) AS maxAQ, MIN(d.airQuality) AS minAQ 
-        FROM tblsensorinformation AS s 
-        INNER JOIN tblregion as r ON s.regionID=r.regionID 
-        INNER JOIN tblsensordata as d on s.sensorID = d.sensorID WHERE s.sensorID = ?");
+        SELECT airQuality AS currentAQ, MAX(dateTime) AS currentDT, MAX(airQuality) AS maxAQ, MIN(airQuality) AS minAQ 
+        FROM tblsensordata WHERE sensorID = ?");
         $stmt->bind_param("i", $token);
         if ($stmt->execute() === TRUE) {
             $result = mysqli_stmt_get_result($stmt);

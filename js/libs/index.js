@@ -57,7 +57,6 @@ requirejs(['cesium'], function(Cesium) {
 
     // Element for the cesium container
     const cesiumContainer = document.getElementById("cesiumContainer");
-
     // When the cesium container (map) is clicked
     cesiumContainer.addEventListener("click", () => {
         viewer.selectedEntity = undefined;
@@ -95,11 +94,100 @@ requirejs(['cesium'], function(Cesium) {
                         },
                         name: sensorData[i].sensorType,
                         id: sensorData[i].sensorID,
+                        longitude: sensorData[i].sensorLongitude,
+                        latitude: sensorData[i].sensorLatitude,
+                        deploymentDate: sensorData[i].sensorDeploymentDate,
+                        regionName: sensorData[i].regionName,
                     });
                 };
             });
         }
     });
+
+    // Element for the sensor menu
+    const sensorMenuElement = document.getElementById("sensorMenu");
+    // When the sensor menu is clicked
+    sensorMenuElement.addEventListener("click", () => {
+        console.log("sensor menu");
+        var cesiumSensors = viewer.entities._entities._array;
+        console.log(cesiumSensors);
+
+        for (var i = 0; i < cesiumSensors.length; i++) {
+            if (!document.getElementById("coloumnDiv" + cesiumSensors[i]._id)) {
+                var coloumnDiv = document.createElement("div");
+                coloumnDiv.setAttribute('class', 'col-sm-4 text-center sensorMenuPadding');
+                coloumnDiv.setAttribute('id', 'coloumnDiv' + cesiumSensors[i]._id);
+                //coloumnDiv.setAttribute('href', '#');
+                //coloumnDiv.setAttribute('onclick', 'sensorMenuEntitySelected(cesiumSensors[i].longitude, cesiumSensors[i].latitude)');
+
+
+                //coloumnDiv.onclick = sensorMenuEntitySelected(cesiumSensors[i].longitude, cesiumSensors[i].latitude);
+
+                document.getElementById("sensorGrid").appendChild(coloumnDiv);
+
+                var boxDiv = document.createElement("div");
+                boxDiv.setAttribute('class', 'sensorMenuBox');
+                boxDiv.setAttribute('id', 'boxDiv' + cesiumSensors[i]._id);
+                document.getElementById('coloumnDiv' + cesiumSensors[i]._id).appendChild(boxDiv);
+
+                var sensorTitle = document.createElement("h5");
+                sensorTitle.textContent = cesiumSensors[i]._name + " Sensor";
+
+                document.getElementById("boxDiv" + cesiumSensors[i]._id).appendChild(sensorTitle);
+
+                if (cesiumSensors[i]._name === "Air Quality") {
+                    var sensorImg = document.createElement("img");
+                    sensorImg.src = "images/co2.png";
+                    sensorImg.style.width = "50px";
+                    sensorImg.style.height = "50px";
+                    sensorImg.alt = "Air Quality Image";
+
+                    document.getElementById("boxDiv" + cesiumSensors[i]._id).appendChild(sensorImg);
+                    var lineBreak = document.createElement("br");
+                    document.getElementById("boxDiv" + cesiumSensors[i]._id).appendChild(lineBreak);
+                    var lineBreak2 = document.createElement("br");
+                    document.getElementById("boxDiv" + cesiumSensors[i]._id).appendChild(lineBreak2);
+                }
+
+                var sensorIdElement = document.createElement("p");
+                sensorIdElement.textContent = "Sensor Id: " + cesiumSensors[i]._id;
+                document.getElementById("boxDiv" + cesiumSensors[i]._id).appendChild(sensorIdElement);
+
+                var sensorlongitudeElement = document.createElement("p");
+                sensorlongitudeElement.textContent = "Longitude: " + cesiumSensors[i].longitude;
+                document.getElementById("boxDiv" + cesiumSensors[i]._id).appendChild(sensorlongitudeElement);
+
+                var sensorlatitudeElement = document.createElement("p");
+                sensorlatitudeElement.textContent = "Latitude: " + cesiumSensors[i].latitude;
+                document.getElementById("boxDiv" + cesiumSensors[i]._id).appendChild(sensorlatitudeElement);
+            }
+
+            let sensorLatitude = cesiumSensors[i].latitude;
+            let sensorLongitude = cesiumSensors[i].longitude;
+            // let sensorBoxElement = document.getElementById("coloumnDiv" + cesiumSensors[i]._id);
+            document.getElementById("coloumnDiv" + cesiumSensors[i]._id).addEventListener("click", function() {
+                $('#sensors').modal('hide');
+                viewer.camera.flyTo({
+                    destination: Cesium.Cartesian3.fromDegrees(sensorLongitude, sensorLatitude, 1000.0),
+                    duration: 3.0
+                });
+            });
+        };
+
+    });
+
+
+
+
+    // var sensorMenuEntitySelected = function(longitude, latitude) {
+    //     console.log("latitude:" + latitude);
+    //     console.log("longitude:" + longitude);
+    //     // viewer.camera.flyTo({
+    //     //     destination: Cesium.Cartesian3.fromDegrees(longitude, latitude, 15000.0),
+    //     //     duration: 5.0
+    //     // });
+    // };
+
 
     viewer.selectedEntityChanged.addEventListener(function(entity) {
         if (viewer.selectedEntity !== undefined) {
@@ -166,30 +254,6 @@ requirejs(['cesium'], function(Cesium) {
             });
             $(document.getElementById("informationBox")).modal('show');
         }
-        // if(viewer.selectedEntity == defined){
-        //     $('#chart').modal('show');
-        // }
-        //location.href = "#chart";
-        //     // Check if an entity with a point color was selected.
-        //     if (Cesium.defined(entity) &&
-        //         Cesium.defined(entity.point) &&
-        //         Cesium.defined(entity.point.color)) {
-
-        //         // Get the current color
-        //         var color = entity.point.color.getValue(viewer.clock.currentTime);
-
-        //         // Test for blue
-        //         if (Cesium.Color.equals(color, Cesium.Color.STEELBLUE)) {
-        //             // Set to red
-        //             entity.point.color = Cesium.Color.RED;
-        //         }
-
-        //         // Test for red
-        //         else if (Cesium.Color.equals(color, Cesium.Color.RED)) {
-        //             // Set to red
-        //             entity.point.color = Cesium.Color.STEELBLUE;
-        //         }
-        //     }
     });
 
     function filterWarning() {

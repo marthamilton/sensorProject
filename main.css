@@ -26,12 +26,12 @@ body {
     padding: 10px;
 }
 
-.sensorMenu {
+.sensorMenuBox {
     border-style: solid;
     border-color: black;
 }
 
-.sensorMenu:hover {
+.sensorMenuBox:hover {
     background-color: #bbbbbb;
     color: white;
 }

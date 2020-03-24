@@ -191,9 +191,18 @@ requirejs(['cesium'], function(Cesium) {
                     if (sensorData === null) {
                         document.getElementById("informationBoxCurrentAirQuality").innerHTML = "No air quality readings";
                         document.getElementById("informationBoxLastUpdated").innerHTML = "No air quality readings";
+                        document.getElementById("informationBoxSensorStatus").innerHTML = "Offline";
                     } else {
                         document.getElementById("informationBoxCurrentAirQuality").innerHTML = sensorData.airQuality + "%";
                         document.getElementById("informationBoxLastUpdated").innerHTML = sensorData.dateTime;
+
+                        var lastUpdated = new Date(sensorData.dateTime);
+                        var oneHour = 60 * 60 * 1000;
+                        if ((new Date() - lastUpdated) < oneHour) {
+                            document.getElementById("informationBoxSensorStatus").innerHTML = "Online";
+                        } else {
+                            document.getElementById("informationBoxSensorStatus").innerHTML = "Offline";
+                        }
                     }
                 }
             });

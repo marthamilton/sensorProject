@@ -180,7 +180,7 @@ requirejs(['cesium'], function(Cesium) {
             document.getElementById("informationBoxLatitude").innerHTML = entity.latitude;
             document.getElementById("informationBoxLongitude").innerHTML = entity.longitude;
 
-            //gets the most recend air quality record with dateTime
+            //gets the most recend air quality record with dateTime based on sensor id
             $.ajax({
                 async: true,
                 type: "GET",
@@ -203,6 +203,38 @@ requirejs(['cesium'], function(Cesium) {
                         } else {
                             document.getElementById("informationBoxSensorStatus").innerHTML = "Offline";
                         }
+                    }
+                }
+            });
+
+            //gets the the max reading of air quality record based on sensor id
+            $.ajax({
+                async: true,
+                type: "GET",
+                url: "Php/getMaxAQ.php?id=" + viewer.selectedEntity._id,
+                datatype: "json",
+                success: function(data) {
+                    var sensorData = $.parseJSON(data);
+                    if (sensorData === null) {
+                        document.getElementById("informationBoxMaximum").innerHTML = "No air quality readings";
+                    } else {
+                        document.getElementById("informationBoxMaximum").innerHTML = sensorData.airQuality + "%";
+                    }
+                }
+            });
+
+            //gets the the min reading of air quality record based on sensor id
+            $.ajax({
+                async: true,
+                type: "GET",
+                url: "Php/getMinAQ.php?id=" + viewer.selectedEntity._id,
+                datatype: "json",
+                success: function(data) {
+                    var sensorData = $.parseJSON(data);
+                    if (sensorData === null) {
+                        document.getElementById("informationBoxMinimum").innerHTML = "No air quality readings";
+                    } else {
+                        document.getElementById("informationBoxMinimum").innerHTML = sensorData.airQuality + "%";
                     }
                 }
             });

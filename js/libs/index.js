@@ -148,6 +148,10 @@ requirejs(['cesium'], function(Cesium) {
                 sensorIdElement.textContent = "Sensor Id: " + cesiumSensors[i]._id;
                 document.getElementById("boxDiv" + cesiumSensors[i]._id).appendChild(sensorIdElement);
 
+                var sensorRegionElement = document.createElement("p");
+                sensorRegionElement.textContent = "Region: " + cesiumSensors[i].regionName;
+                document.getElementById("boxDiv" + cesiumSensors[i]._id).appendChild(sensorRegionElement);
+
                 var sensorlongitudeElement = document.createElement("p");
                 sensorlongitudeElement.textContent = "Longitude: " + cesiumSensors[i].longitude;
                 document.getElementById("boxDiv" + cesiumSensors[i]._id).appendChild(sensorlongitudeElement);
@@ -289,7 +293,7 @@ requirejs(['cesium'], function(Cesium) {
                                                 display: true,
                                                 labelString: 'Time'
                                             },
-                                            display: false
+                                            display: true
                                         }],
                                         yAxes: [{
                                             scaleLabel: {

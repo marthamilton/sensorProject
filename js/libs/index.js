@@ -83,24 +83,22 @@ requirejs(['cesium'], function(Cesium) {
         url: "Php/getCesiumEntityInformation.php",
         datatype: "json",
         success: function(data) {
-            requirejs(['bootstrapModelWrapper'], function(BootstrapModelWrapper) {
-                var sensorData = $.parseJSON(data);
-                for (var i = 0; i < sensorData.length; i++) {
-                    viewer.entities.add({
-                        position: Cesium.Cartesian3.fromDegrees(parseFloat(sensorData[i].sensorLongitude), parseFloat(sensorData[i].sensorLatitude)),
-                        point: {
-                            pixelSize: 10,
-                            color: Cesium.Color.DARKORCHID
-                        },
-                        name: sensorData[i].sensorType,
-                        id: sensorData[i].sensorID,
-                        longitude: sensorData[i].sensorLongitude,
-                        latitude: sensorData[i].sensorLatitude,
-                        deploymentDate: sensorData[i].sensorDeploymentDate,
-                        regionName: sensorData[i].regionName,
-                    });
-                };
-            });
+            var sensorData = $.parseJSON(data);
+            for (var i = 0; i < sensorData.length; i++) {
+                viewer.entities.add({
+                    position: Cesium.Cartesian3.fromDegrees(parseFloat(sensorData[i].sensorLongitude), parseFloat(sensorData[i].sensorLatitude)),
+                    point: {
+                        pixelSize: 10,
+                        color: Cesium.Color.DARKORCHID
+                    },
+                    name: sensorData[i].sensorType,
+                    id: sensorData[i].sensorID,
+                    longitude: sensorData[i].sensorLongitude,
+                    latitude: sensorData[i].sensorLatitude,
+                    deploymentDate: sensorData[i].sensorDeploymentDate,
+                    regionName: sensorData[i].regionName,
+                });
+            };
         }
     });
 
@@ -108,57 +106,11 @@ requirejs(['cesium'], function(Cesium) {
     const sensorMenuElement = document.getElementById("sensorMenu");
     // When the sensor menu is clicked
     sensorMenuElement.addEventListener("click", () => {
-        console.log("sensor menu");
         var cesiumSensors = viewer.entities._entities._array;
-        console.log(cesiumSensors);
 
         for (var i = 0; i < cesiumSensors.length; i++) {
             if (!document.getElementById("coloumnDiv" + cesiumSensors[i]._id)) {
-                var coloumnDiv = document.createElement("div");
-                coloumnDiv.setAttribute('class', 'col-sm-4 text-center sensorMenuPadding');
-                coloumnDiv.setAttribute('id', 'coloumnDiv' + cesiumSensors[i]._id);
-
-                document.getElementById("sensorGrid").appendChild(coloumnDiv);
-
-                var boxDiv = document.createElement("div");
-                boxDiv.setAttribute('class', 'sensorMenuBox');
-                boxDiv.setAttribute('id', 'boxDiv' + cesiumSensors[i]._id);
-                document.getElementById('coloumnDiv' + cesiumSensors[i]._id).appendChild(boxDiv);
-
-                var sensorTitle = document.createElement("h5");
-                sensorTitle.textContent = cesiumSensors[i]._name + " Sensor";
-
-                document.getElementById("boxDiv" + cesiumSensors[i]._id).appendChild(sensorTitle);
-
-                if (cesiumSensors[i]._name === "Air Quality") {
-                    var sensorImg = document.createElement("img");
-                    sensorImg.src = "images/co2.png";
-                    sensorImg.style.width = "50px";
-                    sensorImg.style.height = "50px";
-                    sensorImg.alt = "Air Quality Image";
-
-                    document.getElementById("boxDiv" + cesiumSensors[i]._id).appendChild(sensorImg);
-                    var lineBreak = document.createElement("br");
-                    document.getElementById("boxDiv" + cesiumSensors[i]._id).appendChild(lineBreak);
-                    var lineBreak2 = document.createElement("br");
-                    document.getElementById("boxDiv" + cesiumSensors[i]._id).appendChild(lineBreak2);
-                }
-
-                var sensorIdElement = document.createElement("p");
-                sensorIdElement.textContent = "Sensor Id: " + cesiumSensors[i]._id;
-                document.getElementById("boxDiv" + cesiumSensors[i]._id).appendChild(sensorIdElement);
-
-                var sensorRegionElement = document.createElement("p");
-                sensorRegionElement.textContent = "Region: " + cesiumSensors[i].regionName;
-                document.getElementById("boxDiv" + cesiumSensors[i]._id).appendChild(sensorRegionElement);
-
-                var sensorlongitudeElement = document.createElement("p");
-                sensorlongitudeElement.textContent = "Longitude: " + cesiumSensors[i].longitude;
-                document.getElementById("boxDiv" + cesiumSensors[i]._id).appendChild(sensorlongitudeElement);
-
-                var sensorlatitudeElement = document.createElement("p");
-                sensorlatitudeElement.textContent = "Latitude: " + cesiumSensors[i].latitude;
-                document.getElementById("boxDiv" + cesiumSensors[i]._id).appendChild(sensorlatitudeElement);
+                createNewSensorMenuBox(cesiumSensors[i]);
             }
 
             let sensorLatitude = cesiumSensors[i].latitude;
@@ -177,71 +129,13 @@ requirejs(['cesium'], function(Cesium) {
     // User clicks on a point on the map (entity)
     viewer.selectedEntityChanged.addEventListener(function(entity) {
         if (viewer.selectedEntity !== undefined) {
-            document.getElementById("informationBoxSensorId").innerHTML = entity._id;
-            document.getElementById("informationBoxSensorType").innerHTML = entity._name;
-            document.getElementById("informationBoxSensorDeploymentDate").innerHTML = entity.deploymentDate;
-            document.getElementById("informationBoxRegionName").innerHTML = entity.regionName;
-            document.getElementById("informationBoxLatitude").innerHTML = entity.latitude;
-            document.getElementById("informationBoxLongitude").innerHTML = entity.longitude;
-
+            setSensorInformation(entity);
             //gets the most recend air quality record with dateTime based on sensor id
-            $.ajax({
-                async: true,
-                type: "GET",
-                url: "Php/getMostRecentAQ.php?id=" + viewer.selectedEntity._id,
-                datatype: "json",
-                success: function(data) {
-                    var sensorData = $.parseJSON(data);
-                    if (sensorData === null) {
-                        document.getElementById("informationBoxCurrentAirQuality").innerHTML = "No air quality readings";
-                        document.getElementById("informationBoxLastUpdated").innerHTML = "No air quality readings";
-                        document.getElementById("informationBoxSensorStatus").innerHTML = "Offline";
-                    } else {
-                        document.getElementById("informationBoxCurrentAirQuality").innerHTML = sensorData.airQuality + "%";
-                        document.getElementById("informationBoxLastUpdated").innerHTML = sensorData.dateTime;
-
-                        var lastUpdated = new Date(sensorData.dateTime);
-                        var oneHour = 60 * 60 * 1000;
-                        if ((new Date() - lastUpdated) < oneHour) {
-                            document.getElementById("informationBoxSensorStatus").innerHTML = "Online";
-                        } else {
-                            document.getElementById("informationBoxSensorStatus").innerHTML = "Offline";
-                        }
-                    }
-                }
-            });
-
+            getMostRecentAQ(viewer.selectedEntity._id);
             //gets the the max reading of air quality record based on sensor id
-            $.ajax({
-                async: true,
-                type: "GET",
-                url: "Php/getMaxAQ.php?id=" + viewer.selectedEntity._id,
-                datatype: "json",
-                success: function(data) {
-                    var sensorData = $.parseJSON(data);
-                    if (sensorData === null) {
-                        document.getElementById("informationBoxMaximum").innerHTML = "No air quality readings";
-                    } else {
-                        document.getElementById("informationBoxMaximum").innerHTML = sensorData.airQuality + "%";
-                    }
-                }
-            });
-
+            getMaxAQ(viewer.selectedEntity._id);
             //gets the the min reading of air quality record based on sensor id
-            $.ajax({
-                async: true,
-                type: "GET",
-                url: "Php/getMinAQ.php?id=" + viewer.selectedEntity._id,
-                datatype: "json",
-                success: function(data) {
-                    var sensorData = $.parseJSON(data);
-                    if (sensorData === null) {
-                        document.getElementById("informationBoxMinimum").innerHTML = "No air quality readings";
-                    } else {
-                        document.getElementById("informationBoxMinimum").innerHTML = sensorData.airQuality + "%";
-                    }
-                }
-            });
+            getMinAQ(viewer.selectedEntity._id);
 
             //gets the last 100 readings of air quality and dateTime based on sensor id
             $.ajax({
@@ -251,20 +145,17 @@ requirejs(['cesium'], function(Cesium) {
                 datatype: "json",
                 success: function(data) {
                     //chart js
-                    requirejs(['chartjs'], function(Chart) {
-                        var sensorData = $.parseJSON(data);
-                        console.log(sensorData);
-                        if (sensorData === null) {
-                            console.log("null");
-                        } else {
+                    var sensorData = $.parseJSON(data);
+                    if (sensorData === null) {
+                        document.getElementById("chartHidden").innerHTML = "No Readings Available";
+                    } else {
+                        requirejs(['chartjs'], function(Chart) {
                             var airQualityReadings = [];
                             var DateTimeReadings = [];
                             for (var i = 0; i < sensorData.length; i++) {
                                 airQualityReadings.push(sensorData[i].airQuality);
                                 DateTimeReadings.push(sensorData[i].dateTime);
                             }
-                            console.log(airQualityReadings);
-                            console.log(DateTimeReadings);
                             var chart = document.getElementById("sensorChart").getContext("2d");
                             var chartLabels = ["hello", "hello", "hello"];
                             var chartData = [67, 25, 45];
@@ -310,34 +201,14 @@ requirejs(['cesium'], function(Cesium) {
                                     }
                                 }
                             });
-                        }
-                    });
+                        });
+                    }
                 }
-
 
             });
             $(document.getElementById("informationBox")).modal('show');
         }
     });
-
-    function filterWarning() {
-        requirejs(['sweetalert'], function(sweetAlert) {
-            sweetAlert.fire({
-                title: 'Warning',
-                html: '<b>Filter could not be applied, please make sure you select an area and filter type next time</b>',
-                timer: 10000,
-                showCloseButton: true,
-                showCancelButton: true,
-                focusConfirm: false,
-                confirmButtonText: '<i class="fa fa-thumbs-up"></i> Great!',
-                confirmButtonAriaLabel: 'Thumbs up, Thanks!',
-                cancelButtonText: '<i class="fa fa-thumbs-down"></i>',
-                cancelButtonAriaLabel: 'Thumbs down',
-                imageUrl: 'images/happyearth.gif',
-                imageHeight: 150,
-            });
-        });
-    }
 
     //filter checkboxes
     const england = document.getElementById("englandCheckbox");
@@ -351,15 +222,16 @@ requirejs(['cesium'], function(Cesium) {
         viewer.dataSources.removeAll();
         if (countyAverage.checked) {
             if (england.checked) {
-                viewer.dataSources.add(Cesium.GeoJsonDataSource.load('data/geo/englandCounties.json', {
-                    stroke: Cesium.Color.HOTPINK,
-                    fill: Cesium.Color.PINK,
-                    strokeWidth: 3,
-                    markerSymbol: '?'
-                }));
+                englandJson(Cesium);
+                // viewer.dataSources.add(Cesium.GeoJsonDataSource.load('data/geo/englandRegions.json', {
+                //     stroke: Cesium.Color.HOTPINK,
+                //     fill: Cesium.Color.PINK,
+                //     strokeWidth: 3,
+                //     markerSymbol: '?'
+                // }));
             }
             if (wales.checked) {
-                viewer.dataSources.add(Cesium.GeoJsonDataSource.load('data/geo/walesCounties.json', {
+                viewer.dataSources.add(Cesium.GeoJsonDataSource.load('data/geo/walesRegions.json', {
                     stroke: Cesium.Color.HOTPINK,
                     fill: Cesium.Color.PINK,
                     strokeWidth: 3,
@@ -367,7 +239,7 @@ requirejs(['cesium'], function(Cesium) {
                 }));
             }
             if (scotland.checked) {
-                viewer.dataSources.add(Cesium.GeoJsonDataSource.load('data/geo/scotlandCounties.json', {
+                viewer.dataSources.add(Cesium.GeoJsonDataSource.load('data/geo/scotlandRegions.json', {
                     stroke: Cesium.Color.HOTPINK,
                     fill: Cesium.Color.PINK,
                     strokeWidth: 3,
@@ -375,7 +247,7 @@ requirejs(['cesium'], function(Cesium) {
                 }));
             }
             if (northernIreland.checked) {
-                viewer.dataSources.add(Cesium.GeoJsonDataSource.load('data/geo/northernIrelandCounties.json', {
+                viewer.dataSources.add(Cesium.GeoJsonDataSource.load('data/geo/northernIrelandRegions.json', {
                     stroke: Cesium.Color.HOTPINK,
                     fill: Cesium.Color.PINK,
                     strokeWidth: 3,
@@ -384,7 +256,6 @@ requirejs(['cesium'], function(Cesium) {
             }
             if (england.checked == false && wales.checked == false && scotland.checked == false && northernIreland.checked == false) {
                 viewer.dataSources.removeAll();
-                console.log("areanotchecked");
                 filterWarning();
             }
         } else {
@@ -394,18 +265,12 @@ requirejs(['cesium'], function(Cesium) {
             northernIreland.checked = false;
             countyAverage.checked = false;
             viewer.dataSources.removeAll();
-            console.log("countyaveragenotchecked");
             filterWarning();
         }
     });
 
     //When the reset button in filters is clicked
     document.getElementById("resetFilters").addEventListener("click", function() {
-        england.checked = false;
-        wales.checked = false;
-        scotland.checked = false;
-        northernIreland.checked = false;
-        countyAverage.checked = false;
-        viewer.dataSources.removeAll();
+        resetFilters(viewer, england, wales, scotland, northernIreland, countyAverage);
     });
 });

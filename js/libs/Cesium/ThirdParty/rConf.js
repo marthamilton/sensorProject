@@ -8,7 +8,7 @@ requirejs.config({
         sensor: 'sensor',
         createSensor: 'createSensor',
         sweetalert: 'sweetalert2.all.min',
-        bootstrapModelWrapper: 'bootstrap.model.wrapper'
+        bootstrapModelWrapper: 'bootstrap.model.wrapper',
     }
 });
 requirejs(['jquery'], function($) {

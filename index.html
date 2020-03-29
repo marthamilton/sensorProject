@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--JS-->
+    <script src="js/libs/sensorInformationBoxFunctions.js"></script>
     <script src="js/libs/filterFunctions.js"></script>
     <script data-main="js/libs/Cesium/ThirdParty/rConf" src="js/libs/Cesium/ThirdParty/require.js"></script>
     <script src="js/libs/jquery-3.4.1.min.js"></script>
@@ -169,16 +170,16 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <p>Select area:</p>
-                                <input type="checkbox" class="form-check-input" id="englandCheckbox">
+                                <input type="radio" class="form-check-input" name="regionFilters" id="englandCheckbox">
                                 <label class="form-check-label" for="englandCheckbox">England</label>
                                 <br>
-                                <input type="checkbox" class="form-check-input" id="walesCheckbox">
+                                <input type="radio" class="form-check-input" name="regionFilters" id="walesCheckbox">
                                 <label class="form-check-label" for="walesCheckbox">Wales</label>
                                 <br>
-                                <input type="checkbox" class="form-check-input" id="scotlandCheckbox">
+                                <input type="radio" class="form-check-input" name="regionFilters" id="scotlandCheckbox">
                                 <label class="form-check-label" for="scotlandCheckbox">Scotland</label>
                                 <br>
-                                <input type="checkbox" class="form-check-input" id="northernIrelandCheckbox">
+                                <input type="radio" class="form-check-input" name="regionFilters" id="northernIrelandCheckbox">
                                 <label class="form-check-label" for="northernIrelandCheckbox">Northern Ireland</label>
                             </div>
                             <br>
@@ -269,7 +270,7 @@
     </div>
 
 
-    <!--Information Box Modal-->
+    <!--Sensor Information Box Modal-->
     <div id="informationBox" class="modal fade infoBox" role="dialog">
         <div class="modal-dialog modal-lg">
             <!-- Modal content-->
@@ -302,7 +303,7 @@
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Region:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxRegionName"></span>
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxSensorRegionName"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Latitude:
@@ -314,21 +315,21 @@
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Current Air Quality:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxCurrentAirQuality">1</span>
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxCurrentAirQuality"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Last Updated:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxLastUpdated">1</span>
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxLastUpdated"></span>
                         </li>
                         </br>
                         <p class="text-center"><b>In the last week:</b></p>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Maximum:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxMaximum">1</span>
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxMaximum"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Minimum:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxMinimum">1</span>
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxMinimum"></span>
                         </li>
                     </ul>
                     </br>
@@ -340,6 +341,44 @@
             </div>
         </div>
     </div>
+
+    <!--Region Information Box Modal-->
+    <div id="regionInformationBox" class="modal fade infoBox" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">Region Information Box</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>DISCLAIMER: The information displayed by this region is for demonstration purposes only.</p>
+                    </div>
+                    <p class="text-center"><b>Region Information</b></p>
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Region Name:
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxRegionName"></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Region Id:
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxRegionId"></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Country:
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxRegionCountry"></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Average Air Quality:
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxRegionAQ"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </body>
 <script>

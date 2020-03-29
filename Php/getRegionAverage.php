@@ -28,13 +28,15 @@ class getRegionAverage
 
     function __construct($token)
     {
-        $stmt = $GLOBALS['dblink']->prepare("SELECT s.sensorID, r.regionName FROM tblsensorinformation AS s INNER JOIN tblregion as r ON s.regionID=r.regionID WHERE s.regionID =?");
+        $stmt = $GLOBALS['dblink']->prepare("SELECT s.sensorID, r.regionName, r.regionCountry FROM tblsensorinformation AS s INNER JOIN tblregion as r ON s.regionID=r.regionID WHERE s.regionID =?");
         $stmt->bind_param("i", $token);
         if ($stmt->execute() === TRUE) {
             $result = mysqli_stmt_get_result($stmt);
             while ($row = $result->fetch_assoc()) {
                 $sensors[] = $row['sensorID'];
                 $regionName[] = $row['regionName'];
+                $regionCountry[] = $row['regionCountry'];
+
             }
             $sensorCount = count($sensors);
             $airQuality = null;
@@ -50,14 +52,15 @@ class getRegionAverage
                 }
             }
         }
-        $this->calcAverage($airQuality,$regionName);
+        $this->calcAverage($airQuality, $regionName, $regionCountry);
         $stmt->close();
         $GLOBALS['dblink']->close();
     }
 
-    function calcAverage($airQuality, $regionName)
+    function calcAverage($airQuality, $regionName, $regionCountry)
     {
         $this->regionName = $regionName[0];
+        $this->regionCountry = $regionCountry[0];
         if($airQuality === null){
             $this->averageAirQuality = null;
         } else {

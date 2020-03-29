@@ -1,13 +1,13 @@
-function setSensorInformation(entity){
+function setSensorInformation(entity) {
     document.getElementById("informationBoxSensorId").innerHTML = entity._id;
     document.getElementById("informationBoxSensorType").innerHTML = entity._name;
     document.getElementById("informationBoxSensorDeploymentDate").innerHTML = entity.deploymentDate;
-    document.getElementById("informationBoxRegionName").innerHTML = entity.regionName;
+    document.getElementById("informationBoxSensorRegionName").innerHTML = entity.regionName;
     document.getElementById("informationBoxLatitude").innerHTML = entity.latitude;
     document.getElementById("informationBoxLongitude").innerHTML = entity.longitude;
 }
 
-function getMinAQ(sensorId){    
+function getMinAQ(sensorId) {
     $.ajax({
         async: true,
         type: "GET",

@@ -252,8 +252,6 @@ requirejs(['cesium'], function(Cesium) {
 
             for (var i = 0; i < entities.length; i++) {
                 //For each entity, create a random color based on the state name.
-                //Some states have multiple entities, so we store the color in a
-                //hash so that we use the same color for the entire state.
                 var str = entities[i]._id;
                 var regionJsonId = str.substring(8, 9);
 
@@ -328,11 +326,11 @@ requirejs(['cesium'], function(Cesium) {
 
                 function addAverageToMap(response) {
                     var sensorData = $.parseJSON(response);
+                    entity.regionCountry = sensorData.regionCountry;
                     if (sensorData.regionName === null || sensorData.averageAirQuality === null) {} else {
                         if (entity._description === sensorData.regionName) {
                             entity.polygon.extrudedHeight = sensorData.averageAirQuality * 1500;
                             entity.airQuality = sensorData.averageAirQuality;
-                            entity.regionCountry = sensorData.regionCountry;
                         } else {}
                     }
                 }
@@ -350,11 +348,6 @@ requirejs(['cesium'], function(Cesium) {
 
                 }
             }
-            entities.selectedEntityChanged.addEventListener(function(entity) {
-                $(document.getElementById("informationBox")).modal('hide');
-                console.log(entity);
-            });
-
         });
 
     }

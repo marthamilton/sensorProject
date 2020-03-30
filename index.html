@@ -12,6 +12,7 @@
     <!--JS-->
     <script src="js/libs/sensorInformationBoxFunctions.js"></script>
     <script src="js/libs/filterFunctions.js"></script>
+    <script src="js/libs/sensorMenuFunctions.js"></script>
     <script data-main="js/libs/Cesium/ThirdParty/rConf" src="js/libs/Cesium/ThirdParty/require.js"></script>
     <script src="js/libs/jquery-3.4.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -40,7 +41,7 @@
                     <li><a data-toggle="modal" id="homeButton">Home</a></li>
                     <li><a data-toggle="modal" href="#about">About</a></li>
                     <li><a data-toggle="modal" href="#studies">Studies</a></li>
-                    <li><a data-toggle="modal" href="#sensors">Sensors</a></li>
+                    <li><a data-toggle="modal" href="#sensorMenu">Sensors</a></li>
                     <li><a data-toggle="modal" href="#filters">Filters</a></li>
                     <li><a data-toggle="modal" href="#feedback">Send Feedback</a></li>
                     <li><a data-toggle="modal" href="#help">Help</a></li>
@@ -93,7 +94,7 @@
     </div>
 
     <!--Sensors Modal-->
-    <div id="sensors" class="modal fade" role="dialog">
+    <div id="sensorMenu" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
             <!-- Modal content-->
             <div class="modal-content">
@@ -104,9 +105,10 @@
                 <div class="modal-body">
                     <div class="container-fluid">
                         <p>Click on one of the following sensors to find it on the map and find out more.</p>
-                        <div class="row">
-                            <div class="col-sm-3 text-center">
-                                <div class="sensorMenu" id="sensorMenu">
+                        <div id="sensorGrid"></div>
+                        <!-- <div class="row">
+                            <div class="col-sm-3 text-center sensorMenuPadding">
+                                <div class="sensorMenuBox" id="sensorMenu">
                                     <h5>Air Quality Sensor</h5>
                                     <img src="images/co2.png" height="50px" width="50px">
                                     <br>
@@ -115,8 +117,8 @@
                                     <p>latitude: 52.1116</p>
                                 </div>
                             </div>
-                            <div class="col-sm-3 text-center">
-                                <div class="sensorMenu" id="sensorMenu">
+                            <div class="col-sm-3 text-center sensorMenuPadding">
+                                <div class="sensorMenuBox" id="sensorMenu">
                                     <h5>Air Quality Sensor</h5>
                                     <img src="images/co2.png" height="50px" width="50px">
                                     <br>
@@ -125,8 +127,8 @@
                                     <p>latitude: 52.1116</p>
                                 </div>
                             </div>
-                            <div class="col-sm-3 text-center">
-                                <div class="sensorMenu" id="sensorMenu">
+                            <div class="col-sm-3 text-center sensorMenuPadding">
+                                <div class="sensorMenuBox" id="sensorMenu">
                                     <h5>Air Quality Sensor</h5>
                                     <img src="images/co2.png" height="50px" width="50px">
                                     <br>
@@ -135,8 +137,8 @@
                                     <p>latitude: 52.1116</p>
                                 </div>
                             </div>
-                            <div class="col-sm-3 text-center">
-                                <div class="sensorMenu" id="sensorMenu">
+                            <div class="col-sm-3 text-center sensorMenuPadding">
+                                <div class="sensorMenuBox" id="sensorMenu">
                                     <h5>Air Quality Sensor</h5>
                                     <img src="images/co2.png" height="50px" width="50px">
                                     <br>
@@ -145,7 +147,7 @@
                                     <p>latitude: 52.1116</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

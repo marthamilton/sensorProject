@@ -115,6 +115,14 @@ requirejs(['cesium'], function(Cesium) {
     sensorMenuElement.addEventListener("click", () => {
         var cesiumSensors = viewer.entities._entities._array;
 
+        viewer.dataSources.removeAll();
+        resetFilters(viewer, england, wales, scotland, northernIreland, countyAverage);
+
+        //checks to see if there are points on the map & if a filter has been applied
+        if(cesiumSensors.length === 0){
+            addCesiumPoints();
+        }
+
         for (var i = 0; i < cesiumSensors.length; i++) {
             if (!document.getElementById("coloumnDiv" + cesiumSensors[i]._id)) {
                 createNewSensorMenuBox(cesiumSensors[i]);
@@ -412,6 +420,7 @@ requirejs(['cesium'], function(Cesium) {
     //When the reset button in filters is clicked
     document.getElementById("resetFilters").addEventListener("click", function() {
         resetFilters(viewer, england, wales, scotland, northernIreland, countyAverage);
+         viewer.dataSources.removeAll();
         addCesiumPoints();
     });
     //End new file - regionFilters.js

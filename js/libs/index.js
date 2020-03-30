@@ -130,7 +130,6 @@ requirejs(['cesium'], function(Cesium) {
 
             let sensorLatitude = cesiumSensors[i].latitude;
             let sensorLongitude = cesiumSensors[i].longitude;
-            // let sensorBoxElement = document.getElementById("coloumnDiv" + cesiumSensors[i]._id);
             document.getElementById("coloumnDiv" + cesiumSensors[i]._id).addEventListener("click", function() {
                 $('#sensors').modal('hide');
                 viewer.camera.flyTo({
@@ -165,63 +164,64 @@ requirejs(['cesium'], function(Cesium) {
                     success: function(data) {
                         //chart js
                         var sensorData = $.parseJSON(data);
-                        if (sensorData === null) {
-                            document.getElementById("chartHidden").innerHTML = "No Readings Available";
-                        } else {
-                            requirejs(['chartjs'], function(Chart) {
-                                var airQualityReadings = [];
-                                var DateTimeReadings = [];
-                                for (var i = 0; i < sensorData.length; i++) {
+                        requirejs(['chartjs'], function(Chart) {
+                            var airQualityReadings = [];
+                            var DateTimeReadings = [];
+                            for (var i = 0; i < sensorData.length; i++) {
+                                if(sensorData[i] === null){
+                                    document.getElementById("noChartData").innerHTML = "No Air Quality data available";
+                                } else {
+                                    document.getElementById("noChartData").innerHTML = "";
+
                                     airQualityReadings.push(sensorData[i].airQuality);
                                     DateTimeReadings.push(sensorData[i].dateTime);
                                 }
-                                var chart = document.getElementById("sensorChart").getContext("2d");
-                                var chartLabels = ["hello", "hello", "hello"];
-                                var chartData = [67, 25, 45];
-                                var chart = new Chart(chart, {
-                                    type: "line",
-                                    data: {
-                                        labels: DateTimeReadings,
-                                        datasets: [{
-                                            label: 'Air Quality',
-                                            fill: false,
-                                            backgroundColor: 'rgb(255, 99, 132)',
-                                            borderColor: 'rgb(255, 99, 132)',
-                                            data: airQualityReadings
-                                        }]
+                            }
+                            var chart = document.getElementById("sensorChart").getContext("2d");
+                            var chart = new Chart(chart, {
+                                type: "line",
+                                data: {
+                                    labels: DateTimeReadings,
+                                    datasets: [{
+                                        label: 'Air Quality',
+                                        fill: false,
+                                        backgroundColor: 'rgb(255, 99, 132)',
+                                        borderColor: 'rgb(255, 99, 132)',
+                                        data: airQualityReadings
+                                    }]
+                                },
+                                options: {
+                                    tooltips: {
+                                        displayColors: false,
                                     },
-                                    options: {
-                                        tooltips: {
-                                            displayColors: false,
-                                        },
-                                        legend: {
-                                            display: false,
-                                        },
-                                        scales: {
-                                            xAxes: [{
-                                                scaleLabel: {
-                                                    display: true,
-                                                    labelString: 'Time'
-                                                },
-                                                display: true
-                                            }],
-                                            yAxes: [{
-                                                scaleLabel: {
-                                                    display: true,
-                                                    labelString: 'Air Quality %'
-                                                },
+                                    legend: {
+                                        display: false,
+                                    },
+                                    scales: {
+                                        xAxes: [{
+                                            scaleLabel: {
                                                 display: true,
-                                                ticks: {
-                                                    max: 100,
-                                                    min: 0,
-                                                    stepSize: 10
-                                                }
-                                            }]
-                                        }
+                                                labelString: 'Time'
+                                            },
+                                            display: true
+                                        }],
+                                        yAxes: [{
+                                            scaleLabel: {
+                                                display: true,
+                                                labelString: 'Air Quality %'
+                                            },
+                                            display: true,
+                                            ticks: {
+                                                max: 100,
+                                                min: 0,
+                                                stepSize: 10
+                                            }
+                                        }]
                                     }
-                                });
+                                }
                             });
-                        }
+                        });
+                        
                     }
 
                 });
@@ -332,7 +332,7 @@ requirejs(['cesium'], function(Cesium) {
                 //Remove the outlines.
                 entity.polygon.outline = false;
 
-                function addAverageToMap(response) {
+                function addEnglandAverageToMap(response) {
                     var sensorData = $.parseJSON(response);
                     entity.regionCountry = sensorData.regionCountry;
                     if (sensorData.regionName === null || sensorData.averageAirQuality === null) {} else {
@@ -350,7 +350,7 @@ requirejs(['cesium'], function(Cesium) {
                             type: "GET",
                             url: "Php/getRegionAverage.php?rid=" + entity._name,
                             datatype: "json",
-                            success: addAverageToMap,
+                            success: addEnglandAverageToMap,
                         });
                     }
 
@@ -360,7 +360,103 @@ requirejs(['cesium'], function(Cesium) {
 
     }
 
+    function walesJson() {
+        $(document.getElementById("informationBox")).modal('hide');
+        //Seed the random number generator for repeatable results.
+        Cesium.Math.setRandomNumberSeed(0);
 
+        var promise = Cesium.GeoJsonDataSource.load('data/geo/walesRegions.json');
+        promise.then(function(dataSource) {
+            viewer.dataSources.add(dataSource);
+
+            //Get the array of entities
+            var entities = dataSource.entities.values;
+
+            var colorHash = {};
+
+            for (var i = 0; i < entities.length; i++) {
+                //For each entity, create a random color based on the state name.
+                var str = entities[i]._id;
+                var regionJsonId = str.substring(8, 9);
+
+                switch (regionJsonId) {
+                    case "1":
+                        entities[i]._name = "2857";
+                        entities[i]._description = "North Wales";
+                        entities[i].type = "filterRegion";
+
+                        break;
+                    case "6":
+                        entities[i]._name = "8675";
+                        entities[i]._description = "Mid and West Wales";
+                        entities[i].type = "filterRegion";
+                        break;
+                    case "7":
+                        entities[i]._name = "1264";
+                        entities[i]._description = "South Wales Central";
+                        entities[i].type = "filterRegion";
+                        break;
+                    case "8":
+                        entities[i]._name = "7657";
+                        entities[i]._description = "South Wales East";
+                        entities[i].type = "filterRegion";
+                        break;
+                    case "9":
+                        entities[i]._name = "5431";
+                        entities[i]._description = "South Wales West";
+                        entities[i].type = "filterRegion";
+                        break;
+                    default:
+                        entities[i]._name = "undefined";
+                        entities[i]._description = "undefined";
+                        entities[i].type = "filterRegion";
+                        break;
+                }
+
+                const entity = entities[i];
+                var name = entity._id;
+                var color = colorHash[name];
+                if (!color) {
+                    color = Cesium.Color.fromRandom({
+                        alpha: 1.0
+                    });
+                    colorHash[name] = color;
+                }
+
+                //Set the polygon material to our random color.
+                entity.polygon.material = color;
+                //Remove the outlines.
+                entity.polygon.outline = false;
+
+                function addWalesAverageToMap(response) {
+                    var sensorData = $.parseJSON(response);
+                    console.log(sensorData.regionCountry)
+                    entity.regionCountry = sensorData.regionCountry;
+                    if (sensorData.regionName === null || sensorData.averageAirQuality === null) {} else {
+                        if (entity._description === sensorData.regionName) {
+                            entity.polygon.extrudedHeight = sensorData.averageAirQuality * 1500;
+                            entity.airQuality = sensorData.averageAirQuality;
+                        } else {}
+                    }
+                }
+
+                if (entity._name === "undefined" || entity._description === "undefined") {} else {
+                    console.log(entity._name);
+                    if (entity.polygon.extrudedHeight === undefined) {
+                        $.ajax({
+                            async: true,
+                            type: "GET",
+                            url: "Php/getRegionAverage.php?rid=" + entity._name,
+                            datatype: "json",
+                            success: addWalesAverageToMap,
+                        });
+                    }
+
+                }
+            }
+        });
+
+    }
 
     //filter checkboxes
     const england = document.getElementById("englandCheckbox");
@@ -379,12 +475,7 @@ requirejs(['cesium'], function(Cesium) {
                 englandJson();
             }
             if (wales.checked) {
-                viewer.dataSources.add(Cesium.GeoJsonDataSource.load('data/geo/walesRegions.json', {
-                    stroke: Cesium.Color.HOTPINK,
-                    fill: Cesium.Color.PINK,
-                    strokeWidth: 3,
-                    markerSymbol: '?'
-                }));
+                walesJson();
             }
             if (scotland.checked) {
                 viewer.dataSources.add(Cesium.GeoJsonDataSource.load('data/geo/scotlandRegions.json', {

@@ -1,5 +1,4 @@
 function createNewSensorMenuBox(sensor){
-    console.log("sensorMenu");
     var coloumnDiv = document.createElement("div");
     coloumnDiv.setAttribute('class', 'col-sm-4 text-center sensorMenuPadding');
     coloumnDiv.setAttribute('id', 'coloumnDiv' + sensor._id);

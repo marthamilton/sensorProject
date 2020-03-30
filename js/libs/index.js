@@ -77,6 +77,13 @@ requirejs(['cesium'], function(Cesium) {
         });
     });
 
+    //filter checkboxes
+    const england = document.getElementById("englandCheckbox");
+    const wales = document.getElementById("walesCheckbox");
+    const scotland = document.getElementById("scotlandCheckbox");
+    const northernIreland = document.getElementById("northernIrelandCheckbox");
+    const countyAverage = document.getElementById("averageCheckbox");
+
     //Start new file - createCesiumPoints.js
     function addCesiumPoints() {
         $.ajax({
@@ -116,8 +123,9 @@ requirejs(['cesium'], function(Cesium) {
         var cesiumSensors = viewer.entities._entities._array;
 
         viewer.dataSources.removeAll();
-        resetFilters(viewer, england, wales, scotland, northernIreland, countyAverage);
-
+        england.checked = false;
+        wales.checked = false;
+        countyAverage.checked = false;
         //checks to see if there are points on the map & if a filter has been applied
         if (cesiumSensors.length === 0) {
             addCesiumPoints();
@@ -365,56 +373,56 @@ requirejs(['cesium'], function(Cesium) {
         //Seed the random number generator for repeatable results.
         Cesium.Math.setRandomNumberSeed(0);
 
-        var promise = Cesium.GeoJsonDataSource.load('data/geo/walesRegions.json');
-        promise.then(function(dataSource) {
-            viewer.dataSources.add(dataSource);
+        var walesPromise = Cesium.GeoJsonDataSource.load('data/geo/walesRegions.json');
+        walesPromise.then(function(walesDataSource) {
+            viewer.dataSources.add(walesDataSource);
 
             //Get the array of entities
-            var entities = dataSource.entities.values;
+            var walesEntities = walesDataSource.entities.values;
 
-            var colorHash = {};
-
-            for (var i = 0; i < entities.length; i++) {
+            for (var i = 0; i < walesEntities.length; i++) {
                 //For each entity, create a random color based on the state name.
-                var str = entities[i]._id;
-                var regionJsonId = str.substring(8, 9);
+                var walesStr = walesEntities[i]._id;
+                var walesRegionJsonId =  walesStr.substring(8, 9);
 
-                switch (regionJsonId) {
+                switch (walesRegionJsonId) {
                     case "1":
-                        entities[i]._name = "2857";
-                        entities[i]._description = "North Wales";
-                        entities[i].type = "filterRegion";
+                        walesEntities[i]._name = "2958";
+                        walesEntities[i]._description = "North Wales";
+                        walesEntities[i].type = "filterRegion";
 
                         break;
                     case "6":
-                        entities[i]._name = "8675";
-                        entities[i]._description = "Mid and West Wales";
-                        entities[i].type = "filterRegion";
+                        walesEntities[i]._name = "3857";
+                        walesEntities[i]._description = "Mid and West Wales";
+                        walesEntities[i].type = "filterRegion";
                         break;
                     case "7":
-                        entities[i]._name = "1264";
-                        entities[i]._description = "South Wales Central";
-                        entities[i].type = "filterRegion";
+                        walesEntities[i]._name = "4859";
+                        walesEntities[i]._description = "South Wales Central";
+                        walesEntities[i].type = "filterRegion";
                         break;
                     case "8":
-                        entities[i]._name = "7657";
-                        entities[i]._description = "South Wales East";
-                        entities[i].type = "filterRegion";
+                        walesEntities[i]._name = "9275";
+                        walesEntities[i]._description = "South Wales East";
+                        walesEntities[i].type = "filterRegion";
                         break;
                     case "9":
-                        entities[i]._name = "5431";
-                        entities[i]._description = "South Wales West";
-                        entities[i].type = "filterRegion";
+                        walesEntities[i]._name = "9185";
+                        walesEntities[i]._description = "South Wales West";
+                        walesEntities[i].type = "filterRegion";
                         break;
                     default:
-                        entities[i]._name = "undefined";
-                        entities[i]._description = "undefined";
-                        entities[i].type = "filterRegion";
+                        walesEntities[i]._name = "undefined";
+                        walesEntities[i]._description = "undefined";
+                        walesEntities[i].type = "filterRegion";
                         break;
                 }
 
-                const entity = entities[i];
-                var name = entity._id;
+                var colorHash = {};
+
+                const walesEntity = walesEntities[i];
+                var name = walesEntity._id;
                 var color = colorHash[name];
                 if (!color) {
                     color = Cesium.Color.fromRandom({
@@ -424,29 +432,30 @@ requirejs(['cesium'], function(Cesium) {
                 }
 
                 //Set the polygon material to our random color.
-                entity.polygon.material = color;
+                walesEntity.polygon.material = color;
                 //Remove the outlines.
-                entity.polygon.outline = false;
+                walesEntity.polygon.outline = false;
 
                 function addWalesAverageToMap(response) {
-                    var sensorData = $.parseJSON(response);
-                    console.log(sensorData.regionCountry)
-                    entity.regionCountry = sensorData.regionCountry;
-                    if (sensorData.regionName === null || sensorData.averageAirQuality === null) {} else {
-                        if (entity._description === sensorData.regionName) {
-                            entity.polygon.extrudedHeight = sensorData.averageAirQuality * 1500;
-                            entity.airQuality = sensorData.averageAirQuality;
+                    console.log(response);
+                    var walesSensorData = $.parseJSON(response);
+                    console.log("country: "+walesSensorData.regionCountry);
+                    walesEntity.regionCountry = walesSensorData.regionCountry;
+                    if (walesSensorData.regionName === null || walesSensorData.averageAirQuality === null) {} else {
+                        if (walesEntity._description === walesSensorData.regionName) {
+                            walesEntity.polygon.extrudedHeight = walesSensorData.averageAirQuality * 1500;
+                            walesEntity.airQuality = walesSensorData.averageAirQuality;
                         } else {}
                     }
                 }
 
-                if (entity._name === "undefined" || entity._description === "undefined") {} else {
-                    console.log(entity._name);
-                    if (entity.polygon.extrudedHeight === undefined) {
+                if (walesEntity._name === "undefined" || walesEntity._description === "undefined") {} else {
+                    if (walesEntity.polygon.extrudedHeight === undefined) {
+                        console.log("passing into DB: " +walesEntity._name )
                         $.ajax({
                             async: true,
                             type: "GET",
-                            url: "Php/getRegionAverage.php?rid=" + entity._name,
+                            url: "Php/getRegionAverage.php?rid=" + walesEntity._name,
                             datatype: "json",
                             success: addWalesAverageToMap,
                         });
@@ -457,111 +466,6 @@ requirejs(['cesium'], function(Cesium) {
         });
 
     }
-
-    function scotlandJson() {
-        $(document.getElementById("informationBox")).modal('hide');
-        //Seed the random number generator for repeatable results.
-        Cesium.Math.setRandomNumberSeed(0);
-
-        var promise = Cesium.GeoJsonDataSource.load('data/geo/scotlandRegions.json');
-        promise.then(function(dataSource) {
-            viewer.dataSources.add(dataSource);
-
-            //Get the array of entities
-            var entities = dataSource.entities.values;
-
-            var colorHash = {};
-
-            for (var i = 0; i < entities.length; i++) {
-                //For each entity, create a random color based on the state name.
-                var str = entities[i]._id;
-                var regionJsonId = str.substring(8, 9);
-
-                switch (regionJsonId) {
-                    case "1":
-                        entities[i]._name = "2857";
-                        entities[i]._description = "North Wales";
-                        entities[i].type = "filterRegion";
-
-                        break;
-                    case "6":
-                        entities[i]._name = "8675";
-                        entities[i]._description = "Mid and West Wales";
-                        entities[i].type = "filterRegion";
-                        break;
-                    case "7":
-                        entities[i]._name = "1264";
-                        entities[i]._description = "South Wales Central";
-                        entities[i].type = "filterRegion";
-                        break;
-                    case "8":
-                        entities[i]._name = "7657";
-                        entities[i]._description = "South Wales East";
-                        entities[i].type = "filterRegion";
-                        break;
-                    case "9":
-                        entities[i]._name = "5431";
-                        entities[i]._description = "South Wales West";
-                        entities[i].type = "filterRegion";
-                        break;
-                    default:
-                        entities[i]._name = "undefined";
-                        entities[i]._description = "undefined";
-                        entities[i].type = "filterRegion";
-                        break;
-                }
-
-                const entity = entities[i];
-                var name = entity._id;
-                var color = colorHash[name];
-                if (!color) {
-                    color = Cesium.Color.fromRandom({
-                        alpha: 1.0
-                    });
-                    colorHash[name] = color;
-                }
-
-                //Set the polygon material to our random color.
-                entity.polygon.material = color;
-                //Remove the outlines.
-                entity.polygon.outline = false;
-
-                function addWalesAverageToMap(response) {
-                    var sensorData = $.parseJSON(response);
-                    console.log(sensorData.regionCountry)
-                    entity.regionCountry = sensorData.regionCountry;
-                    if (sensorData.regionName === null || sensorData.averageAirQuality === null) {} else {
-                        if (entity._description === sensorData.regionName) {
-                            entity.polygon.extrudedHeight = sensorData.averageAirQuality * 1500;
-                            entity.airQuality = sensorData.averageAirQuality;
-                        } else {}
-                    }
-                }
-
-                if (entity._name === "undefined" || entity._description === "undefined") {} else {
-                    console.log(entity._name);
-                    if (entity.polygon.extrudedHeight === undefined) {
-                        $.ajax({
-                            async: true,
-                            type: "GET",
-                            url: "Php/getRegionAverage.php?rid=" + entity._name,
-                            datatype: "json",
-                            success: addWalesAverageToMap,
-                        });
-                    }
-
-                }
-            }
-        });
-
-    }
-
-    //filter checkboxes
-    const england = document.getElementById("englandCheckbox");
-    const wales = document.getElementById("walesCheckbox");
-    const scotland = document.getElementById("scotlandCheckbox");
-    const northernIreland = document.getElementById("northernIrelandCheckbox");
-    const countyAverage = document.getElementById("averageCheckbox");
 
     //When the apply button in filters is clicked
     document.getElementById("applyFilters").addEventListener("click", function() {
@@ -582,8 +486,6 @@ requirejs(['cesium'], function(Cesium) {
         } else {
             england.checked = false;
             wales.checked = false;
-            scotland.checked = false;
-            northernIreland.checked = false;
             countyAverage.checked = false;
             viewer.dataSources.removeAll();
             filterWarning();
@@ -592,7 +494,9 @@ requirejs(['cesium'], function(Cesium) {
 
     //When the reset button in filters is clicked
     document.getElementById("resetFilters").addEventListener("click", function() {
-        resetFilters(viewer, england, wales, scotland, northernIreland, countyAverage);
+        england.checked = false;
+        wales.checked = false;
+        countyAverage.checked = false;
         viewer.dataSources.removeAll();
         addCesiumPoints();
     });

@@ -5,7 +5,6 @@ requirejs.config({
         cesium: 'Cesium/Cesium',
         main: 'index',
         chartjs: 'Chart',
-        sensor: 'sensor',
         sweetalert: 'sweetalert2.all.min',
         bootstrapModelWrapper: 'bootstrap.model.wrapper',
     }
@@ -20,9 +19,6 @@ requirejs(['main'], function($) {
     console.log($) // OK
 });
 requirejs(['chartjs'], function($) {
-    console.log($) // OK
-});
-requirejs(['sensor'], function($) {
     console.log($) // OK
 });
 requirejs(['sweetalert'], function($) {

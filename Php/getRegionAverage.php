@@ -32,13 +32,21 @@ class getRegionAverage
         $stmt->bind_param("i", $token);
         if ($stmt->execute() === TRUE) {
             $result = mysqli_stmt_get_result($stmt);
+            $sensors = null;
+            $regionName = null;
+            $regionCountry = null;
             while ($row = $result->fetch_assoc()) {
                 $sensors[] = $row['sensorID'];
                 $regionName[] = $row['regionName'];
                 $regionCountry[] = $row['regionCountry'];
 
             }
-            $sensorCount = count($sensors);
+            if($sensors === null){
+                $sensorCount = 0;
+            } else {
+                $sensorCount = count($sensors);
+            }
+
             $airQuality = null;
             for ($i = 0; $i < $sensorCount; $i++) {
 
@@ -51,7 +59,7 @@ class getRegionAverage
                     }
                 }
             }
-        }
+        } 
         $this->calcAverage($airQuality, $regionName, $regionCountry);
         $stmt->close();
         $GLOBALS['dblink']->close();
@@ -59,8 +67,18 @@ class getRegionAverage
 
     function calcAverage($airQuality, $regionName, $regionCountry)
     {
-        $this->regionName = $regionName[0];
-        $this->regionCountry = $regionCountry[0];
+        if($regionName === null){
+            $this->regionName = null;
+        } else {
+            $this->regionName = $regionName[0];
+        }
+
+        if ($regionCountry === null) {
+            $this->regionName = null;
+        } else {
+            $this->regionCountry = $regionCountry[0];
+        }
+
         if($airQuality === null){
             $this->averageAirQuality = null;
         } else {
@@ -69,6 +87,7 @@ class getRegionAverage
                 $this->averageAirQuality = array_sum($airQuality) / count($airQuality);
             }
         }
+
         $resultJSON = json_encode($this);
         echo $resultJSON;
     }

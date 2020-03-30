@@ -252,12 +252,6 @@
                                 <br>
                                 <input type="radio" class="form-check-input" name="regionFilters" id="walesCheckbox">
                                 <label class="form-check-label" for="walesCheckbox">Wales</label>
-                                <br>
-                                <input type="radio" class="form-check-input" name="regionFilters" id="scotlandCheckbox">
-                                <label class="form-check-label" for="scotlandCheckbox">Scotland</label>
-                                <br>
-                                <input type="radio" class="form-check-input" name="regionFilters" id="northernIrelandCheckbox">
-                                <label class="form-check-label" for="northernIrelandCheckbox">Northern Ireland</label>
                             </div>
                             <br>
                             <div class="col-sm-6">
@@ -358,7 +352,7 @@
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Status:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxSensorStatus">Online</span>
+                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxSensorStatus"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Region:
@@ -393,7 +387,8 @@
                     </ul>
                     </br>
                     <p class="text-center"><b>Sensor Air Quality Measurements Over Time</b></p>
-                    <p id="noChartData" class="text-center"></P>
+                    <p id="noChartData" class="text-center">
+                    </P>
                     <div id="airQualityChart">
                         <canvas id="sensorChart" class="sensorChart"></canvas>
                     </div>

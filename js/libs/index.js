@@ -172,24 +172,29 @@ requirejs(['cesium'], function(Cesium) {
                     success: function(data) {
                         //chart js
                         var sensorData = $.parseJSON(data);
+                        var last100AQ;
                         requirejs(['chartjs'], function(Chart) {
                             var airQualityReadings = [];
-                            var DateTimeReadings = [];
-                            for (var i = 0; i < sensorData.length; i++) {
-                                if (sensorData[i] === null) {
-                                    document.getElementById("noChartData").innerHTML = "No Air Quality data available";
-                                } else {
-                                    document.getElementById("noChartData").innerHTML = "";
-
-                                    airQualityReadings.push(sensorData[i].airQuality);
-                                    DateTimeReadings.push(sensorData[i].dateTime);
+                            var dateTimeReadings = [];
+                            if (sensorData === null) {
+                                document.getElementById("noChartData").innerHTML = "No Air Quality data available";
+                            } else {
+                                last100AQ = sensorData.last100AQ;
+                                for (var i = 0; i < last100AQ.length; i++) {
+                                    if (last100AQ[i] === null) {
+                                        document.getElementById("noChartData").innerHTML = "No Air Quality data available";
+                                    } else {
+                                        document.getElementById("noChartData").innerHTML = "";
+                                        airQualityReadings.push(last100AQ[i].airQuality);
+                                        dateTimeReadings.push(last100AQ[i].dateTime);
+                                    }
                                 }
                             }
                             var chart = document.getElementById("sensorChart").getContext("2d");
                             var chart = new Chart(chart, {
                                 type: "line",
                                 data: {
-                                    labels: DateTimeReadings,
+                                    labels: dateTimeReadings,
                                     datasets: [{
                                         label: 'Air Quality',
                                         fill: false,
@@ -383,7 +388,7 @@ requirejs(['cesium'], function(Cesium) {
             for (var i = 0; i < walesEntities.length; i++) {
                 //For each entity, create a random color based on the state name.
                 var walesStr = walesEntities[i]._id;
-                var walesRegionJsonId =  walesStr.substring(8, 9);
+                var walesRegionJsonId = walesStr.substring(8, 9);
 
                 switch (walesRegionJsonId) {
                     case "1":
@@ -439,7 +444,7 @@ requirejs(['cesium'], function(Cesium) {
                 function addWalesAverageToMap(response) {
                     console.log(response);
                     var walesSensorData = $.parseJSON(response);
-                    console.log("country: "+walesSensorData.regionCountry);
+                    console.log("country: " + walesSensorData.regionCountry);
                     walesEntity.regionCountry = walesSensorData.regionCountry;
                     if (walesSensorData.regionName === null || walesSensorData.averageAirQuality === null) {} else {
                         if (walesEntity._description === walesSensorData.regionName) {
@@ -451,7 +456,7 @@ requirejs(['cesium'], function(Cesium) {
 
                 if (walesEntity._name === "undefined" || walesEntity._description === "undefined") {} else {
                     if (walesEntity.polygon.extrudedHeight === undefined) {
-                        console.log("passing into DB: " +walesEntity._name )
+                        console.log("passing into DB: " + walesEntity._name)
                         $.ajax({
                             async: true,
                             type: "GET",

@@ -1,4 +1,8 @@
 <?php
+
+//suppress error reporting, toggle for debugging
+error_reporting(0);
+
 // Initialize variable for database credentials
 $dbhost = 'localhost';
 $dbuser = 'root';

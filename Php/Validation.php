@@ -20,3 +20,24 @@ function validateDate($date_time)
         return true;
     };
 };
+
+function validateResult($result)
+{
+    $error = NULL;
+
+    $key = true;
+    while ($key) {
+        foreach ($result as $property => $value) {
+            if (is_null($value)) {
+                echo json_encode($error);
+                $key = false;
+                break;
+            } else {
+                $resultJSON = json_encode($result);
+                echo $resultJSON;
+                $key = false;
+                break;
+            }
+        }
+    }
+};

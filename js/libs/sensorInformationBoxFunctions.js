@@ -18,7 +18,7 @@ function getMinAQ(sensorId) {
             if (sensorData === null) {
                 document.getElementById("informationBoxMinimum").innerHTML = "No air quality readings";
             } else {
-                document.getElementById("informationBoxMinimum").innerHTML = sensorData.airQuality + "%";
+                document.getElementById("informationBoxMinimum").innerHTML = sensorData.minAirQuality + "%";
             }
         }
     });
@@ -35,7 +35,7 @@ function getMaxAQ(sensorId) {
             if (sensorData === null) {
                 document.getElementById("informationBoxMaximum").innerHTML = "No air quality readings";
             } else {
-                document.getElementById("informationBoxMaximum").innerHTML = sensorData.airQuality + "%";
+                document.getElementById("informationBoxMaximum").innerHTML = sensorData.maxAirQuality + "%";
             }
         }
     });

@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     };
 };
 
-// Checks token passed validation
+//Checks token passed validation
 function validateRequest($token)
 {
     if (validateToken($token) == true) {
@@ -28,25 +28,15 @@ class getRegionAverage
 
     function __construct($token)
     {
-        $stmt = $GLOBALS['dblink']->prepare("SELECT s.sensorID, r.regionName, r.regionCountry FROM tblsensorinformation AS s INNER JOIN tblregion as r ON s.regionID=r.regionID WHERE s.regionID =?");
+        $stmt = $GLOBALS['dblink']->prepare("SELECT s.sensorID, r.regionName FROM tblsensorinformation AS s INNER JOIN tblregion as r ON s.regionID=r.regionID WHERE s.regionID =?");
         $stmt->bind_param("i", $token);
         if ($stmt->execute() === TRUE) {
             $result = mysqli_stmt_get_result($stmt);
-            $sensors = null;
-            $regionName = null;
-            $regionCountry = null;
             while ($row = $result->fetch_assoc()) {
                 $sensors[] = $row['sensorID'];
                 $regionName[] = $row['regionName'];
-                $regionCountry[] = $row['regionCountry'];
             }
-            if ($sensors === null) {
-                $sensorCount = 0;
-            } else {
-                $sensorCount = count($sensors);
-            }
-
-            $airQuality = null;
+            $sensorCount = count($sensors);
             for ($i = 0; $i < $sensorCount; $i++) {
 
                 $stmt2 = $GLOBALS['dblink']->prepare("SELECT airQuality FROM tblsensordata WHERE sensorID=? ORDER BY dateTime DESC LIMIT 1");
@@ -59,34 +49,19 @@ class getRegionAverage
                 }
             }
         }
-        $this->calcAverage($airQuality, $regionName, $regionCountry);
+        $this->calcAverage($airQuality,$regionName);
         $stmt->close();
         $GLOBALS['dblink']->close();
     }
 
-    function calcAverage($airQuality, $regionName, $regionCountry)
+    function calcAverage($airQuality, $regionName)
     {
-        if ($regionName === null) {
-            $this->regionName = null;
-        } else {
-            $this->regionName = $regionName[0];
+        $this->regionName = $regionName[0];
+        $airQuality = array_filter($airQuality);
+        if (count($airQuality)) {
+            $this->averageAirQuality = array_sum($airQuality) / count($airQuality);
         }
-
-        if ($regionCountry === null) {
-            $this->regionCountry = null;
-        } else {
-            $this->regionCountry = $regionCountry[0];
-        }
-
-        if ($airQuality === null) {
-            $this->averageAirQuality = null;
-        } else {
-            $airQuality = array_filter($airQuality);
-            if (count($airQuality)) {
-                $this->averageAirQuality = array_sum($airQuality) / count($airQuality);
-            }
-        }
-
+        
         validateResult($this);
     }
 }

@@ -245,7 +245,7 @@ requirejs(['cesium'], function(Cesium) {
 
                 document.getElementById("informationBoxRegionName").innerHTML = entity._description;
                 document.getElementById("informationBoxRegionId").innerHTML = entity._name;
-                document.getElementById("informationBoxRegionCountry").innerHTML = entity.regionCountry;
+                document.getElementById("informationBoxRegionCountry").innerHTML = entity.country;
                 if (entity.airQuality === undefined) {
                     document.getElementById("informationBoxRegionAQ").innerHTML = "No sensors in this region";
                 } else {
@@ -378,6 +378,46 @@ requirejs(['cesium'], function(Cesium) {
         //Seed the random number generator for repeatable results.
         Cesium.Math.setRandomNumberSeed(0);
 
+        var allRegionsID = [];
+        var averageRegionsAQ = [];
+
+        //gets all regions in the country Wales
+        function addAllRegions(response) {
+            var jsonResponse = $.parseJSON(response);
+            var allRegions = jsonResponse.regions;
+            if (allRegions === null) {} else {
+                for(var i = 0; i < allRegions.length; i++){
+                    allRegionsID.push(allRegions[i]);
+                }
+            }
+        }
+        
+        $.ajax({
+            async: false,
+            type: "GET",
+            url: "Php/getAllRegions.php?rc=1",
+            datatype: "json",
+            success: addAllRegions,
+        });
+
+        //gets average air quality for all regions in Wales
+        function addRegionsAverageAQ(response) {
+            var jsonResponse = $.parseJSON(response);
+            if (jsonResponse === null) {} else {
+                averageRegionsAQ.push(jsonResponse);
+            }
+        }
+
+        for (var i = 0; i < allRegionsID.length; i++) {
+            $.ajax({
+                async: false,
+                type: "GET",
+                url: "Php/getRegionAverage.php?rid=" + allRegionsID[i].regionID,
+                datatype: "json",
+                success: addRegionsAverageAQ,
+            });
+        }
+
         var walesPromise = Cesium.GeoJsonDataSource.load('data/geo/walesRegions.json');
         walesPromise.then(function(walesDataSource) {
             viewer.dataSources.add(walesDataSource);
@@ -395,32 +435,43 @@ requirejs(['cesium'], function(Cesium) {
                         walesEntities[i]._name = "2958";
                         walesEntities[i]._description = "North Wales";
                         walesEntities[i].type = "filterRegion";
+                        walesEntities[i].country = "Wales";
+
 
                         break;
                     case "6":
                         walesEntities[i]._name = "3857";
                         walesEntities[i]._description = "Mid and West Wales";
                         walesEntities[i].type = "filterRegion";
+                        walesEntities[i].country = "Wales";
+
                         break;
                     case "7":
                         walesEntities[i]._name = "4859";
                         walesEntities[i]._description = "South Wales Central";
                         walesEntities[i].type = "filterRegion";
+                        walesEntities[i].country = "Wales";
+
                         break;
                     case "8":
                         walesEntities[i]._name = "9275";
                         walesEntities[i]._description = "South Wales East";
                         walesEntities[i].type = "filterRegion";
+                        walesEntities[i].country = "Wales";
+
                         break;
                     case "9":
                         walesEntities[i]._name = "9185";
                         walesEntities[i]._description = "South Wales West";
                         walesEntities[i].type = "filterRegion";
+                        walesEntities[i].country = "Wales";
+
                         break;
                     default:
                         walesEntities[i]._name = "undefined";
                         walesEntities[i]._description = "undefined";
                         walesEntities[i].type = "filterRegion";
+                        walesEntities[i].country = "Wales";
                         break;
                 }
 
@@ -441,35 +492,18 @@ requirejs(['cesium'], function(Cesium) {
                 //Remove the outlines.
                 walesEntity.polygon.outline = false;
 
-                function addWalesAverageToMap(response) {
-                    console.log(response);
-                    var walesSensorData = $.parseJSON(response);
-                    console.log("country: " + walesSensorData.regionCountry);
-                    walesEntity.regionCountry = walesSensorData.regionCountry;
-                    if (walesSensorData.regionName === null || walesSensorData.averageAirQuality === null) {} else {
-                        if (walesEntity._description === walesSensorData.regionName) {
-                            walesEntity.polygon.extrudedHeight = walesSensorData.averageAirQuality * 1500;
-                            walesEntity.airQuality = walesSensorData.averageAirQuality;
-                        } else {}
-                    }
-                }
-
-                if (walesEntity._name === "undefined" || walesEntity._description === "undefined") {} else {
-                    if (walesEntity.polygon.extrudedHeight === undefined) {
-                        console.log("passing into DB: " + walesEntity._name)
-                        $.ajax({
-                            async: true,
-                            type: "GET",
-                            url: "Php/getRegionAverage.php?rid=" + walesEntity._name,
-                            datatype: "json",
-                            success: addWalesAverageToMap,
-                        });
-                    }
-
+                if (walesEntity.polygon.extrudedHeight === undefined) {
+                    averageRegionsAQ.forEach(function(region){
+                        if(region.regionName === walesEntity._description){
+                            if(region.averageAirQuality !== null){
+                                walesEntity.airQuality = region.averageAirQuality;
+                                walesEntity.polygon.extrudedHeight = region.averageAirQuality * 1500;
+                            }
+                        } 
+                    });
                 }
             }
         });
-
     }
 
     //When the apply button in filters is clicked

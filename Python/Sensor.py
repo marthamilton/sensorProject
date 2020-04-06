@@ -110,8 +110,9 @@ try:
             dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
             # Formating air_quality_score to 2 decimal places
             aq_string = str('{0:.2f}'.format(air_quality_score))
+            hum_string = str('{0:.2f}'.format(hum_score))
             # Sending POST Params
-            dataObj = {'t': token, 'aq': aq_string, 'dt': dt_string}
+            dataObj = {'t': token, 'aq': aq_string, 'hum': hum_string, 'dt': dt_string}
             x = requests.post(url, data=dataObj)
             # Printing response body and request params for debugging
             print(x.text)

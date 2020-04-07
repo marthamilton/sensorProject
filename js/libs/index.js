@@ -216,7 +216,11 @@ requirejs(['cesium'], function(Cesium) {
                                                 display: true,
                                                 labelString: 'Time'
                                             },
-                                            display: true
+                                            display: true,
+                                            ticks: {
+                                                source: 'labels',
+                                                autoSkip: true
+                                            }
                                         }],
                                         yAxes: [{
                                             scaleLabel: {
@@ -262,76 +266,126 @@ requirejs(['cesium'], function(Cesium) {
         //Seed the random number generator for repeatable results.
         Cesium.Math.setRandomNumberSeed(0);
 
-        var promise = Cesium.GeoJsonDataSource.load('data/geo/englandRegions.json');
-        promise.then(function(dataSource) {
-            viewer.dataSources.add(dataSource);
+        var allRegionsID = [];
+        var averageRegionsAQ = [];
+
+        //gets all regions in the country Wales
+        function addAllRegions(response) {
+            var jsonResponse = $.parseJSON(response);
+            var allRegions = jsonResponse.regions;
+            if (allRegions === null) {} else {
+                for (var i = 0; i < allRegions.length; i++) {
+                    allRegionsID.push(allRegions[i]);
+                }
+            }
+        }
+
+        $.ajax({
+            async: false,
+            type: "GET",
+            url: "Php/getAllRegions.php?rc=2",
+            datatype: "json",
+            success: addAllRegions,
+        });
+
+        //gets average air quality for all regions in Wales
+        function addRegionsAverageAQ(response) {
+            var jsonResponse = $.parseJSON(response);
+            if (jsonResponse === null) {} else {
+                averageRegionsAQ.push(jsonResponse);
+            }
+        }
+
+        for (var i = 0; i < allRegionsID.length; i++) {
+            $.ajax({
+                async: false,
+                type: "GET",
+                url: "Php/getRegionAverage.php?rid=" + allRegionsID[i].regionID,
+                datatype: "json",
+                success: addRegionsAverageAQ,
+            });
+        }
+
+        var englandPromise = Cesium.GeoJsonDataSource.load('data/geo/englandRegions.json');
+        englandPromise.then(function(englandDataSource) {
+            viewer.dataSources.add(englandDataSource);
 
             //Get the array of entities
-            var entities = dataSource.entities.values;
+            var englandEntities = englandDataSource.entities.values;
 
-            var colorHash = {};
-
-            for (var i = 0; i < entities.length; i++) {
+            for (var i = 0; i < englandEntities.length; i++) {
                 //For each entity, create a random color based on the state name.
-                var str = entities[i]._id;
-                var regionJsonId = str.substring(8, 9);
+                var englandStr = englandEntities[i]._id;
+                var englandRegionJsonId = englandStr.substring(8, 9);
 
-                switch (regionJsonId) {
+                switch (englandRegionJsonId) {
                     case "1":
-                        entities[i]._name = "2857";
-                        entities[i]._description = "North East";
-                        entities[i].type = "filterRegion";
+                        englandEntities[i]._name = "2857";
+                        englandEntities[i]._description = "North East";
+                        englandEntities[i].country = "England";
+                        englandEntities[i].type = "filterRegion";
 
                         break;
                     case "2":
-                        entities[i]._name = "8675";
-                        entities[i]._description = "North West";
-                        entities[i].type = "filterRegion";
+                        englandEntities[i]._name = "8675";
+                        englandEntities[i]._description = "North West";
+                        englandEntities[i].country = "England";
+                        englandEntities[i].type = "filterRegion";
                         break;
                     case "3":
-                        entities[i]._name = "1264";
-                        entities[i]._description = "Yorkshire and The Humber";
-                        entities[i].type = "filterRegion";
+                        englandEntities[i]._name = "1264";
+                        englandEntities[i]._description = "Yorkshire and The Humber";
+                        englandEntities[i].country = "England";
+                        englandEntities[i].type = "filterRegion";
                         break;
                     case "4":
-                        entities[i]._name = "7657";
-                        entities[i]._description = "East Midlands";
-                        entities[i].type = "filterRegion";
+                        englandEntities[i]._name = "7657";
+                        englandEntities[i]._description = "East Midlands";
+                        englandEntities[i].country = "England";
+                        englandEntities[i].type = "filterRegion";
                         break;
                     case "5":
-                        entities[i]._name = "5431";
-                        entities[i]._description = "West Midlands";
-                        entities[i].type = "filterRegion";
+                        englandEntities[i]._name = "5431";
+                        englandEntities[i]._description = "West Midlands";
+                        englandEntities[i].country = "England";
+                        englandEntities[i].type = "filterRegion";
                         break;
                     case "6":
-                        entities[i]._name = "1865";
-                        entities[i]._description = "Eastern";
-                        entities[i].type = "filterRegion";
+                        englandEntities[i]._name = "1865";
+                        englandEntities[i]._description = "Eastern";
+                        englandEntities[i].country = "England";
+                        englandEntities[i].type = "filterRegion";
                         break;
                     case "7":
-                        entities[i]._name = "9783";
-                        entities[i]._description = "London";
-                        entities[i].type = "filterRegion";
+                        englandEntities[i]._name = "9783";
+                        englandEntities[i]._description = "London";
+                        englandEntities[i].country = "England";
+                        englandEntities[i].type = "filterRegion";
                         break;
                     case "8":
-                        entities[i]._name = "6758";
-                        entities[i]._description = "South East";
-                        entities[i].type = "filterRegion";
+                        englandEntities[i]._name = "6758";
+                        englandEntities[i]._description = "South East";
+                        englandEntities[i].country = "England";
+                        englandEntities[i].type = "filterRegion";
                         break;
                     case "9":
-                        entities[i]._name = "1587";
-                        entities[i]._description = "South West";
-                        entities[i].type = "filterRegion";
+                        englandEntities[i]._name = "1587";
+                        englandEntities[i]._description = "South West";
+                        englandEntities[i].country = "England";
+                        englandEntities[i].type = "filterRegion";
                         break;
                     default:
-                        entities[i]._name = "undefined";
-                        entities[i]._description = "undefined";
-                        entities[i].type = "filterRegion";
+                        englandEntities[i]._name = "undefined";
+                        englandEntities[i]._description = "undefined";
+                        englandEntities[i].country = "England";
+                        englandEntities[i].type = "filterRegion";
                         break;
                 }
 
-                const entity = entities[i];
-                var name = entity._id;
+                var colorHash = {};
+
+                const englandEntity = englandEntities[i];
+                var name = englandEntity._id;
                 var color = colorHash[name];
                 if (!color) {
                     color = Cesium.Color.fromRandom({
@@ -340,37 +394,24 @@ requirejs(['cesium'], function(Cesium) {
                     colorHash[name] = color;
                 }
 
+
                 //Set the polygon material to our random color.
-                entity.polygon.material = color;
+                englandEntity.polygon.material = color;
                 //Remove the outlines.
-                entity.polygon.outline = false;
+                englandEntity.polygon.outline = false;
 
-                function addEnglandAverageToMap(response) {
-                    var sensorData = $.parseJSON(response);
-                    entity.regionCountry = sensorData.regionCountry;
-                    if (sensorData.regionName === null || sensorData.averageAirQuality === null) {} else {
-                        if (entity._description === sensorData.regionName) {
-                            entity.polygon.extrudedHeight = sensorData.averageAirQuality * 1500;
-                            entity.airQuality = sensorData.averageAirQuality;
-                        } else {}
-                    }
-                }
-
-                if (entity._name === "undefined" || entity._description === "undefined") {} else {
-                    if (entity.polygon.extrudedHeight === undefined) {
-                        $.ajax({
-                            async: true,
-                            type: "GET",
-                            url: "Php/getRegionAverage.php?rid=" + entity._name,
-                            datatype: "json",
-                            success: addEnglandAverageToMap,
-                        });
-                    }
-
+                if (englandEntity.polygon.extrudedHeight === undefined) {
+                    averageRegionsAQ.forEach(function(region) {
+                        if (region.regionName === englandEntity._description) {
+                            if (region.averageAirQuality !== null) {
+                                englandEntity.airQuality = region.averageAirQuality;
+                                englandEntity.polygon.extrudedHeight = region.averageAirQuality * 1500;
+                            }
+                        }
+                    });
                 }
             }
         });
-
     }
 
     function walesJson() {
@@ -386,12 +427,12 @@ requirejs(['cesium'], function(Cesium) {
             var jsonResponse = $.parseJSON(response);
             var allRegions = jsonResponse.regions;
             if (allRegions === null) {} else {
-                for(var i = 0; i < allRegions.length; i++){
+                for (var i = 0; i < allRegions.length; i++) {
                     allRegionsID.push(allRegions[i]);
                 }
             }
         }
-        
+
         $.ajax({
             async: false,
             type: "GET",
@@ -436,8 +477,6 @@ requirejs(['cesium'], function(Cesium) {
                         walesEntities[i]._description = "North Wales";
                         walesEntities[i].type = "filterRegion";
                         walesEntities[i].country = "Wales";
-
-
                         break;
                     case "6":
                         walesEntities[i]._name = "3857";
@@ -493,13 +532,13 @@ requirejs(['cesium'], function(Cesium) {
                 walesEntity.polygon.outline = false;
 
                 if (walesEntity.polygon.extrudedHeight === undefined) {
-                    averageRegionsAQ.forEach(function(region){
-                        if(region.regionName === walesEntity._description){
-                            if(region.averageAirQuality !== null){
+                    averageRegionsAQ.forEach(function(region) {
+                        if (region.regionName === walesEntity._description) {
+                            if (region.averageAirQuality !== null) {
                                 walesEntity.airQuality = region.averageAirQuality;
                                 walesEntity.polygon.extrudedHeight = region.averageAirQuality * 1500;
                             }
-                        } 
+                        }
                     });
                 }
             }

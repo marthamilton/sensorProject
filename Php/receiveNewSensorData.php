@@ -4,7 +4,7 @@ include('DBConnect.php');
 include('Validation.php');
 //On receipt of request take params and send them to validation
 
- if ($_SERVER["REQUEST_METHOD"] == "GET") {
+ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      // collect value of input field
      $token = $_REQUEST['t'];
      $airQuality = $_REQUEST['aq'];

@@ -190,8 +190,8 @@ requirejs(['cesium'], function(Cesium) {
                                     }
                                 }
                             }
-                            var chart = document.getElementById("sensorChart").getContext("2d");
-                            var chart = new Chart(chart, {
+                            var chartElement = document.getElementById("sensorChart").getContext("2d");
+                            var chart = new Chart(chartElement, {
                                 type: "line",
                                 data: {
                                     labels: dateTimeReadings,
@@ -212,31 +212,30 @@ requirejs(['cesium'], function(Cesium) {
                                     },
                                     scales: {
                                         xAxes: [{
-                                            scaleLabel: {
-                                                display: true,
-                                                labelString: 'Time'
-                                            },
-                                            display: true,
                                             ticks: {
-                                                source: 'labels',
-                                                autoSkip: true
-                                            }
+                                                fontSize: 10,
+                                                userCallback: function(item, index) {
+                                                    var date = item.substring(0, 10);
+                                                    if (!(index % 20)) return date;
+                                                },
+                                                autoSkip: false
+                                            },
                                         }],
                                         yAxes: [{
-                                            scaleLabel: {
-                                                display: true,
-                                                labelString: 'Air Quality %'
-                                            },
                                             display: true,
                                             ticks: {
                                                 max: 100,
                                                 min: 0,
-                                                stepSize: 10
+                                                stepSize: 20
                                             }
                                         }]
                                     }
                                 }
                             });
+
+                        $('#informationBox').on('hidden.bs.modal', function () {
+                            chart.destroy();
+                        });
                         });
 
                     }
@@ -259,6 +258,8 @@ requirejs(['cesium'], function(Cesium) {
             }
         }
     });
+
+
 
     //Start new file - regionFilters.js
     function englandJson() {
@@ -552,9 +553,17 @@ requirejs(['cesium'], function(Cesium) {
         viewer.entities.removeAll();
         if (countyAverage.checked) {
             if (england.checked) {
+                viewer.camera.flyTo({
+                    destination: center,
+                    duration: 2
+                });
                 englandJson();
             }
             if (wales.checked) {
+                viewer.camera.flyTo({
+                    destination: center,
+                    duration: 2
+                });
                 walesJson();
             }
             if (england.checked == false && wales.checked == false) {

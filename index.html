@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--JS-->
-    <script src="js/libs/warningFunctions.js"></script>
     <script src="js/libs/sensorInformationBoxFunctions.js"></script>
     <script src="js/libs/sensorMenuFunctions.js"></script>
     <script data-main="js/libs/Cesium/ThirdParty/rConf" src="js/libs/Cesium/ThirdParty/require.js"></script>
     <script src="js/libs/jquery-3.4.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="js/libs/warningFunctions.js"></script>
     <title>Air Quality Project</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -250,13 +250,13 @@
                                 <input type="radio" class="form-check-input" name="regionFilters" id="englandCheckbox">
                                 <label class="form-check-label" for="englandCheckbox">England</label>
                                 <br>
-                                <input type="radio" class="form-check-input" name="regionFilters" id="walesCheckbox">
+                                <input type="radio" class="form-check-input" name="regionFilters" id="walesCheckbox" checked>
                                 <label class="form-check-label" for="walesCheckbox">Wales</label>
                             </div>
                             <br>
                             <div class="col-sm-6">
                                 <p>Select Filter:</p>
-                                <input type="checkbox" class="form-check-input" id="averageCheckbox">
+                                <input type="checkbox" class="form-check-input" id="averageCheckbox" checked>
                                 <label class="form-check-label" for="averageCheckbox">County Average</label>
                             </div>
                         </div>

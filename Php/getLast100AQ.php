@@ -27,7 +27,7 @@ class getInformation
 
     function __construct($token)
     {
-        $stmt = $GLOBALS['dblink']->prepare("SELECT airQuality, dateTime FROM tblsensordata WHERE sensorID=? ORDER BY dateTime ASC LIMIT 100");
+        $stmt = $GLOBALS['dblink']->prepare("SELECT airQuality, dateTime FROM tblsensordata WHERE sensorID=? ORDER BY dateTime DESC LIMIT 100");
         $stmt->bind_param("i", $token);
         if ($stmt->execute() === TRUE) {
             $result = mysqli_stmt_get_result($stmt);

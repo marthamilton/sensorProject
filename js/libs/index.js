@@ -172,6 +172,7 @@ requirejs(['cesium'], function(Cesium) {
                     success: function(data) {
                         //chart js
                         var sensorData = $.parseJSON(data);
+                        console.log(sensorData)
                         var last100AQ;
                         requirejs(['chartjs'], function(Chart) {
                             var airQualityReadings = [];
@@ -572,8 +573,8 @@ requirejs(['cesium'], function(Cesium) {
             }
         } else {
             england.checked = false;
-            wales.checked = false;
-            countyAverage.checked = false;
+            wales.checked = true;
+            countyAverage.checked = true;
             viewer.dataSources.removeAll();
             filterWarning();
         }
@@ -582,8 +583,8 @@ requirejs(['cesium'], function(Cesium) {
     //When the reset button in filters is clicked
     document.getElementById("resetFilters").addEventListener("click", function() {
         england.checked = false;
-        wales.checked = false;
-        countyAverage.checked = false;
+        wales.checked = true;
+        countyAverage.checked = true;
         viewer.dataSources.removeAll();
         addCesiumPoints();
     });

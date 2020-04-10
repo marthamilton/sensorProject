@@ -60,6 +60,7 @@ requirejs(['cesium'], function(Cesium) {
     // When the cesium container (map) is clicked
     cesiumContainer.addEventListener("click", () => {
         viewer.selectedEntity = undefined;
+        $("#myNavbar").collapse('hide');
     });
 
     // Zoom to UK immediately
@@ -98,7 +99,7 @@ requirejs(['cesium'], function(Cesium) {
                         position: Cesium.Cartesian3.fromDegrees(parseFloat(sensorData[i].sensorLongitude), parseFloat(sensorData[i].sensorLatitude)),
                         point: {
                             pixelSize: 10,
-                            color: Cesium.Color.DARKORCHID
+                            color: Cesium.Color.FIREBRICK
                         },
                         name: sensorData[i].sensorType,
                         id: sensorData[i].sensorID,
@@ -138,7 +139,7 @@ requirejs(['cesium'], function(Cesium) {
 
             let sensorLatitude = cesiumSensors[i].latitude;
             let sensorLongitude = cesiumSensors[i].longitude;
-            document.getElementById("coloumnDiv" + cesiumSensors[i]._id).addEventListener("click", function() {
+            document.getElementById("findButton" + cesiumSensors[i]._id).addEventListener("click", function() {
                 $('#sensors').modal('hide');
                 viewer.camera.flyTo({
                     destination: Cesium.Cartesian3.fromDegrees(sensorLongitude, sensorLatitude, 1000.0),
@@ -199,8 +200,8 @@ requirejs(['cesium'], function(Cesium) {
                                     datasets: [{
                                         label: 'Air Quality',
                                         fill: false,
-                                        backgroundColor: 'rgb(255, 99, 132)',
-                                        borderColor: 'rgb(255, 99, 132)',
+                                        backgroundColor: 'rgb(178, 34, 34)',
+                                        borderColor: 'rgb(178, 34, 34)',
                                         data: airQualityReadings
                                     }]
                                 },
@@ -569,6 +570,8 @@ requirejs(['cesium'], function(Cesium) {
             }
             if (england.checked == false && wales.checked == false) {
                 viewer.dataSources.removeAll();
+                viewer.entities.removeAll();
+                addCesiumPoints();
                 filterWarning();
             }
         } else {
@@ -576,6 +579,8 @@ requirejs(['cesium'], function(Cesium) {
             wales.checked = true;
             countyAverage.checked = true;
             viewer.dataSources.removeAll();
+            viewer.entities.removeAll();
+            addCesiumPoints();
             filterWarning();
         }
     });
@@ -586,6 +591,7 @@ requirejs(['cesium'], function(Cesium) {
         wales.checked = true;
         countyAverage.checked = true;
         viewer.dataSources.removeAll();
+        viewer.entities.removeAll();
         addCesiumPoints();
     });
     //End new file - regionFilters.js

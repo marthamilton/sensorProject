@@ -23,14 +23,12 @@ function noDataWarning(lastUpdated) {
         sweetAlert.fire({
             title: 'Warning',
             html: '<b>This sensor is offline. </b>' + lastUpdated,
-            timer: 10000,
             showCloseButton: true,
-            showCancelButton: true,
+            showCancelButton: false,
             focusConfirm: false,
-            confirmButtonText: '<i class="fa fa-thumbs-up"></i> Great!',
-            confirmButtonAriaLabel: 'Thumbs up, Thanks!',
-            cancelButtonText: '<i class="fa fa-thumbs-down"></i>',
-            cancelButtonAriaLabel: 'Thumbs down',
+            allowOutsideClick: false,
+            confirmButtonText: 'Dismiss',
+            confirmButtonAriaLabel: 'Dismiss',
             imageUrl: 'images/happyearth.gif',
             imageHeight: 150,
         });

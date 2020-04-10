@@ -33,7 +33,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">School Air Quality Project</a>
+                <a class="navbar-brand">School Air Quality Project</a>
             </div>
 
             <div class="collapse navbar-collapse" id="myNavbar">
@@ -67,8 +67,8 @@
                         <div class="card">
                             <div class="card-header" id="headingOne">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                        Purpose
+                                    <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                        Purpose &nbsp;<span class="caret"></span>
                                     </button>
                                 </h2>
                             </div>
@@ -81,8 +81,8 @@
                             <div class="card">
                                 <div class="card-header" id="headingTwo">
                                     <h2 class="mb-0">
-                                        <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            Aims
+                                        <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Aims &nbsp;<span class="caret"></span>
                                         </button>
                                     </h2>
                                 </div>
@@ -95,8 +95,8 @@
                                 <div class="card">
                                     <div class="card-header" id="headingThree">
                                         <h2 class="mb-0">
-                                            <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                COVID-19 Affects
+                                            <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                COVID-19 Affects &nbsp;<span class="caret"></span>
                                             </button>
                                         </h2>
                                     </div>
@@ -110,8 +110,8 @@
                                     <div class="card">
                                         <div class="card-header" id="headingFour">
                                             <h2 class="mb-0">
-                                                <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                                    Feedback
+                                                <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                                    Feedback &nbsp;<span class="caret"></span>
                                                 </button>
                                             </h2>
                                         </div>
@@ -149,8 +149,8 @@
                         <div class="card">
                             <div class="card-header" id="studiesHeadingOne">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#studiesCollapseOne" aria-expanded="false" aria-controls="studiesCollapseOne">
-                                        Unicef
+                                    <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#studiesCollapseOne" aria-expanded="false" aria-controls="studiesCollapseOne">
+                                        Unicef &nbsp;<span class="caret"></span>
                                     </button>
                                 </h2>
                             </div>
@@ -169,8 +169,8 @@
                         <div class="card">
                             <div class="card-header" id="studiesHeadingTwo">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#studiesCollapseTwo" aria-expanded="false" aria-controls="studiesCollapseTwo">
-                                        London Government
+                                    <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#studiesCollapseTwo" aria-expanded="false" aria-controls="studiesCollapseTwo">
+                                        London Government &nbsp;<span class="caret"></span>
                                     </button>
                                 </h2>
                             </div>
@@ -186,8 +186,8 @@
                         <div class="card">
                             <div class="card-header" id="studiesHeadingThree">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#studiesCollapseThree" aria-expanded="false" aria-controls="studiesCollapseThree">
-                                        British Lung Foundation
+                                    <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#studiesCollapseThree" aria-expanded="false" aria-controls="studiesCollapseThree">
+                                        British Lung Foundation &nbsp;<span class="caret"></span>
                                     </button>
                                 </h2>
                             </div>
@@ -218,11 +218,43 @@
                     <h4 class="modal-title text-center">Sensor Menu</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="container-fluid">
-                        <p>Click on one of the following sensors to find it on the map and find out more.
-                        </p>
-                        <div id="sensorGrid"></div>
-                    </div>
+                    <p>Click on one of the following sensor types to view all sensors. None of these sensors are real due to the current circumstances, but give an idea of how this project could be used in the future.</p>
+                    <div class="accordion" id="sensorAccordion">
+                        <div class="card">
+                            <div class="card-header" id="sensorHeadingOne">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#sensorCollapseOne" aria-expanded="false" aria-controls="studiesCollapseOne">
+                                        Air Quality Sensors &nbsp;<span class="caret"></span>
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="sensorCollapseOne" class="collapse" aria-labelledby="sensorHeadingOne" data-parent="#sensorAccordion">
+                                <div class="card-body">
+                                    <div class="container-fluid">
+                                        <div id="AQSensorGrid"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="sensorHeadingTwo">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#sensorCollapseTwo" aria-expanded="false" aria-controls="studiesCollapseTwo">
+                                        Temperature Sensors &nbsp;<span class="caret"></span>
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="sensorCollapseTwo" class="collapse" aria-labelledby="sensorHeadingTwo" data-parent="#sensorAccordion">
+                                <div class="card-body">
+                                    <p>This is an example of how this project could be extended to add different types of sensors.
+                                    </p>
+                                    <div class="container-fluid">
+                                        <div id="otherSensorGrid"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                
                 </div>
             </div>
         </div>

@@ -59,14 +59,13 @@ function getMostRecentAQ(sensorId) {
                 document.getElementById("informationBoxCurrentAirQuality").innerHTML = sensorData.airQuality + "%";
                 document.getElementById("informationBoxLastUpdated").innerHTML = sensorData.dateTime;
                 var lastUpdated = new Date(sensorData.dateTime).getTime();
-                //var lastUpdatedDate = new Date((sensorData.dateTime).replace(' ', 'T'));
                 var currentDate = new Date().getTime();
                 var oneHour = 60 * 60 * 1000;
                 if ((currentDate - lastUpdated) < oneHour) {
                     document.getElementById("informationBoxSensorStatus").innerHTML = "Online";
                 } else {
                     document.getElementById("informationBoxSensorStatus").innerHTML = "Offline";
-                    var sensorLastUpdated = "Last date-time sensor reading: " + sensorData.dateTime;
+                    var sensorLastUpdated = "Latest sensor reading: " + sensorData.dateTime;
                     noDataWarning(sensorLastUpdated);
                 }
             }

@@ -16,6 +16,14 @@ body {
     font-family: Arial !important;
 }
 
+.modalButtonWidth {
+    width: 100%;
+}
+
+.sensorGrid {
+    width: 100%;
+}
+
 .sensorChart {
     display: block;
     position: relative;
@@ -28,12 +36,14 @@ body {
 
 .sensorMenuBox {
     border-style: solid;
-    border-color: black;
+    border-color: #0fa1e6;
     padding: 10px;
+    border-radius: 20px;
+    min-height: 15em;
 }
 
 .sensorMenuBox:hover {
-    background-color: #bbbbbb;
+    background-color: #0FA1E6;
     color: white;
 }
 

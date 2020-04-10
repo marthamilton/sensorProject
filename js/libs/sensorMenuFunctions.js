@@ -11,21 +11,31 @@ function createNewSensorMenuBox(sensor){
         boxDiv.setAttribute('id', 'boxDiv' + sensor._id);
         document.getElementById('coloumnDiv' + sensor._id).appendChild(boxDiv);
 
+        var informationDiv = document.createElement("div");
+        informationDiv.setAttribute('class', 'sensorMenuInformationDiv');
+        informationDiv.setAttribute('id', 'informationDiv' + sensor._id );
+        document.getElementById('boxDiv' + sensor._id).appendChild(informationDiv);
+
         var sensorIdElement = document.createElement("p");
         sensorIdElement.textContent = "Sensor Id: " + sensor._id;
-        document.getElementById("boxDiv" + sensor._id).appendChild(sensorIdElement);
+        document.getElementById('informationDiv' + sensor._id).appendChild(sensorIdElement);
 
         var sensorRegionElement = document.createElement("p");
         sensorRegionElement.textContent = "Region: " + sensor.regionName;
-        document.getElementById("boxDiv" + sensor._id).appendChild(sensorRegionElement);
+        document.getElementById("informationDiv" + sensor._id).appendChild(sensorRegionElement);
 
         var sensorlongitudeElement = document.createElement("p");
         sensorlongitudeElement.textContent = "Longitude: " + sensor.longitude;
-        document.getElementById("boxDiv" + sensor._id).appendChild(sensorlongitudeElement);
+        document.getElementById("informationDiv" + sensor._id).appendChild(sensorlongitudeElement);
 
         var sensorlatitudeElement = document.createElement("p");
         sensorlatitudeElement.textContent = "Latitude: " + sensor.latitude;
-        document.getElementById("boxDiv" + sensor._id).appendChild(sensorlatitudeElement);
+        document.getElementById("informationDiv" + sensor._id).appendChild(sensorlatitudeElement);
+
+        var buttonDiv = document.createElement("div");
+        buttonDiv.setAttribute('class', 'sensorMenuButtonDiv');
+        buttonDiv.setAttribute('id', 'buttonDiv' + sensor._id );
+        document.getElementById('boxDiv' + sensor._id).appendChild(buttonDiv);
 
         var findElement = document.createElement("button");
         findElement.textContent = "Find Sensor";
@@ -33,7 +43,7 @@ function createNewSensorMenuBox(sensor){
         findElement.setAttribute('id', 'findButton' + sensor._id);
         findElement.setAttribute('type', 'button');
         findElement.setAttribute('data-dismiss', 'modal');
-        document.getElementById("boxDiv" + sensor._id).appendChild(findElement);
+        document.getElementById("buttonDiv" + sensor._id).appendChild(findElement);
 
 
     } else {

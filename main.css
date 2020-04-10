@@ -30,6 +30,15 @@ body {
     z-index: 1;
 }
 
+.sensorMenuInformationDiv {
+    height: 70%;
+}
+
+.sensorMenuButtonDiv {
+    padding: 15px;
+    height: 30%;
+}
+
 .sensorMenuPadding {
     padding: 10px;
 }
@@ -39,7 +48,7 @@ body {
     border-color: #0fa1e6;
     padding: 10px;
     border-radius: 20px;
-    min-height: 15em;
+    height: 15em;
 }
 
 .sensorMenuBox:hover {

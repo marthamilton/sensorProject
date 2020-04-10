@@ -22,7 +22,7 @@ function noDataWarning(lastUpdated) {
     requirejs(['sweetalert'], function(sweetAlert) {
         sweetAlert.fire({
             title: 'Warning',
-            html: '<b>This sensor is offline. </b>' + lastUpdated,
+            html: lastUpdated,
             showCloseButton: true,
             showCancelButton: false,
             focusConfirm: false,

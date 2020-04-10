@@ -173,7 +173,6 @@ requirejs(['cesium'], function(Cesium) {
                     success: function(data) {
                         //chart js
                         var sensorData = $.parseJSON(data);
-                        console.log(sensorData)
                         var last100AQ;
                         requirejs(['chartjs'], function(Chart) {
                             var airQualityReadings = [];

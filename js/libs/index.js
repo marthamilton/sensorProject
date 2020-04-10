@@ -196,13 +196,13 @@ requirejs(['cesium'], function(Cesium) {
                             var chart = new Chart(chartElement, {
                                 type: "line",
                                 data: {
-                                    labels: dateTimeReadings,
+                                    labels: dateTimeReadings.reverse(),
                                     datasets: [{
                                         label: 'Air Quality',
                                         fill: false,
                                         backgroundColor: 'rgb(178, 34, 34)',
                                         borderColor: 'rgb(178, 34, 34)',
-                                        data: airQualityReadings
+                                        data: airQualityReadings.reverse()
                                     }]
                                 },
                                 options: {

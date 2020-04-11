@@ -10,12 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--JS-->
-    <script src="js/libs/sensorInformationBoxFunctions.js"></script>
-    <script src="js/libs/sensorMenuFunctions.js"></script>
     <script data-main="js/libs/Cesium/ThirdParty/rConf" src="js/libs/Cesium/ThirdParty/require.js"></script>
-    <script src="js/libs/jquery-3.4.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="js/libs/warningFunctions.js"></script>
     <title>Air Quality Project</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -60,72 +55,104 @@
                     <h4 class="modal-title text-center">About This Project</h4>
                 </div>
                 <div class="modal-body">
-                    <p>The school air quality project is a Final Year Project completed by a student at Cardiff University studying Computer Science with a Year in Industry. </p>
+                    <p>The school air quality project is a Final Year Project completed by a student at Cardiff
+                        University studying Computer Science with a Year in Industry. </p>
                     <div class="accordion" id="aboutAccordion">
                         <div class="card">
                             <div class="card-header" id="headingOne">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    <button class="btn btn-primary collapsed modalButtonWidth" type="button"
+                                        data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
+                                        aria-controls="collapseOne">
                                         Aims &nbsp;<span class="caret"></span>
                                     </button>
                                 </h2>
                             </div>
-                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#aboutAccordion">
+                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                data-parent="#aboutAccordion">
                                 <div class="card-body">
                                     <p>The project aims are to:</p>
                                     <ul>
-                                        <li>Provide parents, governors, teachers, students, local Government and the general public with an up to date and accessible way of understanding the air quality in and around schools.</li>
-                                        <li>Provide valuable marketing material for prospective parents if all schools were to participate.</li>
-                                        <li>Provide an opportunity to put pressure on local Governments to consider possible changes to traffic in the school environment if all schools were to participate.</li>
-                                        <li>Provide curriculum focus in Geography, Maths and Computer Science using data visualisation and computer hardware.</li>
-                                        <li>Provide an opportunity for schools to exchange information, ideas and materials with regard to air quality.</li>
+                                        <li>Provide parents, governors, teachers, students, local Government and the
+                                            general public with an up to date and accessible way of understanding the
+                                            air quality in and around schools.</li>
+                                        <li>Provide valuable marketing material for prospective parents if all schools
+                                            were to participate.</li>
+                                        <li>Provide an opportunity to put pressure on local Governments to consider
+                                            possible changes to traffic in the school environment if all schools were to
+                                            participate.</li>
+                                        <li>Provide curriculum focus in Geography, Maths and Computer Science using data
+                                            visualisation and computer hardware.</li>
+                                        <li>Provide an opportunity for schools to exchange information, ideas and
+                                            materials with regard to air quality.</li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="card">
                                 <div class="card-header" id="headingTwo">
                                     <h2 class="mb-0">
-                                        <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <button class="btn btn-primary collapsed modalButtonWidth" type="button"
+                                            data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                                            aria-controls="collapseTwo">
                                             Future &nbsp;<span class="caret"></span>
                                         </button>
                                     </h2>
                                 </div>
-                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#aboutAccordion">
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                    data-parent="#aboutAccordion">
                                     <div class="card-body">
-                                        This project aims to raise awareness of the importance of good air quality in learning environments. With the use of this project nationwide, people would be able to make decisions about where to educate themselves/their children with less of an impact
-                                        to their long-term health. This would also provide schools and local councils the motivation and pressure to improve the air quality within their learning environments.
+                                        This project aims to raise awareness of the importance of good air quality in
+                                        learning environments. With the use of this project nationwide, people would be
+                                        able to make decisions about where to educate themselves/their children with
+                                        less of an impact
+                                        to their long-term health. This would also provide schools and local councils
+                                        the motivation and pressure to improve the air quality within their learning
+                                        environments.
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header" id="headingThree">
                                         <h2 class="mb-0">
-                                            <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            <button class="btn btn-primary collapsed modalButtonWidth" type="button"
+                                                data-toggle="collapse" data-target="#collapseThree"
+                                                aria-expanded="false" aria-controls="collapseThree">
                                                 COVID-19 Affects &nbsp;<span class="caret"></span>
                                             </button>
                                         </h2>
                                     </div>
-                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#aboutAccordion">
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                        data-parent="#aboutAccordion">
                                         <div class="card-body">
-                                            Unfortunately, this project has been majorly affected by COVID-19. During implementation schools have closed and the general public have needed to self isolate. Therefore, the live sensor used in this project has not been placed in a school environment.
-                                            As a result, the data displayed throughout this project is not linked to a school or in no way accurate for the area. The data displayed will allow you to gain an understanding of the capabilities of this project
+                                            Unfortunately, this project has been majorly affected by COVID-19. During
+                                            implementation schools have closed and the general public have needed to
+                                            self isolate. Therefore, the live sensor used in this project has not been
+                                            placed in a school environment.
+                                            As a result, the data displayed throughout this project is not linked to a
+                                            school or in no way accurate for the area. The data displayed will allow you
+                                            to gain an understanding of the capabilities of this project
                                             if all schools agreed to place sensors in their environment.
                                         </div>
                                     </div>
                                     <div class="card">
                                         <div class="card-header" id="headingFour">
                                             <h2 class="mb-0">
-                                                <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                                <button class="btn btn-primary collapsed modalButtonWidth" type="button"
+                                                    data-toggle="collapse" data-target="#collapseFour"
+                                                    aria-expanded="false" aria-controls="collapseFour">
                                                     Feedback &nbsp;<span class="caret"></span>
                                                 </button>
                                             </h2>
                                         </div>
-                                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#aboutAccordion">
+                                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                                            data-parent="#aboutAccordion">
                                             <div class="card-body">
-                                                After you have findished exploring the website, if you could give some feedback using "send feeback" in the menu on your thoughts.
+                                                After you have findished exploring the website, if you could give some
+                                                feedback using "send feeback" in the menu on your thoughts.
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <img src="images/CardiffUniversityLogo.jpg" alt="Cardiff University Logo" height="75" width="75">
+                                            <img src="images/CardiffUniversityLogo.jpg" alt="Cardiff University Logo"
+                                                height="75" width="75">
                                         </div>
                                     </div>
                                 </div>
@@ -147,22 +174,30 @@
                     <h4 class="modal-title text-center">Studies</h4>
                 </div>
                 <div class="modal-body">
-                    <p>During research, studies were found which are very topical and relevant to this project. If you are interested please click on the buttons below to reveal more information, and a link will be shown to take you to the article.
+                    <p>During research, studies were found which are very topical and relevant to this project. If you
+                        are interested please click on the buttons below to reveal more information, and a link will be
+                        shown to take you to the article.
                     </p>
                     <div class="accordion" id="studiesAccordion">
                         <div class="card">
                             <div class="card-header" id="studiesHeadingOne">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#studiesCollapseOne" aria-expanded="false" aria-controls="studiesCollapseOne">
+                                    <button class="btn btn-primary collapsed modalButtonWidth" type="button"
+                                        data-toggle="collapse" data-target="#studiesCollapseOne" aria-expanded="false"
+                                        aria-controls="studiesCollapseOne">
                                         Unicef &nbsp;<span class="caret"></span>
                                     </button>
                                 </h2>
                             </div>
-                            <div id="studiesCollapseOne" class="collapse" aria-labelledby="studiesHeadingOne" data-parent="#studiesAccordion">
+                            <div id="studiesCollapseOne" class="collapse" aria-labelledby="studiesHeadingOne"
+                                data-parent="#studiesAccordion">
                                 <div class="card-body">
-                                    <p>This article focuses on how we can protect children from toxic air and steps the government should and can take. You are able to "take action" by adding your name to their petition to protect children from harm to their
+                                    <p>This article focuses on how we can protect children from toxic air and steps the
+                                        government should and can take. You are able to "take action" by adding your
+                                        name to their petition to protect children from harm to their
                                         health and futures.
-                                        <a href="https://www.unicef.org.uk/clean-air-child-health-air-pollution/" target="_blank" class="stretched-link">Find Out More</a>
+                                        <a href="https://www.unicef.org.uk/clean-air-child-health-air-pollution/"
+                                            target="_blank" class="stretched-link">Find Out More</a>
                                     </p>
                                     <div class="text-center">
                                         <img src="images/unicefLogo.jpg" alt="Unicef Logo" height="50" width="75">
@@ -173,16 +208,22 @@
                         <div class="card">
                             <div class="card-header" id="studiesHeadingTwo">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#studiesCollapseTwo" aria-expanded="false" aria-controls="studiesCollapseTwo">
+                                    <button class="btn btn-primary collapsed modalButtonWidth" type="button"
+                                        data-toggle="collapse" data-target="#studiesCollapseTwo" aria-expanded="false"
+                                        aria-controls="studiesCollapseTwo">
                                         London Government &nbsp;<span class="caret"></span>
                                     </button>
                                 </h2>
                             </div>
-                            <div id="studiesCollapseTwo" class="collapse" aria-labelledby="studiesHeadingTwo" data-parent="#studiesAccordion">
+                            <div id="studiesCollapseTwo" class="collapse" aria-labelledby="studiesHeadingTwo"
+                                data-parent="#studiesAccordion">
                                 <div class="card-body">
-                                    <p>This toolkit focuses on primary schools in London and tools to identify areas of poor air quality. In addition, this toolkit looks to promote pupil understanding of the causes and impacts of air pollution and gives
+                                    <p>This toolkit focuses on primary schools in London and tools to identify areas of
+                                        poor air quality. In addition, this toolkit looks to promote pupil understanding
+                                        of the causes and impacts of air pollution and gives
                                         ideas for engaging staff, pupils and parents/carers in improving air quality.
-                                        <a href="https://www.london.gov.uk/sites/default/files/ca4s_toolkit.pdf" target="_blank" class="stretched-link">Find Out More</a>
+                                        <a href="https://www.london.gov.uk/sites/default/files/ca4s_toolkit.pdf"
+                                            target="_blank" class="stretched-link">Find Out More</a>
                                     </p>
                                 </div>
                             </div>
@@ -190,18 +231,25 @@
                         <div class="card">
                             <div class="card-header" id="studiesHeadingThree">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#studiesCollapseThree" aria-expanded="false" aria-controls="studiesCollapseThree">
+                                    <button class="btn btn-primary collapsed modalButtonWidth" type="button"
+                                        data-toggle="collapse" data-target="#studiesCollapseThree" aria-expanded="false"
+                                        aria-controls="studiesCollapseThree">
                                         British Lung Foundation &nbsp;<span class="caret"></span>
                                     </button>
                                 </h2>
                             </div>
-                            <div id="studiesCollapseThree" class="collapse" aria-labelledby="studiesHeadingThree" data-parent="#studiesAccordion">
+                            <div id="studiesCollapseThree" class="collapse" aria-labelledby="studiesHeadingThree"
+                                data-parent="#studiesAccordion">
                                 <div class="card-body">
-                                    <p>This article focuses on how air pollution affects children's lungs and how to reduce the health risk. Suggestions include walking to school and finding out local hotspots are.
-                                        <a href="https://www.blf.org.uk/support-for-you/risks-to-childrens-lungs/air-pollution" target="_blank" class="stretched-link">Find Out More</a>
+                                    <p>This article focuses on how air pollution affects children's lungs and how to
+                                        reduce the health risk. Suggestions include walking to school and finding out
+                                        local hotspots are.
+                                        <a href="https://www.blf.org.uk/support-for-you/risks-to-childrens-lungs/air-pollution"
+                                            target="_blank" class="stretched-link">Find Out More</a>
                                     </p>
                                     <div class="text-center">
-                                        <img src="images/BritishLungFoundationLogo.jpg" alt="Unicef Logo" height="100" width="75">
+                                        <img src="images/BritishLungFoundationLogo.jpg" alt="Unicef Logo" height="100"
+                                            width="75">
                                     </div>
                                 </div>
                             </div>
@@ -222,17 +270,22 @@
                     <h4 class="modal-title text-center">Sensor Menu</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Click on one of the following sensor types to view all sensors. None of these sensors are real due to the current circumstances, but give an idea of how this project could be used in the future.</p>
+                    <p>Click on one of the following sensor types to view all sensors. None of these sensors are real
+                        due to the current circumstances, but give an idea of how this project could be used in the
+                        future.</p>
                     <div class="accordion" id="sensorAccordion">
                         <div class="card">
                             <div class="card-header" id="sensorHeadingOne">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#sensorCollapseOne" aria-expanded="false" aria-controls="studiesCollapseOne">
+                                    <button class="btn btn-primary collapsed modalButtonWidth" type="button"
+                                        data-toggle="collapse" data-target="#sensorCollapseOne" aria-expanded="false"
+                                        aria-controls="studiesCollapseOne">
                                         Air Quality Sensors &nbsp;<span class="caret"></span>
                                     </button>
                                 </h2>
                             </div>
-                            <div id="sensorCollapseOne" class="collapse" aria-labelledby="sensorHeadingOne" data-parent="#sensorAccordion">
+                            <div id="sensorCollapseOne" class="collapse" aria-labelledby="sensorHeadingOne"
+                                data-parent="#sensorAccordion">
                                 <div class="card-body">
                                     <div class="container-fluid">
                                         <div id="AQSensorGrid"></div>
@@ -243,14 +296,18 @@
                         <div class="card">
                             <div class="card-header" id="sensorHeadingTwo">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#sensorCollapseTwo" aria-expanded="false" aria-controls="studiesCollapseTwo">
+                                    <button class="btn btn-primary collapsed modalButtonWidth" type="button"
+                                        data-toggle="collapse" data-target="#sensorCollapseTwo" aria-expanded="false"
+                                        aria-controls="studiesCollapseTwo">
                                         Temperature Sensors &nbsp;<span class="caret"></span>
                                     </button>
                                 </h2>
                             </div>
-                            <div id="sensorCollapseTwo" class="collapse" aria-labelledby="sensorHeadingTwo" data-parent="#sensorAccordion">
+                            <div id="sensorCollapseTwo" class="collapse" aria-labelledby="sensorHeadingTwo"
+                                data-parent="#sensorAccordion">
                                 <div class="card-body">
-                                    <p>This is an example of how this project could be extended to add different types of sensors.
+                                    <p>This is an example of how this project could be extended to add different types
+                                        of sensors.
                                     </p>
                                     <div class="container-fluid">
                                         <div id="otherSensorGrid"></div>
@@ -258,7 +315,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>                
+                    </div>
                 </div>
             </div>
         </div>
@@ -276,7 +333,9 @@
                     <h4 class="modal-title text-center">Sensor Filters</h4>
                 </div>
                 <div class="modal-body">
-                    <p>These filters demonstrate the capabilities of this project with nationwide cooperation from schools. If you click on a selected county, the active sensors in that area will be listed. The data provided is not accurate.
+                    <p>These filters demonstrate the capabilities of this project with nationwide cooperation from
+                        schools. If you click on a selected county, the active sensors in that area will be listed. The
+                        data provided is not accurate.
                     </p>
                     <br>
                     <div class="container">
@@ -286,7 +345,8 @@
                                 <input type="radio" class="form-check-input" name="regionFilters" id="englandCheckbox">
                                 <label class="form-check-label" for="englandCheckbox">England</label>
                                 <br>
-                                <input type="radio" class="form-check-input" name="regionFilters" id="walesCheckbox" checked>
+                                <input type="radio" class="form-check-input" name="regionFilters" id="walesCheckbox"
+                                    checked>
                                 <label class="form-check-label" for="walesCheckbox">Wales</label>
                             </div>
                             <br>
@@ -334,8 +394,12 @@
                     <h4 class="modal-title">Help</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                        mollit anim id est laborum.</p>
                     <!--Help Modal-->
                     <div id="help" class="modal fade" role="dialog">
                         <div class="modal-dialog modal-lg">
@@ -346,8 +410,12 @@
                                     <h4 class="modal-title">Help</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                                        sunt in culpa qui officia deserunt mollit anim id
                                         est laborum.</p>
                                 </div>
                             </div>
@@ -376,49 +444,60 @@
                     <ul class="list-group">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Sensor Type:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxSensorType"></span>
+                            <span class="badge badge-primary badge-pill informationBoxPill"
+                                id="informationBoxSensorType"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Sensor Id:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxSensorId"></span>
+                            <span class="badge badge-primary badge-pill informationBoxPill"
+                                id="informationBoxSensorId"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Deployment Date:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxSensorDeploymentDate"></span>
+                            <span class="badge badge-primary badge-pill informationBoxPill"
+                                id="informationBoxSensorDeploymentDate"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Status:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxSensorStatus"></span>
+                            <span class="badge badge-primary badge-pill informationBoxPill"
+                                id="informationBoxSensorStatus"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Region:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxSensorRegionName"></span>
+                            <span class="badge badge-primary badge-pill informationBoxPill"
+                                id="informationBoxSensorRegionName"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Latitude:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxLatitude"></span>
+                            <span class="badge badge-primary badge-pill informationBoxPill"
+                                id="informationBoxLatitude"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Longitude:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxLongitude"></span>
+                            <span class="badge badge-primary badge-pill informationBoxPill"
+                                id="informationBoxLongitude"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Current Air Quality:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxCurrentAirQuality"></span>
+                            <span class="badge badge-primary badge-pill informationBoxPill"
+                                id="informationBoxCurrentAirQuality"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Last Updated:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxLastUpdated"></span>
+                            <span class="badge badge-primary badge-pill informationBoxPill"
+                                id="informationBoxLastUpdated"></span>
                         </li>
                         </br>
                         <p class="text-center"><b>In the last week:</b></p>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Maximum:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxMaximum"></span>
+                            <span class="badge badge-primary badge-pill informationBoxPill"
+                                id="informationBoxMaximum"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Minimum:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxMinimum"></span>
+                            <span class="badge badge-primary badge-pill informationBoxPill"
+                                id="informationBoxMinimum"></span>
                         </li>
                     </ul>
                     </br>
@@ -450,19 +529,23 @@
                     <ul class="list-group">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Region Name:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxRegionName"></span>
+                            <span class="badge badge-primary badge-pill informationBoxPill"
+                                id="informationBoxRegionName"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Region Id:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxRegionId"></span>
+                            <span class="badge badge-primary badge-pill informationBoxPill"
+                                id="informationBoxRegionId"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Country:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxRegionCountry"></span>
+                            <span class="badge badge-primary badge-pill informationBoxPill"
+                                id="informationBoxRegionCountry"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Average Air Quality:
-                            <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxRegionAQ"></span>
+                            <span class="badge badge-primary badge-pill informationBoxPill"
+                                id="informationBoxRegionAQ"></span>
                         </li>
                     </ul>
                 </div>
@@ -472,10 +555,5 @@
 
 
 </body>
-<script>
-    $('.nav a').on('click', function() {
-        $('.navbar-toggle').click();
-    });
-</script>
 
 </html>

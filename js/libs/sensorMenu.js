@@ -1,4 +1,33 @@
-function createNewSensorMenuBox(sensor){
+function createSensorMenu(viewer, Cesium, england, wales, countyAverage) {
+    var cesiumSensors = viewer.entities._entities._array;
+
+    viewer.dataSources.removeAll();
+    england.checked = false;
+    wales.checked = false;
+    countyAverage.checked = false;
+    //checks to see if there are points on the map & if a filter has been applied
+    if (cesiumSensors.length === 0) {
+        addCesiumPoints();
+    }
+
+    for (var i = 0; i < cesiumSensors.length; i++) {
+        if (!document.getElementById("coloumnDiv" + cesiumSensors[i]._id)) {
+            createNewSensorMenuBox(cesiumSensors[i]);
+        }
+
+        let sensorLatitude = cesiumSensors[i].latitude;
+        let sensorLongitude = cesiumSensors[i].longitude;
+        document.getElementById("findButton" + cesiumSensors[i]._id).addEventListener("click", function () {
+            $('#sensors').modal('hide');
+            viewer.camera.flyTo({
+                destination: Cesium.Cartesian3.fromDegrees(sensorLongitude, sensorLatitude, 1000.0),
+                duration: 3.0
+            });
+        });
+    };
+}
+
+function createNewSensorMenuBox(sensor) {
     if (sensor._name === "Air Quality") {
         var coloumnDiv = document.createElement("div");
         coloumnDiv.setAttribute('class', 'col-sm-4 text-center sensorMenuPadding');
@@ -13,7 +42,7 @@ function createNewSensorMenuBox(sensor){
 
         var informationDiv = document.createElement("div");
         informationDiv.setAttribute('class', 'sensorMenuInformationDiv');
-        informationDiv.setAttribute('id', 'informationDiv' + sensor._id );
+        informationDiv.setAttribute('id', 'informationDiv' + sensor._id);
         document.getElementById('boxDiv' + sensor._id).appendChild(informationDiv);
 
         var sensorIdElement = document.createElement("p");
@@ -34,7 +63,7 @@ function createNewSensorMenuBox(sensor){
 
         var buttonDiv = document.createElement("div");
         buttonDiv.setAttribute('class', 'sensorMenuButtonDiv');
-        buttonDiv.setAttribute('id', 'buttonDiv' + sensor._id );
+        buttonDiv.setAttribute('id', 'buttonDiv' + sensor._id);
         document.getElementById('boxDiv' + sensor._id).appendChild(buttonDiv);
 
         var findElement = document.createElement("button");

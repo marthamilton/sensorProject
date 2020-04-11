@@ -11,10 +11,7 @@ function filterWarning() {
             confirmButtonAriaLabel: 'Dismiss',
             imageUrl: 'images/happyearth.gif',
             imageHeight: 150,
-        }).then(() => {
-            console.log("needs to be finished");
-            //addCesiumPoints();
-        });
+        })
     });
 }
 

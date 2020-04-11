@@ -15,14 +15,15 @@ requirejs.config({
         createChart: 'createChart',
     }
 });
-requirejs(['jquery'], function () {
-    $('.nav a').on('click', function () {
+requirejs(['jquery'], function() {
+    $('.nav a').on('click', function() {
         $('.navbar-toggle').click();
     });
+    require(['bootstrap']);
 });
-require(['bootstrap']);
 
-requirejs(['main'], function ($) {
+
+requirejs(['main'], function($) {
     require(['cesium']);
     require(['informationBox']);
     require(['createChart']);

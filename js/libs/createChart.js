@@ -1,3 +1,4 @@
+// Creates a chart for the sensor selected (last 100 pieces of data - just over 24 hours if the sensor is online)
 function createChart(dateTimeReadings, airQualityReadings, chartElement) {
     var chart = new Chart(chartElement, {
         type: "line",
@@ -22,7 +23,7 @@ function createChart(dateTimeReadings, airQualityReadings, chartElement) {
                 xAxes: [{
                     ticks: {
                         fontSize: 10,
-                        userCallback: function (item, index) {
+                        userCallback: function(item, index) {
                             var date = item.substring(0, 10);
                             if (!(index % 20)) return date;
                         },
@@ -40,7 +41,8 @@ function createChart(dateTimeReadings, airQualityReadings, chartElement) {
             }
         }
     });
-    $('#informationBox').on('hidden.bs.modal', function () {
+    // Destorys the chart when the sensor information box is closed
+    $('#informationBox').on('hidden.bs.modal', function() {
         chart.destroy();
     });
 }

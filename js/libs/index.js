@@ -1,5 +1,6 @@
-//Cesium
-define(['cesium', 'createCesiumPoints', 'sensorMenu', 'regionFilters'], function (Cesium) {
+// Defines all files and Cesium
+define(['cesium', 'createCesiumPoints', 'sensorMenu', 'regionFilters'], function(Cesium) {
+
     // Default CesiumJS access token
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzNGE5YjRkNy0yYzE1LTRiMTEtYmIwNC03ZjI4OTYyMTRlZTkiLCJpZCI6MjMxMTcsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1ODI3Mzk0MzV9.kEPRva0D_vJ-mxASc7jdGAGL67M5GiT6r5sQ4LcgHwY';
 
@@ -70,7 +71,7 @@ define(['cesium', 'createCesiumPoints', 'sensorMenu', 'regionFilters'], function
         duration: 2
     });
 
-    //When the HOME button is pressed
+    // When 'Home' is clicked in the application menu
     document.getElementById("homeButton").addEventListener("click", (event) => {
         viewer.camera.flyTo({
             destination: center,
@@ -78,32 +79,38 @@ define(['cesium', 'createCesiumPoints', 'sensorMenu', 'regionFilters'], function
         });
     });
 
-    //filter checkboxes
+    // Filter checkbox elements
     const england = document.getElementById("englandCheckbox");
     const wales = document.getElementById("walesCheckbox");
     const countyAverage = document.getElementById("averageCheckbox");
 
+    // Adds Cesium points to the map - found in createCesiumPoints.js
     addCesiumPoints(Cesium, viewer);
 
-    // Element for the sensor menu
+    // Sensor menu element
     const sensorMenuElement = document.getElementById("sensorMenu");
-    // When the sensor menu is clicked
+
+    // When 'Sensors' is clicked in the application menu
     sensorMenuElement.addEventListener("click", () => {
+        // Creates sensor menu - found in sensorMenu.js
         createSensorMenu(viewer, Cesium, england, wales, countyAverage);
     });
 
-    // User clicks on a point on the map (entity) or a region when a filter is applied
-    viewer.selectedEntityChanged.addEventListener(function (entity) {
-       createInformationBox(viewer, entity);
+    // When the user clicks on a point on the map (entity) or a region (entity) if a filter has been applied
+    viewer.selectedEntityChanged.addEventListener(function(entity) {
+        // Created information box - found in informationBox.js
+        createInformationBox(viewer, entity);
     });
 
-    //When the apply button in filters is clicked
-    document.getElementById("applyFilters").addEventListener("click", function () {
-       applyFilter(Cesium, viewer, england, wales, countyAverage, center);
+    // When the apply button in 'Filters' is clicked
+    document.getElementById("applyFilters").addEventListener("click", function() {
+        // Applies filters selected - found in regionFilters.js
+        applyFilter(Cesium, viewer, england, wales, countyAverage, center);
     });
 
-    //When the reset button in filters is clicked
-    document.getElementById("resetFilters").addEventListener("click", function () {
+    // When the reset button in 'Filters' is clicked
+    document.getElementById("resetFilters").addEventListener("click", function() {
+        // Resets filters - found in regionFilters.js
         resetFilter(Cesium, viewer, england, wales, countyAverage);
     });
 });

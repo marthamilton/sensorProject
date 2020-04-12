@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 
+from requests import ConnectionError
 import bme680
 import time
 import requests
 from datetime import datetime
 
+connection_timeout = 86400
 print("""indoor-air-quality.py - Estimates indoor air quality.
 
 Runs the sensor for a burn-in period, then uses a
@@ -20,8 +22,8 @@ try:
 except IOError:
     sensor = bme680.BME680(bme680.I2C_ADDR_SECONDARY)
 
-# URL for POST Data
-url = 'http://192.168.1.251/Sensor/Listener.php'
+# URL for Data Submission
+url = 'https://users.cs.cf.ac.uk/Chittenden-miltonMM/sensorProject/Php/receiveNewSensorData.php'
 # Token to identify the device...perhaps this can be changed to a more 'random' value at a later date i.e. md5(MAC + salt)
 token = '1234'
 
@@ -105,20 +107,29 @@ try:
             # Calculate air_quality_score.
             air_quality_score = hum_score + gas_score
             
+
             # Get current datetime and format to string and correct datetime format for mysql
             now = datetime.now()
             dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
             # Formating air_quality_score to 2 decimal places
             aq_string = str('{0:.2f}'.format(air_quality_score))
             hum_string = str('{0:.2f}'.format(hum_score))
-            # Sending POST Params
-            dataObj = {'t': token, 'aq': aq_string, 'hum': hum_string, 'dt': dt_string}
-            x = requests.post(url, data=dataObj)
-            # Printing response body and request params for debugging
-            print(x.text)
-            print(dataObj)
-            # Set frequency  
-            time.sleep(5)
-
+            # Sending Params
+            dataObj = {'t': token, 'aq': aq_string, 'h': hum_string, 'dt': dt_string}
+            start_time = time.time()
+            while True:
+                try:
+                    x = requests.post(url, data=dataObj)
+                    # Printing response body and request params for debugging
+                    print(x.text)
+                    print(dataObj)
+                    # Set frequency  
+                    time.sleep(900)
+                    break
+                except ConnectionError:
+                    if time.time() > start_time + connection_timeout:
+                        raise Exception('Unable to get submit data after {} seconds, host cannot be reached'.format(connection_timeout))
+                    else:
+                        time.sleep(10)
 except KeyboardInterrupt:
     pass

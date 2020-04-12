@@ -1,11 +1,11 @@
-
+// Adds Cesium points to the map - gets all sensors and information from the database
 function addCesiumPoints(Cesium, viewer) {
     $.ajax({
         async: true,
         type: "GET",
         url: "Php/getCesiumEntityInformation.php",
         datatype: "json",
-        success: function (data) {
+        success: function(data) {
             var sensorData = $.parseJSON(data);
             for (var i = 0; i < sensorData.length; i++) {
                 viewer.entities.add({
@@ -26,4 +26,3 @@ function addCesiumPoints(Cesium, viewer) {
         }
     });
 }
-

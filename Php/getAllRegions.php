@@ -3,7 +3,7 @@ include('DBConnect.php');
 include('Validation.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    // collect value of input field
+    // Collect value of input field
     $token = $_REQUEST['rc'];
     if (empty($token)) {
         echo "Invalid Request";
@@ -12,9 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     };
 };
 
-//Checks token passed validation
-function validateRequest($token)
-{
+// Checks token passed validation
+function validateRequest($token) {
     if (validateToken($token) == true) {
         switch ($token) {
             case "1":
@@ -31,11 +30,8 @@ function validateRequest($token)
     };
 };
 
-class getInformation
-{
-
-    function __construct($token)
-    {
+class getInformation {
+    function __construct($token) {
         $stmt = $GLOBALS['dblink']->prepare("SELECT regionID from tblregion where regionCountry = ?");
         $stmt->bind_param("s", $token);
         if ($stmt->execute() === TRUE) {
@@ -44,7 +40,6 @@ class getInformation
                 $data[] = $row;
             };
         }
-
         $this->regions = $data;
         validateResult($this);
         $stmt->close();

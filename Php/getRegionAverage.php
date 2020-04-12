@@ -4,7 +4,7 @@ include('DBConnect.php');
 include('Validation.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    // collect value of input field
+    // Collect value of input field
     $token = $_REQUEST['rid'];
     if (empty($token)) {
         echo "Invalid Request";
@@ -14,8 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 };
 
 // Checks token passed validation
-function validateRequest($token)
-{
+function validateRequest($token) {
     if (validateToken($token) == true) {
         $getInfo = new getRegionAverage($token);
     } else {
@@ -23,11 +22,8 @@ function validateRequest($token)
     };
 };
 
-class getRegionAverage
-{
-
-    function __construct($token)
-    {
+class getRegionAverage {
+    function __construct($token) {
         $stmt = $GLOBALS['dblink']->prepare("SELECT s.sensorID, r.regionName, r.regionCountry FROM tblsensorinformation AS s INNER JOIN tblregion as r ON s.regionID=r.regionID WHERE s.regionID =?");
         $stmt->bind_param("i", $token);
         if ($stmt->execute() === TRUE) {
@@ -64,8 +60,7 @@ class getRegionAverage
         $GLOBALS['dblink']->close();
     }
 
-    function calcAverage($airQuality, $regionName, $regionCountry)
-    {
+    function calcAverage($airQuality, $regionName, $regionCountry) {
         if ($regionName === null) {
             $this->regionName = null;
         } else {
@@ -86,7 +81,6 @@ class getRegionAverage
                 $this->averageAirQuality = array_sum($airQuality) / count($airQuality);
             }
         }
-
         validateResult($this);
     }
 }

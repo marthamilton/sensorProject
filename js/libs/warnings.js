@@ -1,3 +1,4 @@
+// Creates a filter warning using SweetAlerts - when the user does not select a filter correctly
 function filterWarning() {
     requirejs(['sweetalert'], function(sweetAlert) {
         sweetAlert.fire({
@@ -15,6 +16,7 @@ function filterWarning() {
     });
 }
 
+// Creates a warning when there is no data for a sensor using SweetAlerts
 function noDataWarning(lastUpdated) {
     requirejs(['sweetalert'], function(sweetAlert) {
         sweetAlert.fire({

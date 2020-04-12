@@ -22,7 +22,6 @@ requirejs(['jquery'], function() {
     require(['bootstrap']);
 });
 
-
 requirejs(['main'], function($) {
     require(['cesium']);
     require(['informationBox']);

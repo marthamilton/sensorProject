@@ -21,7 +21,7 @@ function englandJson(Cesium, viewer) {
 
     // Gets all regionID's in the country England from the database
     $.ajax({
-        async: true,
+        async: false,
         type: "GET",
         url: "Php/getAllRegions.php?rc=2",
         datatype: "json",
@@ -39,7 +39,7 @@ function englandJson(Cesium, viewer) {
     // For all regions in England, gets the region air quality average from the database
     for (var i = 0; i < allRegionsID.length; i++) {
         $.ajax({
-            async: true,
+            async: false,
             type: "GET",
             url: "Php/getRegionAverage.php?rid=" + allRegionsID[i].regionID,
             datatype: "json",
@@ -145,14 +145,11 @@ function englandJson(Cesium, viewer) {
             // Checks if the hieght of the entity is undefined
             if (englandEntity.polygon.extrudedHeight === undefined) {
                 // Checks for each region if there is an average air quality reading
-                console.log("height is undefined");
                 averageRegionsAQ.forEach(function(region) {
                     // If the region name matches the entity name
-                    console.log("not the same name");
                     if (region.regionName === englandEntity._description) {
                         // Checks the region average isn't null
                         if (region.averageAirQuality !== null) {
-                            console.log("in the right place");
                             // Adds the hieght to the region
                             englandEntity.airQuality = region.averageAirQuality;
                             englandEntity.polygon.extrudedHeight = region.averageAirQuality * 1500;
@@ -197,7 +194,7 @@ function walesJson(Cesium, viewer) {
     // Adds average air quality for all regions in England to averageRegionsAQ
     function addRegionsAverageAQ(response) {
         var jsonResponse = $.parseJSON(response);
-        if (jsonResponse === null) {
+        if (jsonResponse !== null) {
             averageRegionsAQ.push(jsonResponse);
         }
     }

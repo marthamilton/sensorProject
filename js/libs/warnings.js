@@ -64,7 +64,7 @@ function filterWarning() {
             confirmButtonText: 'Dismiss',
             confirmButtonAriaLabel: 'Dismiss',
             imageUrl: 'images/happyearth.gif',
-            imageHeight: 150,
+            imageHeight: 150
         })
     });
 }
@@ -82,7 +82,7 @@ function noDataWarning(lastUpdated) {
             confirmButtonText: 'Dismiss',
             confirmButtonAriaLabel: 'Dismiss',
             imageUrl: 'images/happyearth.gif',
-            imageHeight: 150,
+            imageHeight: 150
         });
     });
 }

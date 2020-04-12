@@ -103,6 +103,7 @@ function createInformationBox(viewer, entity) {
 
             // Hides the region information box modal
             $(document.getElementById("regionInformationBox")).modal('hide');
+
             // Gets & sets sensor informaiton/data in the information box
             setSensorInformation(entity);
             getMostRecentAQ(viewer.selectedEntity._id);

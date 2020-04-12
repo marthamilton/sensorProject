@@ -153,7 +153,7 @@
                     <h4 class="modal-title text-center">Studies</h4>
                 </div>
                 <div class="modal-body">
-                    <p>During research, studies were found which are very topical and relevant to this project. If you are interested please click on the buttons below to reveal more information, and a link will be shown to take you to the article.
+                    <p>During the research stages of this project, there were manyt opical and relevant studies found. If interested please click on the buttons below to reveal more information, and a link will be shown to take you to the article.
                     </p>
                     <div class="accordion" id="studiesAccordion">
                         <div class="card">
@@ -230,7 +230,7 @@
                 <div class="modal-body">
                     <p class="text-center"><b>DISCLAIMER: The information displayed by these sensors are for demonstration purposes only.</b></p>
                     </br>
-                    <p>Click on one of the following sensor types to view all sensors. None of these sensors are real due to the current circumstances, but give an idea of how this project could be used in the future.
+                    <p>Click on one of the following to view all of the sensors of that type in the project:
                     </p>
                     <div class="accordion" id="sensorAccordion">
                         <div class="card">
@@ -287,13 +287,13 @@
                 <div class="modal-body">
                     <p class="text-center"><b>DISCLAIMER: The information displayed by these filters are for demonstration purposes only.</b></p>
                     </br>
-                    <p>These filters demonstrate the capabilities of this project with nationwide cooperation from schools. If you click on a selected county, the active sensors in that area will be listed. The data provided is not accurate.
-                    </p>
-                    <br>
+                    <p>These filters demonstrate the capabilities of this project with nationwide cooperation. When you apply a filter, the average air quality for each region in that country will be displayed as a bar chart on the map.</p>
+                    <p>If you click on a region once a filter has been applied, the region information will be displayed.</p>
+                    <p>Make sure to select both a country and filter before applying.</p>
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-6">
-                                <p>Select area:</p>
+                                <p>Select country:</p>
                                 <input type="radio" class="form-check-input" name="regionFilters" id="englandCheckbox">
                                 <label class="form-check-label" for="englandCheckbox">England</label>
                                 <br>
@@ -304,7 +304,7 @@
                             <div class="col-sm-6">
                                 <p>Select Filter:</p>
                                 <input type="checkbox" class="form-check-input" id="averageCheckbox" checked>
-                                <label class="form-check-label" for="averageCheckbox">County Average</label>
+                                <label class="form-check-label" for="averageCheckbox">Region Average</label>
                             </div>
                         </div>
                     </div>
@@ -345,25 +345,141 @@
                     <h4 class="modal-title">Help</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <!--Help Modal-->
-                    <div id="help" class="modal fade" role="dialog">
-                        <div class="modal-dialog modal-lg">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Help</h4>
+                    <p><b>FAQs</b></p>
+                    <div class="accordion" id="helpAccordion">
+                            <div class="card">
+                                <div class="card-header" id="helpHeadingOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#helpCollapseOne" aria-expanded="false" aria-controls="helpCollapseOne">
+                                            What are the red points on the map? &nbsp;<span class="caret"></span>
+                                        </button>
+                                    </h2>
                                 </div>
-                                <div class="modal-body">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-                                        est laborum.</p>
+                                <div id="helpCollapseOne" class="collapse" aria-labelledby="helpHeadingOne" data-parent="#helpAccordion">
+                                    <div class="card-body">
+                                        <div class="container-fluid">
+                                        <ul>
+                                            <li>The points on the map represent air quality sensors.</li>
+                                            <li>Click on a sensor and the information box will appear, containing a line chart which shows the air quality % over time.</li>
+                                        </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                            <div class="card">
+                                <div class="card-header" id="helpHeadingTwo">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#helpCollapseTwo" aria-expanded="false" aria-controls="helpCollapseTwo">
+                                            Where are the sensors actually placed? &nbsp;<span class="caret"></span>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="helpCollapseTwo" class="collapse" aria-labelledby="helpHeadingTwo" data-parent="#helpAccordion">
+                                    <div class="card-body">
+                                        <div class="container-fluid">
+                                         <ul>
+                                            <li>The only sensor with live data has the id: 1234, and can easily be found in <i>Sensors</i>. This sensor is placed in the West Midlands.</li>
+                                            <li>The remaining sensors have no data or dummy data. These have been placed to see the projects potential.</li>
+                                        </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="helpHeadingThree">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#helpCollapseThree" aria-expanded="false" aria-controls="helpCollapseThree">
+                                            What does the line chart represent? &nbsp;<span class="caret"></span>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="helpCollapseThree" class="collapse" aria-labelledby="helpHeadingThree" data-parent="#helpAccordion">
+                                    <div class="card-body">
+                                        <div class="container-fluid">
+                                            <ul>
+                                                <li>The line chart shows the air quality % over time.</li>
+                                                <li>The chart will show a maximum of 100 pieces of data. This is just over 24 hours if the sensor is live.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="helpHeadingFour">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#helpCollapseFour" aria-expanded="false" aria-controls="helpCollapseFour">
+                                            How do I send Feedback? &nbsp;<span class="caret"></span>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="helpCollapseFour" class="collapse" aria-labelledby="helpHeadingFour" data-parent="#helpAccordion">
+                                    <div class="card-body">
+                                        <div class="container-fluid">
+                                            <ul>
+                                                <li>Please send feedback using <i>Send Feedback</i> in the appication menu.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="helpHeadingFive">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#helpCollapseFive" aria-expanded="false" aria-controls="helpCollapseFive">
+                                            How do I apply a filters? &nbsp;<span class="caret"></span>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="helpCollapseFive" class="collapse" aria-labelledby="helpHeadingFive" data-parent="#helpAccordion">
+                                    <div class="card-body">
+                                        <div class="container-fluid">
+                                            <ul>
+                                                <li>Please visit <i>Filters</i> in the application menu and select a country and filter.</li>
+                                                <li>Then click <i>Apply</i>.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="helpHeadingSix">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#helpCollapseSix" aria-expanded="false" aria-controls="helpCollapseSix">
+                                            How do I reset a filter? &nbsp;<span class="caret"></span>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="helpCollapseSix" class="collapse" aria-labelledby="helpHeadingSix" data-parent="#helpAccordion">
+                                    <div class="card-body">
+                                        <div class="container-fluid">
+                                            <ul>
+                                                <li>Please revisit <i>Filters</i> in the application menu and click <i>Reset</i>.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="card">
+                                <div class="card-header" id="helpHeadingSeven">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-primary collapsed modalButtonWidth" type="button" data-toggle="collapse" data-target="#helpCollapseSeven" aria-expanded="false" aria-controls="helpCollapseSeven">
+                                            Has this been done before? &nbsp;<span class="caret"></span>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="helpCollapseSeven" class="collapse" aria-labelledby="helpHeadingSeven" data-parent="#helpAccordion">
+                                    <div class="card-body">
+                                        <div class="container-fluid">
+                                            <ul>
+                                                <li>There are other websites that allow you to look at air quality data and static maps.</li>
+                                                <li>This project has a different aim to involve schools. Please visit <i>About</i> to find out more.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                            
+                    <p><b>Reporting</b></p>
+                    <p>Please report any unaddressed issues using <i>Send Feedback</i>.</p>
                 </div>
             </div>
         </div>
@@ -383,7 +499,7 @@
                     <div>
                         <p class="text-center"><b>DISCLAIMER: The information displayed by this sensor is for demonstration purposes only.</b></p>
                         </br>
-                        <p>When online, this sensor is collecting data every fifteen minutes. Find out how in the About section.</p>
+                        <p>When online, this sensor is collecting data every fifteen minutes and only the most recent 100 pieces of data are kept. Find out how the sensor collects data in the About section.</p>
                     </div>
                     <p class="text-center"><b>Sensor Information</b></p>
                     <ul class="list-group">
@@ -423,8 +539,6 @@
                             Last Updated:
                             <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxLastUpdated"></span>
                         </li>
-                        </br>
-                        <p class="text-center"><b>In the last week:</b></p>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Maximum:
                             <span class="badge badge-primary badge-pill informationBoxPill" id="informationBoxMaximum"></span>

@@ -1,5 +1,7 @@
 // Defines all files and Cesium
-define(['cesium', 'createCesiumPoints', 'sensorMenu', 'regionFilters'], function(Cesium) {
+define(['cesium', 'createCesiumPoints', 'sensorMenu', 'regionFilters', 'warnings'], function(Cesium) {
+
+    onLoadWarning();
 
     // Default CesiumJS access token
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzNGE5YjRkNy0yYzE1LTRiMTEtYmIwNC03ZjI4OTYyMTRlZTkiLCJpZCI6MjMxMTcsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1ODI3Mzk0MzV9.kEPRva0D_vJ-mxASc7jdGAGL67M5GiT6r5sQ4LcgHwY';

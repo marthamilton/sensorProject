@@ -5,10 +5,10 @@ function createChart(dateTimeReadings, airQualityReadings, chartElement) {
         data: {
             labels: dateTimeReadings.reverse(),
             datasets: [{
-                label: 'Air Quality',
+                label: "Air Quality",
                 fill: false,
-                backgroundColor: 'rgb(178, 34, 34)',
-                borderColor: 'rgb(178, 34, 34)',
+                backgroundColor: 'rgb(15,161,230)',
+                borderColor: 'rgb(15,161,230)',
                 data: airQualityReadings.reverse()
             }]
         },
@@ -24,8 +24,8 @@ function createChart(dateTimeReadings, airQualityReadings, chartElement) {
                     ticks: {
                         fontSize: 10,
                         userCallback: function(item, index) {
-                            var date = item.substring(0, 10);
-                            if (!(index % 20)) return date;
+                            var time = item.substring(11, 19);
+                            if (!(index % 20)) return time;
                         },
                         autoSkip: false
                     },
@@ -41,6 +41,33 @@ function createChart(dateTimeReadings, airQualityReadings, chartElement) {
             }
         }
     });
+    var today = new Date();
+    var month = '' + (today.getMonth() + 1);
+    var day = '' + today.getDate();
+    var year = today.getFullYear();
+
+    if (month.length < 2) {
+        month = '0' + month;
+    }
+    if (day.length < 2) {
+        day = '0' + day;
+    }
+    var todayDate = [year, month, day].join('/'); 
+            
+    for (i = 0; i < chart.data.labels.length; i++) {
+        var dateTime = chart.data.labels[i].split("-").join("/");
+        var dateReading = dateTime.substring(0, 10);
+
+        if (todayDate !== dateReading) {
+            chart.getDatasetMeta(0).data[i].custom = {
+                backgroundColor: 'rgb(178, 34, 34)',
+                borderColor: 'rgb(178, 34, 34)',
+
+            };
+        } 
+    }
+    chart.update();
+
     // Destorys the chart when the sensor information box is closed
     $('#informationBox').on('hidden.bs.modal', function() {
         chart.destroy();

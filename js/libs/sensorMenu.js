@@ -10,9 +10,9 @@ function createSensorMenu(viewer, Cesium, england, wales, countyAverage) {
     countyAverage.checked = true;
 
     // Checks to see if there are points on the map
-    if (cesiumSensors.length === 0) {
+    if (cesiumSensors.length === 0 || cesiumSensors === undefined) {
         // Adds Cesium points to the map - found in createCesiumPoints.js
-        addCesiumPoints();
+        addCesiumPoints(Cesium, viewer);
     }
 
     // For every sensor 

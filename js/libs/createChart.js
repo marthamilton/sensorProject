@@ -55,14 +55,16 @@ function createChart(dateTimeReadings, airQualityReadings, chartElement) {
     var todayDate = [year, month, day].join('/'); 
             
     for (i = 0; i < chart.data.labels.length; i++) {
-        var dateTime = chart.data.labels[i].split("-").join("/");
-        var dateReading = dateTime.substring(0, 10);
+        var lastUpdated = chart.data.labels[i].split("-").join("/");
+        var lastUpdatedDate = Date.parse(lastUpdated);
+        var currentDate = Date.parse(new Date());
+        var twentyFourHours = (60 * 60 * 1000) * 24;
 
-        if (todayDate !== dateReading) {
+        // Checks if the data dateTime is more than 24 hours ago and changes the colour
+        if ((currentDate - lastUpdatedDate) > twentyFourHours) {
             chart.getDatasetMeta(0).data[i].custom = {
                 backgroundColor: 'rgb(178, 34, 34)',
                 borderColor: 'rgb(178, 34, 34)',
-
             };
         } 
     }

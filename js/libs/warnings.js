@@ -67,11 +67,13 @@ function sensorMenuWarning(Cesium, viewer, england, wales, countyAverage) {
             confirmButtonAriaLabel: 'Reset Filter',
             imageUrl: 'images/happyearth.gif',
             imageHeight: 150
-        }).then(function(isConfirm) {
-            if(isConfirm){
+        }).then(function(result) {
+            if(result.value){
                 resetFilter(Cesium, viewer, england, wales, countyAverage);
+                $('#sensors').modal('hide');
+            } else {
+                $('#sensors').modal('hide');
             }
-            $('#sensors').modal('hide');
         });
     })
 }

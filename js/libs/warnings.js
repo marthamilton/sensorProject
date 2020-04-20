@@ -51,6 +51,31 @@ function onLoadWarning() {
     });
 }
 
+// Creates a sensor menu warning using SweetAlerts - when the user has not reset the filter before clicking on the sensor menu
+function sensorMenuWarning(Cesium, viewer, england, wales, countyAverage) {
+    requirejs(['sweetalert', 'jquery'], function(sweetAlert) {
+        sweetAlert.fire({
+            title: 'Warning',
+            html: '<b>Please make sure to reset the filter in <i>Filters</i> before trying to view <i>Sensors</i>!</b>',
+            showCloseButton: true,
+            showCancelButton: true,
+            focusConfirm: false,
+            allowOutsideClick: false,
+            cancelButtonText: 'Dismiss',
+            cancelButtonAriaLabel: 'Dismiss',
+            confirmButtonText: 'Reset Filter',
+            confirmButtonAriaLabel: 'Reset Filter',
+            imageUrl: 'images/happyearth.gif',
+            imageHeight: 150
+        }).then(function(isConfirm) {
+            if(isConfirm){
+                resetFilter(Cesium, viewer, england, wales, countyAverage);
+            }
+            $('#sensors').modal('hide');
+        });
+    })
+}
+
 // Creates a filter warning using SweetAlerts - when the user does not select a filter correctly
 function filterWarning() {
     requirejs(['sweetalert'], function(sweetAlert) {

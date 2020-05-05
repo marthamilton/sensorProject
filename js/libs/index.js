@@ -94,15 +94,12 @@ define(['cesium', 'createCesiumPoints', 'sensorMenu', 'regionFilters', 'warnings
 
     // When 'Sensors' is clicked in the application menu
     sensorMenuElement.addEventListener("click", () => {
-        if(viewer.dataSources._dataSources.length === 0){
-             //createSensorMenu(viewer, Cesium, england, wales, countyAverage);
+        if (viewer.dataSources._dataSources.length === 0) {
+            //createSensorMenu(viewer, Cesium, england, wales, countyAverage);
             createSensorMenu(viewer, Cesium, england, wales, countyAverage);
         } else {
             sensorMenuWarning(Cesium, viewer, england, wales, countyAverage);
         }
-        //if (entity.type === "sensorPoint") {
-        // Creates sensor menu - found in sensorMenu.js
-
     });
 
     // When the user clicks on a point on the map (entity) or a region (entity) if a filter has been applied

@@ -1,12 +1,17 @@
 #!/usr/bin/env python
 
-from requests import ConnectionError
 import bme680
 import time
+# START CUSTOM CODE BLOCK #
+###########################
+from requests import ConnectionError
 import requests
 from datetime import datetime
 
 connection_timeout = 86400
+#########################
+# END CUSTOM CODE BLOCK #
+
 print("""indoor-air-quality.py - Estimates indoor air quality.
 
 Runs the sensor for a burn-in period, then uses a
@@ -21,11 +26,14 @@ try:
     sensor = bme680.BME680(bme680.I2C_ADDR_PRIMARY)
 except IOError:
     sensor = bme680.BME680(bme680.I2C_ADDR_SECONDARY)
-
+# START CUSTOM CODE BLOCK #
+###########################
 # URL for Data Submission
 url = 'https://users.cs.cf.ac.uk/Chittenden-miltonMM/sensorProject/Php/receiveNewSensorData.php'
-# Token to identify the device...perhaps this can be changed to a more 'random' value at a later date i.e. md5(MAC + salt)
+# Token to identify the device. Perhaps this can be changed to a more 'random' value at a later date i.e. md5(MAC Address + salt)
 token = '1234'
+#########################
+# END CUSTOM CODE BLOCK #
 
 # These oversampling settings can be tweaked to
 # change the balance between accuracy and noise in
@@ -107,7 +115,8 @@ try:
             # Calculate air_quality_score.
             air_quality_score = hum_score + gas_score
             
-
+# START CUSTOM CODE BLOCK #
+###########################
             # Get current datetime and format to string and correct datetime format for mysql
             now = datetime.now()
             dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
@@ -131,5 +140,7 @@ try:
                         raise Exception('Unable to get submit data after {} seconds, host cannot be reached'.format(connection_timeout))
                     else:
                         time.sleep(10)
+######################### 
+# END CUSTOM CODE BLOCK #                       
 except KeyboardInterrupt:
     pass
